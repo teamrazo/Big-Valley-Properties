@@ -52,9 +52,20 @@ export default function Footer() {
           <div>
             <h4 className="font-heading text-lg mb-6 tracking-brand-wide uppercase text-white/90">Service Areas</h4>
             <ul className="space-y-3">
-              {['Weaverville', 'Hayfork', 'Lewiston', 'Junction City', 'Redding', 'Anderson', 'Shasta Lake', 'Cottonwood'].map(area => (
-                <li key={area}>
-                  <span className="text-white/60 text-sm">{area}</span>
+              {[
+                { name: 'Weaverville', slug: 'weaverville' },
+                { name: 'Hayfork', slug: 'hayfork' },
+                { name: 'Lewiston', slug: 'lewiston' },
+                { name: 'Junction City', slug: 'junction-city' },
+                { name: 'Redding', slug: 'redding' },
+                { name: 'Anderson', slug: 'anderson' },
+                { name: 'Shasta Lake', slug: 'shasta-lake' },
+                { name: 'Cottonwood', slug: 'cottonwood' },
+              ].map(area => (
+                <li key={area.slug}>
+                  <Link href={`/locations/${area.slug}`} className="text-white/60 hover:text-white transition-colors text-sm">
+                    {area.name}
+                  </Link>
                 </li>
               ))}
             </ul>

@@ -1,0 +1,577 @@
+export interface LocationSchool {
+  name: string
+  grades: string
+  type: string
+  highlight?: string
+}
+
+export interface LocationAttraction {
+  name: string
+  description: string
+  icon: 'hiking' | 'water' | 'park' | 'historic' | 'dining' | 'shopping' | 'nature' | 'sports'
+}
+
+export interface Location {
+  name: string
+  slug: string
+  county: 'Trinity' | 'Shasta'
+  tagline: string
+  heroImage: string
+  galleryImages: string[]
+  population: string
+  elevation: string
+  founded: string
+  overview: string
+  history: string
+  whyLiveHere: string[]
+  schools: LocationSchool[]
+  schoolsOverview: string
+  healthcare: string[]
+  healthcareOverview: string
+  recreation: LocationAttraction[]
+  recreationOverview: string
+  familyFeatures: string[]
+  communityHighlights: string[]
+  lifestyle: string
+  climate: string
+  nearbyAttractions: string[]
+  coordinates: { lat: number; lng: number }
+}
+
+export const locations: Location[] = [
+  {
+    name: 'Weaverville',
+    slug: 'weaverville',
+    county: 'Trinity',
+    tagline: 'Historic Gold Rush Charm Meets Mountain Living',
+    heroImage: '/images/locations/trinity-alps-lake.jpg',
+    galleryImages: [
+      '/images/locations/trinity-alps-meadow.jpg',
+      '/images/locations/cabin-creek.jpg',
+      '/images/locations/river-porch.jpg',
+    ],
+    population: '~3,600',
+    elevation: '2,051 ft',
+    founded: '1850',
+    overview: 'Weaverville is the historic county seat of Trinity County and one of Northern California\'s most charming mountain towns. Founded during the California Gold Rush, this picturesque community sits at the foot of the Trinity Alps Wilderness and serves as the gateway to some of the state\'s most breathtaking outdoor recreation. With its beautifully preserved Gold Rush-era architecture, vibrant local culture, and close-knit community spirit, Weaverville offers an unparalleled quality of life for families, retirees, and anyone seeking authentic small-town living surrounded by natural beauty.',
+    history: 'Founded in 1850 during the California Gold Rush, Weaverville quickly grew into a bustling town of over 10,000 residents. The town\'s rich multicultural heritage is preserved in landmarks like the Joss House—California\'s oldest active Chinese temple—and the Trinity County Courthouse, the second oldest continuously used courthouse in the state. Today, the historic downtown retains its Gold Rush character with unique spiral staircases, the iconic bandstand, and thriving local businesses.',
+    whyLiveHere: [
+      'Gateway to the Trinity Alps Wilderness with world-class hiking, fishing, and outdoor recreation',
+      'Beautifully preserved Gold Rush-era downtown with unique shops, restaurants, and cultural attractions',
+      'Strong sense of community with local events, farmers markets, and neighborhood connections',
+      'Affordable real estate compared to California\'s urban areas with significantly more space and privacy',
+      'Outstanding access to Trinity Lake—just 15 minutes away—for boating, camping, and water sports',
+      'Clean mountain air, four distinct seasons, and a peaceful pace of life',
+    ],
+    schools: [
+      { name: 'Weaverville Elementary School', grades: 'K-8', type: 'Public', highlight: 'Above average public school ratings' },
+      { name: 'Trinity High School', grades: '9-12', type: 'Public', highlight: 'Strong athletics and community involvement' },
+      { name: 'Trinity County Community College', grades: 'Higher Ed', type: 'Community College', highlight: 'Local continuing education' },
+    ],
+    schoolsOverview: 'Weaverville\'s public schools are rated above average, with dedicated teachers and a low student-to-teacher ratio that ensures personalized attention. The tight-knit school community fosters academic success and strong extracurricular programs, from athletics to outdoor education.',
+    healthcare: [
+      'Trinity Hospital — full-service community hospital',
+      'Trinity County Health & Human Services',
+      'Mountain Communities Healthcare District',
+      'Local dental, vision, and specialty clinics',
+    ],
+    healthcareOverview: 'Trinity Hospital anchors the healthcare network in Weaverville, providing emergency services, primary care, and outpatient services. Multiple clinics and specialty providers ensure residents have access to quality healthcare close to home.',
+    recreation: [
+      { name: 'Trinity Alps Wilderness', description: 'Over 500,000 acres of pristine wilderness with alpine lakes, jagged peaks, and hundreds of miles of trails', icon: 'hiking' },
+      { name: 'Trinity Lake', description: 'California\'s third largest reservoir, just 15 minutes from town—perfect for boating, fishing, and swimming', icon: 'water' },
+      { name: 'Joss House State Historic Park', description: 'California\'s oldest active Chinese temple, a fascinating window into Gold Rush-era history', icon: 'historic' },
+      { name: 'Jake Jackson Museum', description: 'Rich displays of Gold Rush equipment, tools, and memorabilia in an original 1850s building', icon: 'historic' },
+      { name: 'Weaverville Basin Trail System', description: 'Professionally maintained hiking and biking trails of varying difficulty in and around town', icon: 'hiking' },
+      { name: 'Trinity River Fishing', description: 'World-class steelhead and salmon fishing along the Trinity River corridor', icon: 'water' },
+    ],
+    recreationOverview: 'Weaverville is an outdoor enthusiast\'s dream. From the towering granite peaks of the Trinity Alps to the crystal waters of Trinity Lake, adventure is always just minutes away. The town\'s extensive trail system, historic sites, and river access make every day an opportunity for exploration.',
+    familyFeatures: [
+      'Safe, walkable downtown with family-friendly businesses',
+      'Low crime rates and strong neighborhood watch programs',
+      'Year-round community events and festivals',
+      'Youth sports leagues and outdoor education programs',
+      'Large lots and spacious properties ideal for growing families',
+      'Strong network of family services and support organizations',
+    ],
+    communityHighlights: [
+      'Annual Trinity County Fair',
+      'Fourth of July Parade & Celebration',
+      'Weekly Farmers Market (seasonal)',
+      'Historic Downtown Walking Tours',
+      'Community Theater & Arts Programs',
+    ],
+    lifestyle: 'Life in Weaverville moves at a pace that allows you to truly savor each day. Mornings might start with a hike along the Basin Trail, afternoons can be spent browsing the charming downtown shops, and evenings are perfect for stargazing under some of the clearest skies in California.',
+    climate: 'Mediterranean climate with warm, dry summers (averaging 94°F) and cool, wet winters. Average annual precipitation is 35 inches with occasional light snowfall. Four distinct seasons bring stunning fall colors and wildflower-filled springs.',
+    nearbyAttractions: ['Trinity Lake', 'Shasta-Trinity National Forest', 'Whiskeytown National Recreation Area', 'Mt. Shasta'],
+    coordinates: { lat: 40.7312, lng: -122.9420 },
+  },
+  {
+    name: 'Hayfork',
+    slug: 'hayfork',
+    county: 'Trinity',
+    tagline: 'Big Valley Living in the Heart of Trinity County',
+    heroImage: '/images/locations/trinity-alps-meadow.jpg',
+    galleryImages: [
+      '/images/locations/hyampom-cabin.jpg',
+      '/images/locations/farmhouse-hills.jpg',
+      '/images/locations/river-porch.jpg',
+    ],
+    population: '~2,300',
+    elevation: '2,310 ft',
+    founded: '1850s',
+    overview: 'Hayfork—whose original Wintu name Nor\'el pom means "big valley at the base of the mountain"—is a warm and welcoming community nestled in the broad Hayfork Valley of Trinity County. This is where Big Valley Properties calls home, and for good reason. With sweeping valley vistas, a proud rural heritage, and a community that looks out for its own, Hayfork offers the kind of authentic country living that many people dream about but few find.',
+    history: 'The Hayfork Valley has been inhabited for thousands of years, first by the Nor\'el Muk band of the Wintu people. European settlers arrived during the Gold Rush era, and the town grew as a center for ranching and timber. The first Trinity County Fair was held here in 1921, and the community has maintained its agricultural roots while evolving into a vibrant small town with modern amenities.',
+    whyLiveHere: [
+      'Expansive valley properties with stunning mountain views and room to roam',
+      'Deeply rooted community with a proud heritage and welcoming atmosphere',
+      'Exceptional affordability—get more land and home for your investment',
+      'Home to Big Valley Properties\' main office for personalized real estate service',
+      'Rich agricultural traditions with local ranching and farming opportunities',
+      'Dark skies, clean air, and the peaceful rhythm of rural life',
+    ],
+    schools: [
+      { name: 'Hayfork Elementary School', grades: 'K-8', type: 'Public', highlight: 'Community-focused education' },
+      { name: 'Hayfork High School', grades: '9-12', type: 'Public', highlight: 'Small class sizes and strong community support' },
+      { name: 'Valley High School', grades: '9-12', type: 'Alternative', highlight: 'Flexible learning options' },
+      { name: 'Hyampom Arts Magnet School', grades: 'K-8', type: 'Public Magnet', highlight: 'Arts-integrated curriculum' },
+    ],
+    schoolsOverview: 'The Mountain Valley Unified School District serves Hayfork with six schools offering diverse educational approaches. Small class sizes ensure every student receives individualized attention, and the schools are deeply integrated into the fabric of community life.',
+    healthcare: [
+      'Mountain Communities Healthcare District',
+      'Hayfork Community Health Center',
+      'Local dental and wellness clinics',
+      'Emergency medical services',
+    ],
+    healthcareOverview: 'Hayfork\'s healthcare network provides essential medical services right in the valley. The Mountain Communities Healthcare District and community health center offer primary care, dental services, and wellness programs, with larger facilities accessible in Weaverville and Redding.',
+    recreation: [
+      { name: 'Hayfork Creek', description: 'A beautiful creek running through the valley, perfect for swimming, fishing, and peaceful streamside walks', icon: 'water' },
+      { name: 'Trinity County Fair', description: 'Annual community celebration with livestock shows, rides, music, and local food—a Hayfork tradition since 1921', icon: 'park' },
+      { name: 'Shasta-Trinity National Forest', description: 'Endless acres of forested mountains for hiking, hunting, camping, and exploring', icon: 'nature' },
+      { name: 'Local Ranching & Agriculture', description: 'Experience authentic rural life with opportunities for hobby farming, ranching, and homesteading', icon: 'nature' },
+      { name: 'WWII Bomb Balloon Memorial', description: 'Unique historical marker commemorating a WWII Japanese balloon bomb that landed near Hayfork', icon: 'historic' },
+      { name: 'Valley Trails', description: 'Scenic trails throughout the Hayfork Valley for hiking, horseback riding, and mountain biking', icon: 'hiking' },
+    ],
+    recreationOverview: 'Hayfork\'s broad valley setting and surrounding mountains offer endless outdoor recreation. From creek fishing to forest exploration, horseback riding to community events, there\'s always something to do in this vibrant rural community.',
+    familyFeatures: [
+      'Tight-knit community where neighbors know each other by name',
+      'Safe, rural environment ideal for raising children',
+      'Large acreage properties with room for animals and outdoor play',
+      'Active youth programs through schools and community organizations',
+      'Annual community events that bring families together',
+      'Affordable cost of living with excellent value for families',
+    ],
+    communityHighlights: [
+      'Trinity County Fair (est. 1921)',
+      'Community Potlucks & Gatherings',
+      'Local Artisan Markets',
+      'Volunteer Fire Department',
+      'Agricultural Heritage Events',
+    ],
+    lifestyle: 'Hayfork is where neighbors still wave as you drive by, where kids can play outside until dark, and where the stars shine brighter than anywhere you\'ve been. It\'s a place where community isn\'t just a word—it\'s a way of life.',
+    climate: 'Warm-summer Mediterranean climate with significant temperature variations. Hot, sunny summers and cool winters with occasional snow. The broad valley provides excellent growing conditions for gardens and small farms.',
+    nearbyAttractions: ['Shasta-Trinity National Forest', 'South Fork Mountain', 'Trinity River', 'Weaverville Historic District'],
+    coordinates: { lat: 40.5543, lng: -123.1832 },
+  },
+  {
+    name: 'Lewiston',
+    slug: 'lewiston',
+    county: 'Trinity',
+    tagline: 'Where the River Runs Through Paradise',
+    heroImage: '/images/locations/river-porch.jpg',
+    galleryImages: [
+      '/images/locations/cabin-river.jpg',
+      '/images/locations/trinity-alps-lake.jpg',
+      '/images/locations/cabin-creek.jpg',
+    ],
+    population: '~1,200',
+    elevation: '1,800 ft',
+    founded: '1850',
+    overview: 'Lewiston is a tranquil riverside gem tucked along the Trinity River between Lewiston Lake and the Trinity Alps. Known for its world-class fly fishing, crystal-clear waters, and slow-paced lifestyle, this small community offers a rare combination of natural beauty and peaceful living. If you\'ve ever dreamed of waking up to the sound of the river flowing past your doorstep, Lewiston is the place to make that dream real.',
+    history: 'Founded around 1850 by a trader named Lewis, Lewiston quickly became an important stop along the Trinity River corridor during the Gold Rush. The town\'s Old Schoolhouse, built in 1862 by the local Temperance Society, served as both school and community center for decades and now operates as a library and museum. The construction of Trinity Dam and Lewiston Dam in the 1960s transformed the area into a recreational paradise.',
+    whyLiveHere: [
+      'World-renowned fly fishing waters right at your doorstep',
+      'Lewiston Lake offers year-round recreation with calm, clear waters',
+      'Intimate community of nature lovers and outdoor enthusiasts',
+      'Some of the most picturesque riverfront properties in Northern California',
+      'Peaceful, unhurried lifestyle surrounded by mountain beauty',
+      'Close proximity to both Trinity Lake and Weaverville amenities',
+    ],
+    schools: [
+      { name: 'Lewiston Elementary School', grades: 'K-8', type: 'Public', highlight: 'Intimate school with personalized education' },
+    ],
+    schoolsOverview: 'Lewiston Elementary School provides a close-knit educational experience where every child is known and supported. With small class sizes and dedicated teachers, the school offers a nurturing environment. High school students attend Trinity High School in nearby Weaverville.',
+    healthcare: [
+      'Trinity Hospital (Weaverville — 15 min)',
+      'Local emergency medical services',
+      'Telehealth services available',
+    ],
+    healthcareOverview: 'While Lewiston maintains local emergency services, residents enjoy quick access to Trinity Hospital and full medical facilities in Weaverville, just a scenic 15-minute drive away.',
+    recreation: [
+      { name: 'Lewiston Lake', description: 'A stunning, calm-water lake perfect for kayaking, canoeing, and trophy trout fishing', icon: 'water' },
+      { name: 'Trinity River Fly Fishing', description: 'World-class catch-and-release fly fishing for steelhead and rainbow trout', icon: 'water' },
+      { name: 'Trinity Alps Marina', description: 'Full-service marina with boat rentals, dock access, and lakeside recreation', icon: 'water' },
+      { name: 'Old Lewiston Schoolhouse Museum', description: 'Historic 1862 schoolhouse turned library and museum, preserving the town\'s Gold Rush heritage', icon: 'historic' },
+      { name: 'Lewiston Turnpike Trail', description: 'Scenic trail following the historic route between Lewiston and Douglas City', icon: 'hiking' },
+      { name: 'Birdwatching & Wildlife', description: 'Exceptional birdwatching along the river corridor with bald eagles, ospreys, and herons', icon: 'nature' },
+    ],
+    recreationOverview: 'Lewiston is a water lover\'s paradise. The calm waters of Lewiston Lake, the rushing currents of the Trinity River, and the surrounding mountain trails create an outdoor playground that attracts visitors from around the world.',
+    familyFeatures: [
+      'Exceptionally safe, close-knit community',
+      'Riverside properties with direct water access',
+      'Outdoor-focused childhood experiences',
+      'Strong community bonds and mutual support',
+      'Quiet, pollution-free environment',
+      'Easy access to Weaverville services and schools',
+    ],
+    communityHighlights: [
+      'Lewiston Peddlers Fair',
+      'Community Volunteer Events',
+      'Annual Fishing Derbies',
+      'Old Schoolhouse Cultural Events',
+      'Riverside Community Gatherings',
+    ],
+    lifestyle: 'Lewiston offers the kind of life most people only see in postcards. Wake up to mist rising off the river, spend your afternoon casting a fly line into crystal water, and end the day watching the sunset paint the Trinity Alps in gold.',
+    climate: 'Mediterranean mountain climate with warm, dry summers and mild, wet winters. The river and lake moderate temperatures, creating comfortable conditions year-round. Perfect weather for outdoor activities from spring through fall.',
+    nearbyAttractions: ['Trinity Lake', 'Lewiston Lake', 'Trinity Alps Wilderness', 'Weaverville Historic Downtown'],
+    coordinates: { lat: 40.7152, lng: -122.8076 },
+  },
+  {
+    name: 'Junction City',
+    slug: 'junction-city',
+    county: 'Trinity',
+    tagline: 'River Living at the Crossroads of Adventure',
+    heroImage: '/images/locations/cabin-river.jpg',
+    galleryImages: [
+      '/images/locations/trinity-alps-meadow.jpg',
+      '/images/locations/river-porch.jpg',
+      '/images/locations/hyampom-cabin.jpg',
+    ],
+    population: '~660',
+    elevation: '1,909 ft',
+    founded: '1850s',
+    overview: 'Junction City is a hidden gem along the Trinity River, located just 8 miles west of Weaverville where Canyon Creek meets the Trinity River. This intimate riverside community offers some of the most stunning natural scenery in Trinity County, with towering mountain views, crystal-clear river waters, and a genuine off-the-grid feeling that\'s increasingly rare in modern California. For those seeking true seclusion without sacrificing access to essential services, Junction City delivers.',
+    history: 'Junction City earned its name from the confluence of Canyon Creek and the Trinity River, a natural junction that attracted Gold Rush miners and settlers in the 1850s. The community\'s population grew to 440 by 1870 as mining operations flourished along both waterways. Today, Junction City preserves its frontier character while offering modern amenities and easy access to Weaverville.',
+    whyLiveHere: [
+      'Stunning riverside and mountain properties at exceptional values',
+      'Just 8 miles from Weaverville\'s shops, schools, and services',
+      'Prime Trinity River access for fishing, swimming, and kayaking',
+      'High owner-occupancy rate (83%) reflecting strong community investment',
+      'Secluded mountain living without being truly remote',
+      'Canyon Creek access for gold panning, swimming, and exploration',
+    ],
+    schools: [
+      { name: 'Junction City Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small, community-centered school' },
+    ],
+    schoolsOverview: 'Junction City Elementary serves the community with an intimate, family-like educational environment. Older students attend Trinity High School in Weaverville, just a short drive along the scenic Trinity River corridor.',
+    healthcare: [
+      'Trinity Hospital (Weaverville — 10 min)',
+      'Local emergency response services',
+      'Telehealth and visiting clinic services',
+    ],
+    healthcareOverview: 'Junction City\'s proximity to Weaverville means residents are just 10 minutes from Trinity Hospital and full healthcare services, while local emergency response teams provide immediate assistance when needed.',
+    recreation: [
+      { name: 'Trinity River Recreation', description: 'Swimming holes, kayaking, rafting, and world-class fishing right through the heart of the community', icon: 'water' },
+      { name: 'Canyon Creek Trail', description: 'Stunning trail into the Trinity Alps Wilderness, leading to alpine lakes and granite peaks', icon: 'hiking' },
+      { name: 'Gold Panning', description: 'Try your luck at recreational gold panning along Canyon Creek and the Trinity River', icon: 'nature' },
+      { name: 'Ripstein Campground', description: 'Popular riverside campground and community gathering spot', icon: 'park' },
+      { name: 'Mountain Biking', description: 'Challenging backcountry trails through the surrounding mountains and forests', icon: 'sports' },
+      { name: 'Wildlife Viewing', description: 'Black bears, deer, bald eagles, and river otters are regularly spotted in the area', icon: 'nature' },
+    ],
+    recreationOverview: 'Junction City is where river meets mountain in spectacular fashion. Canyon Creek provides access to the most iconic trails in the Trinity Alps, while the Trinity River offers endless water recreation. Every season brings new adventures.',
+    familyFeatures: [
+      'Small, safe community where everyone watches out for each other',
+      'Properties with generous acreage for kids and pets to explore',
+      'River access for family swimming and fishing',
+      'Close to Weaverville schools and extracurricular activities',
+      'Low cost of living and high quality of life',
+      'Strong tradition of self-reliance and community support',
+    ],
+    communityHighlights: [
+      'Community Potlucks & BBQs',
+      'Volunteer Fire Department',
+      'Riverside Summer Gatherings',
+      'Local Art & Craft Shows',
+      'Annual Clean-up Events',
+    ],
+    lifestyle: 'Junction City offers a lifestyle that combines the best of mountain seclusion with convenient access to town. It\'s the kind of place where you can be completely off-grid if you choose, or hop into Weaverville for dinner in under 10 minutes.',
+    climate: 'Protected river canyon climate with warm, dry summers and cool, moderate winters. The canyon setting provides natural wind protection and comfortable temperatures throughout much of the year.',
+    nearbyAttractions: ['Trinity Alps Wilderness', 'Canyon Creek Trail', 'Weaverville Historic Downtown', 'Trinity Lake'],
+    coordinates: { lat: 40.7332, lng: -123.0526 },
+  },
+  {
+    name: 'Redding',
+    slug: 'redding',
+    county: 'Shasta',
+    tagline: 'Northern California\'s Gateway to Adventure',
+    heroImage: '/images/locations/mt-shasta-lake.jpg',
+    galleryImages: [
+      '/images/locations/mt-shasta-road.jpg',
+      '/images/locations/farmhouse-hills.jpg',
+      '/images/locations/river-porch.jpg',
+    ],
+    population: '~93,600',
+    elevation: '495 ft',
+    founded: '1872',
+    overview: 'Redding is the vibrant hub of Northern California\'s Shasta County, offering the perfect blend of urban convenience and outdoor paradise. As the region\'s largest city, Redding provides comprehensive shopping, dining, healthcare, and cultural amenities while sitting at the doorstep of some of the most spectacular natural landscapes in the American West. Named one of America\'s top outdoor cities by multiple publications, Redding is where cosmopolitan living meets wilderness adventure.',
+    history: 'Founded in 1872 as a railroad town named after B.B. Redding, a Central Pacific Railroad land agent, the city grew through mining, lumber, and the construction of Shasta Dam in the 1930s–40s. Today, Redding has evolved into a thriving regional center with a diversified economy spanning healthcare, education, retail, and tourism, while maintaining its identity as a gateway to Northern California\'s wilderness.',
+    whyLiveHere: [
+      'Full urban amenities — shopping, dining, entertainment, and healthcare — in a mountain setting',
+      'The iconic Sundial Bridge and Turtle Bay Exploration Park',
+      '200+ miles of hiking and biking trails within city limits',
+      'Second sunniest city in the United States — 88% sunshine',
+      'Proximity to Shasta Lake, Mt. Shasta, Lassen Volcanic National Park, and Whiskeytown Lake',
+      'Growing economy with strong job market in healthcare, education, and services',
+    ],
+    schools: [
+      { name: 'Shasta Union High School District', grades: '9-12', type: 'Public', highlight: 'Multiple comprehensive high schools' },
+      { name: 'Enterprise Elementary District', grades: 'K-8', type: 'Public', highlight: 'Highly rated elementary schools' },
+      { name: 'Shasta College', grades: 'Higher Ed', type: 'Community College', highlight: 'Founded in 1948, extensive programs' },
+      { name: 'Simpson University', grades: 'Higher Ed', type: 'Private University', highlight: 'Four-year private university' },
+    ],
+    schoolsOverview: 'Redding offers a comprehensive educational system from pre-K through university. Multiple school districts provide diverse learning environments, while Shasta College and Simpson University offer higher education right in town. Charter schools and private options add even more choice for families.',
+    healthcare: [
+      'Mercy Medical Center Redding — major regional hospital',
+      'Shasta Regional Medical Center — full-service hospital',
+      'Redding VA Outpatient Clinic',
+      'Numerous specialty clinics and medical offices',
+      'Surgery centers and rehabilitation facilities',
+    ],
+    healthcareOverview: 'Redding serves as the healthcare hub for all of Northern California. Two major hospitals, a VA clinic, and dozens of specialty providers ensure world-class medical care is available locally, from emergency services to advanced surgical procedures.',
+    recreation: [
+      { name: 'Sundial Bridge & Turtle Bay', description: 'Santiago Calatrava\'s iconic bridge leads to the Turtle Bay Exploration Park with museums, gardens, and nature trails', icon: 'park' },
+      { name: 'Shasta Lake', description: 'California\'s largest reservoir with 365 miles of shoreline, houseboating, fishing, and water sports', icon: 'water' },
+      { name: 'Whiskeytown National Recreation Area', description: 'Crystal-clear lake surrounded by waterfalls, hiking trails, and Gold Rush history', icon: 'water' },
+      { name: 'Sacramento River Trail', description: 'Over 200 miles of interconnected trails for biking, running, and walking through the city', icon: 'hiking' },
+      { name: 'Lake Shasta Caverns', description: 'Spectacular limestone caves accessible by boat and bus tour on the shores of Shasta Lake', icon: 'nature' },
+      { name: 'Mt. Shasta & Lassen Peak', description: 'Two of California\'s most majestic volcanic peaks within easy day-trip distance', icon: 'hiking' },
+    ],
+    recreationOverview: 'Redding has been named an "Outdoor Paradise" by NPR, the US Capital of Kayaking by TIME Magazine, and one of Forbes\' Top 10 Trout-Fishing Towns. With world-class lakes, rivers, trails, and mountain access, there\'s no shortage of adventure.',
+    familyFeatures: [
+      'Excellent school options from multiple districts',
+      'Family-friendly parks, splash pads, and recreation centers',
+      'Youth sports leagues and after-school programs',
+      'Major retail and entertainment options',
+      'Safe, established neighborhoods with diverse housing options',
+      'Strong community events calendar year-round',
+    ],
+    communityHighlights: [
+      'Redding Rodeo (annual)',
+      'Kool April Nites (classic car show)',
+      'Sundial Bridge Events',
+      'Shasta District Fair',
+      'Downtown Redding Farmers Market',
+    ],
+    lifestyle: 'Redding offers the rare combination of small-city friendliness with big-city conveniences. Spend your morning on the Sacramento River Trail, grab lunch at a local café, and be hiking in the mountains by afternoon. It\'s urban living on nature\'s terms.',
+    climate: 'Hot, sunny summers (averaging 100°F in July) and mild, rainy winters. The second sunniest city in America with 88% sunshine. Ideal for year-round outdoor activities with over 300 sunny days per year.',
+    nearbyAttractions: ['Shasta Lake', 'Mt. Shasta', 'Lassen Volcanic National Park', 'Whiskeytown Lake', 'Castle Crags State Park'],
+    coordinates: { lat: 40.5865, lng: -122.3917 },
+  },
+  {
+    name: 'Anderson',
+    slug: 'anderson',
+    county: 'Shasta',
+    tagline: 'Small-Town Heart with Big Opportunities',
+    heroImage: '/images/locations/farmhouse-hills.jpg',
+    galleryImages: [
+      '/images/locations/mt-shasta-road.jpg',
+      '/images/locations/river-porch.jpg',
+      '/images/locations/mt-shasta-lake.jpg',
+    ],
+    population: '~11,300',
+    elevation: '430 ft',
+    founded: '1872',
+    overview: 'Anderson is a growing community just 10 miles south of Redding that offers the best of both worlds: small-town charm with easy access to big-city amenities. Situated along the Sacramento River at the northern tip of the Central Valley, Anderson provides affordable housing, excellent parks, and a family-oriented atmosphere that has attracted steady growth in recent years. It\'s the kind of place where you can know your neighbors, enjoy beautiful parks, and still be in Redding in 10 minutes.',
+    history: 'Anderson was established as a railroad town in 1872, growing alongside the California & Oregon Railroad. Named after Elias Anderson, a local pioneer, the town incorporated in 1956 and has steadily grown from its roots as an agricultural and transportation hub. Today, Anderson balances its historic small-town character with modern development and a growing population.',
+    whyLiveHere: [
+      'Significantly more affordable than Redding with comparable access to amenities',
+      'Award-winning Anderson River Park on the Sacramento River',
+      'Growing community with new development and investment',
+      'Quick 10-minute commute to Redding\'s jobs and services',
+      'Family-friendly neighborhoods with excellent parks and recreation',
+      'Sacramento River access for fishing, swimming, and nature walks',
+    ],
+    schools: [
+      { name: 'Cascade Union Elementary School District', grades: 'K-8', type: 'Public', highlight: '4 schools serving 1,300 students' },
+      { name: 'Anderson Union High School', grades: '9-12', type: 'Public', highlight: 'Comprehensive high school program' },
+      { name: 'Anderson New Tech High School', grades: '9-12', type: 'Charter', highlight: 'Innovative project-based learning' },
+      { name: 'Shasta Christian Academy', grades: 'K-12', type: 'Private', highlight: 'Faith-based education option' },
+    ],
+    schoolsOverview: 'Anderson\'s educational system offers diverse options for families. The Cascade Union Elementary District serves over 1,300 students with quality elementary and middle school education, while Anderson Union High School and Anderson New Tech provide traditional and innovative high school pathways.',
+    healthcare: [
+      'Quick access to Mercy Medical Center (Redding)',
+      'Quick access to Shasta Regional Medical Center (Redding)',
+      'Local medical and dental clinics',
+      'Urgent care facilities',
+    ],
+    healthcareOverview: 'Anderson residents enjoy convenient access to Redding\'s comprehensive healthcare network, including two major hospitals just 10 minutes away. Local clinics provide everyday medical and dental needs right in town.',
+    recreation: [
+      { name: 'Anderson River Park', description: 'Beautiful Sacramento River park with athletic fields, fishing access, picnic areas, disc golf, and the new River Splash water play area', icon: 'park' },
+      { name: 'Sacramento River', description: 'Direct access to the Sacramento River for fishing, swimming, and kayaking', icon: 'water' },
+      { name: 'North & South Volonte Parks', description: 'Community parks with softball fields, a skate park, jogging trails, and exercise equipment', icon: 'sports' },
+      { name: 'Anderson Bike Path', description: 'Paved paths connecting neighborhoods to parks and downtown for safe cycling and walking', icon: 'hiking' },
+      { name: 'River Splash Pad', description: 'Modern splash pad with 35 LED-lit water jets, shade structures, and family picnic areas', icon: 'water' },
+      { name: 'Shasta Lake & Whiskeytown', description: 'World-class lakes just 20-30 minutes away for boating, houseboating, and water sports', icon: 'water' },
+    ],
+    recreationOverview: 'Anderson\'s crown jewel is the beautiful Anderson River Park along the Sacramento River, featuring everything from athletic fields to the popular River Splash pad. With easy access to Shasta Lake and Whiskeytown, water recreation is always close at hand.',
+    familyFeatures: [
+      'Anderson River Park with splash pad and play structures',
+      'Safe, established neighborhoods with sidewalks',
+      'Multiple school options including charter and private',
+      'Youth sports leagues and recreation programs',
+      'Growing retail and dining options',
+      'Affordable family homes with generous lot sizes',
+    ],
+    communityHighlights: [
+      'Anderson Parade & Celebrations',
+      'River Park Community Events',
+      'Local Sports Leagues',
+      'Community Clean-up Days',
+      'Seasonal Festivals',
+    ],
+    lifestyle: 'Anderson offers the sweet spot of Northern California living: affordable homes in a friendly community, excellent parks and river access, and the convenience of being just minutes from everything Redding has to offer.',
+    climate: 'Similar to Redding with hot, sunny summers and mild, rainy winters. Sacramento River proximity provides pleasant breezes. Over 300 sunny days per year make outdoor living a year-round reality.',
+    nearbyAttractions: ['Shasta Lake', 'Whiskeytown National Recreation Area', 'Sundial Bridge', 'Sacramento River'],
+    coordinates: { lat: 40.4485, lng: -122.2977 },
+  },
+  {
+    name: 'Shasta Lake',
+    slug: 'shasta-lake',
+    county: 'Shasta',
+    tagline: 'Life on California\'s Largest Reservoir',
+    heroImage: '/images/locations/mt-shasta-lake.jpg',
+    galleryImages: [
+      '/images/locations/mt-shasta-road.jpg',
+      '/images/locations/cabin-river.jpg',
+      '/images/locations/trinity-alps-lake.jpg',
+    ],
+    population: '~10,400',
+    elevation: '1,070 ft',
+    founded: '1938',
+    overview: 'The City of Shasta Lake sits at the doorstep of California\'s largest reservoir—Shasta Lake—with its stunning 365 miles of shoreline. Born from the construction of the massive Shasta Dam in the 1930s, this community has grown into a vibrant city that combines affordable living with unmatched access to water recreation. Whether you dream of morning bass fishing, afternoon houseboating, or evening sunsets over the water, Shasta Lake puts it all within reach.',
+    history: 'The City of Shasta Lake traces its origins to the construction of Shasta Dam between 1938 and 1945, when thousands of workers and their families settled in the area. Originally known as "Summit City" and later "Central Valley," the community incorporated as the City of Shasta Lake in 1993. Shasta Dam remains one of the largest concrete dams in the country and continues to be a major tourist attraction.',
+    whyLiveHere: [
+      'Unparalleled access to Shasta Lake\'s 365 miles of shoreline',
+      'Some of the most affordable housing in Shasta County',
+      'Gateway to houseboating, fishing, water skiing, and swimming',
+      'Minutes from Redding\'s full urban amenities',
+      'Shasta Dam and Lake Shasta Caverns as backyard attractions',
+      'Growing community with strong neighborhood identity',
+    ],
+    schools: [
+      { name: 'Gateway Unified School District', grades: 'K-12', type: 'Public', highlight: '8 schools serving 2,300+ students' },
+      { name: 'Grand Oaks Elementary', grades: 'K-5', type: 'Public', highlight: 'Highly rated elementary school' },
+      { name: 'Central Valley High School', grades: '9-12', type: 'Public', highlight: 'Strong academics and college prep support' },
+    ],
+    schoolsOverview: 'The Gateway Unified School District serves the Shasta Lake community with eight schools spanning K-12. Grand Oaks Elementary receives high marks from families, while Central Valley High School provides comprehensive academics, sports programs, and college preparation support.',
+    healthcare: [
+      'Mercy Medical Center (Redding — 10 min)',
+      'Shasta Regional Medical Center (Redding — 10 min)',
+      'Local clinics and medical offices',
+      'Pharmacy and urgent care services',
+    ],
+    healthcareOverview: 'Shasta Lake residents enjoy quick access to Redding\'s two major hospitals, both just 10 minutes south. Local medical offices and urgent care facilities handle everyday health needs right in the community.',
+    recreation: [
+      { name: 'Shasta Lake', description: 'California\'s largest reservoir with 365 miles of shoreline—the houseboating capital of the world', icon: 'water' },
+      { name: 'Shasta Dam', description: 'The second tallest dam in the US, offering tours and spectacular views of the lake and Mt. Shasta', icon: 'historic' },
+      { name: 'Lake Shasta Caverns', description: 'Stunning underground caverns accessible by boat cruise and scenic bus ride', icon: 'nature' },
+      { name: 'Shasta Lake Water Sports', description: 'World-class bass fishing, water skiing, jet skiing, kayaking, and swimming', icon: 'water' },
+      { name: 'Houseboating', description: 'Shasta Lake is known worldwide as the houseboating capital, with dozens of rental companies', icon: 'water' },
+      { name: 'Hiking & Biking Trails', description: 'Miles of trails along the lake shore and through surrounding National Forest land', icon: 'hiking' },
+    ],
+    recreationOverview: 'If you love water, you\'ll love Shasta Lake. The city sits at the gateway to California\'s largest reservoir, known worldwide for houseboating, bass fishing, and water sports. Add in the famous Shasta Caverns and Dam tours, and you have a recreation paradise.',
+    familyFeatures: [
+      'Affordable family homes in established neighborhoods',
+      'Year-round lake recreation for the whole family',
+      'Strong school system with multiple options',
+      'Community parks and playgrounds',
+      'Easy commute to Redding for work and shopping',
+      'Active community organizations and youth programs',
+    ],
+    communityHighlights: [
+      'Shasta Dam Days',
+      'Lake Shasta Fishing Tournaments',
+      'Community Park Events',
+      'Fourth of July Celebrations',
+      'Neighborhood Block Parties',
+    ],
+    lifestyle: 'Living in Shasta Lake means having one of California\'s most spectacular bodies of water as your playground. It\'s where weekday commutes to Redding are short and weekends on the lake are long.',
+    climate: 'Warm, dry summers and mild, wet winters. The lake moderates temperatures slightly compared to Redding. Plenty of sunshine for year-round outdoor enjoyment, with summer temperatures perfect for water activities.',
+    nearbyAttractions: ['Shasta Dam', 'Lake Shasta Caverns', 'Mt. Shasta', 'Castle Crags State Park', 'Sundial Bridge'],
+    coordinates: { lat: 40.6804, lng: -122.3709 },
+  },
+  {
+    name: 'Cottonwood',
+    slug: 'cottonwood',
+    county: 'Shasta',
+    tagline: 'Rural Roots, Modern Comforts',
+    heroImage: '/images/locations/mt-shasta-road.jpg',
+    galleryImages: [
+      '/images/locations/farmhouse-hills.jpg',
+      '/images/locations/mt-shasta-lake.jpg',
+      '/images/locations/river-porch.jpg',
+    ],
+    population: '~6,300',
+    elevation: '420 ft',
+    founded: '1849',
+    overview: 'Cottonwood is a thriving community along Cottonwood Creek in southern Shasta County, perfectly positioned between Redding and Red Bluff. With above-average schools, a growing population, and strong property values, Cottonwood has become one of the most sought-after communities in the region. Its rural character, combined with modern amenities and excellent highway access, makes it ideal for families, professionals, and anyone seeking space and value in Northern California.',
+    history: 'Cottonwood\'s history stretches back to 1849, making it one of the oldest settlements in Shasta County. Originally a stagecoach stop along the route between Sacramento and the northern mines, the town was named for the cottonwood trees lining the creek. The community has grown steadily while maintaining its rural character, and discussions about incorporation reflect the community\'s pride in its identity.',
+    whyLiveHere: [
+      'Above-average schools with strong community support',
+      'Rapidly growing community with increasing property values',
+      'More space and affordability compared to Redding',
+      'Excellent I-5 access for commuting north or south',
+      'Strong rural character with modern conveniences',
+      'Growing local businesses and services',
+    ],
+    schools: [
+      { name: 'West Valley High School', grades: '9-12', type: 'Public', highlight: '~900 students with strong programs' },
+      { name: 'West Cottonwood Junior High', grades: '5-8', type: 'Public', highlight: 'Bridge between elementary and high school' },
+      { name: 'North Cottonwood Elementary', grades: 'K-4', type: 'Public', highlight: 'Community-centered elementary education' },
+      { name: 'Cottonwood Creek Charter School', grades: 'K-8', type: 'Charter', highlight: 'Innovative charter school option' },
+    ],
+    schoolsOverview: 'Cottonwood\'s schools are rated above average, making the community especially attractive to families. The Cottonwood Union School District and Anderson Union High School District work together to provide quality education from kindergarten through graduation, with charter school options adding flexibility.',
+    healthcare: [
+      'St. Elizabeth Community Hospital (Red Bluff — 15 min)',
+      'Mercy Medical Center (Redding — 15 min)',
+      'Local medical clinics',
+      'Pharmacy services',
+    ],
+    healthcareOverview: 'Cottonwood\'s central location between Redding and Red Bluff means residents are within 15 minutes of two hospital systems. Local clinics and pharmacies handle everyday health needs, while specialized care is easily accessible in either direction.',
+    recreation: [
+      { name: 'Cottonwood Creek', description: 'Scenic creek running through town, perfect for fishing, wading, and nature walks', icon: 'water' },
+      { name: 'Sacramento River Access', description: 'Nearby Sacramento River access points for fishing, kayaking, and riverside recreation', icon: 'water' },
+      { name: 'Rural Trails & Back Roads', description: 'Expansive rural areas perfect for horseback riding, mountain biking, and scenic drives', icon: 'hiking' },
+      { name: 'Local Sports & Recreation', description: 'Youth sports leagues, community parks, and school athletic programs', icon: 'sports' },
+      { name: 'Shasta Lake (30 min)', description: 'California\'s largest reservoir is just a short drive north for boating and water sports', icon: 'water' },
+      { name: 'Wine Country Nearby', description: 'Northern California wine country and farm-to-table dining experiences within easy reach', icon: 'dining' },
+    ],
+    recreationOverview: 'Cottonwood offers the best of rural Northern California recreation. From Cottonwood Creek to the Sacramento River, water activities abound. The area\'s open spaces are perfect for horseback riding, hiking, and enjoying the agricultural landscape.',
+    familyFeatures: [
+      'Above-average public schools',
+      'Spacious lots and rural properties',
+      'Safe, family-oriented community',
+      'Youth sports and recreation programs',
+      'Growing local business and dining options',
+      'Equidistant to Redding and Red Bluff services',
+    ],
+    communityHighlights: [
+      'Local Community Events',
+      'West Valley Sports Teams',
+      'Cottonwood Creek Festivals',
+      'Agricultural Heritage Celebrations',
+      'Community Volunteer Organizations',
+    ],
+    lifestyle: 'Cottonwood is where you can have acreage, a garden, maybe some horses, and still be 15 minutes from a major city in either direction. It\'s the definition of having it all in Northern California.',
+    climate: 'Similar to Redding with hot summers and mild winters. The Central Valley influence brings slightly warmer conditions. Excellent growing climate for gardens, orchards, and small farming operations.',
+    nearbyAttractions: ['Shasta Lake', 'Sacramento River', 'Lassen Volcanic National Park', 'Whiskeytown Lake', 'Red Bluff'],
+    coordinates: { lat: 40.3857, lng: -122.2808 },
+  },
+]
+
+export function getLocation(slug: string): Location | undefined {
+  return locations.find(l => l.slug === slug)
+}
+
+export function getLocationsByCounty(county: 'Trinity' | 'Shasta'): Location[] {
+  return locations.filter(l => l.county === county)
+}
