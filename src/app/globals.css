@@ -1,0 +1,104 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --color-forest-green: #10401c;
+  --color-deep-pine: #1e4c2a;
+  --color-charcoal-ink: #212121;
+  --color-warm-alabaster: #fdfdfd;
+  --color-river-stone: #7c9a85;
+  --color-cabin-timber: #595147;
+  --color-alpine-slate: #59687b;
+  --color-canvas-sand: #f1f5f0;
+  --nav-height: 72px;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Montserrat', 'Lato', system-ui, sans-serif;
+  color: #212121;
+  background-color: #fdfdfd;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Tenor Sans', 'Playfair Display', Georgia, serif;
+}
+
+@layer components {
+  .container-bvp {
+    @apply mx-auto max-w-container px-4 sm:px-6 lg:px-8;
+  }
+  .container-narrow {
+    @apply mx-auto max-w-narrow px-4 sm:px-6 lg:px-8;
+  }
+  .btn-primary {
+    @apply inline-flex items-center justify-center px-8 py-3 bg-forest-green text-white font-body font-medium tracking-brand-wide text-sm uppercase transition-all duration-300 hover:bg-deep-pine hover:shadow-brand-md;
+  }
+  .btn-outline {
+    @apply inline-flex items-center justify-center px-8 py-3 border-2 border-forest-green text-forest-green font-body font-medium tracking-brand-wide text-sm uppercase transition-all duration-300 hover:bg-forest-green hover:text-white;
+  }
+  .section-padding {
+    @apply py-16 md:py-24;
+  }
+  .section-heading {
+    @apply font-heading text-h2 text-charcoal-ink tracking-tight mb-4;
+  }
+  .section-subheading {
+    @apply font-body text-lg text-alpine-slate max-w-2xl;
+  }
+}
+
+/* Smooth fade-in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+.animate-delay-100 { animation-delay: 100ms; }
+.animate-delay-200 { animation-delay: 200ms; }
+.animate-delay-300 { animation-delay: 300ms; }
+.animate-delay-400 { animation-delay: 400ms; }
+
+/* Lightbox overlay */
+.lightbox-overlay {
+  @apply fixed inset-0 bg-black/90 z-50 flex items-center justify-center;
+}
+
+/* Property card hover effect */
+.property-card {
+  @apply transition-all duration-300;
+}
+.property-card:hover {
+  @apply shadow-brand-lg -translate-y-1;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: #f1f5f0;
+}
+::-webkit-scrollbar-thumb {
+  background: #7c9a85;
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #10401c;
+}
