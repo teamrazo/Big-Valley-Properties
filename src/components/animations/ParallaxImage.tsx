@@ -30,7 +30,7 @@ export default function ParallaxImage({
   const y = useTransform(scrollYProgress, [0, 1], [`-${speed * 100}px`, `${speed * 100}px`])
 
   return (
-    <div ref={ref} className={`relative overflow-hidden ${className}`}>
+    <div ref={ref} className={`${className.includes('absolute') ? '' : 'relative'} overflow-hidden ${className}`}>
       <motion.div className="absolute inset-0" style={{ y }}>
         <Image
           src={src}
