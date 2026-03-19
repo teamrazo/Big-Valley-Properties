@@ -561,7 +561,7 @@ export default function HomeClient({
                   {/* Photo placeholder with gradient */}
                   <div className="aspect-[4/3] bg-gradient-to-br from-canvas-sand via-river-stone/20 to-forest-green/10 flex items-center justify-center relative overflow-hidden team-photo">
                     <div className="text-center relative z-10">
-                      <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center mx-auto mb-2 group-hover:bg-forest-green/10 transition-colors duration-400">
+                      <div className="w-20 h-20 rounded-full bg-white/80 backdrop-blur-sm flex items-center justify-center mx-auto mb-2 group-hover:bg-forest-green/10 transition-colors duration-300">
                         <span className="text-forest-green font-heading text-2xl">
                           {agent.name.split(' ').map((n) => n[0]).join('')}
                         </span>
