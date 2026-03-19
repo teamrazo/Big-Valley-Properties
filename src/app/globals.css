@@ -88,6 +88,135 @@ h1, h2, h3, h4, h5, h6 {
   @apply shadow-brand-lg -translate-y-1;
 }
 
+/* ─── Enhanced hover effects ─── */
+
+/* Neighborhood card */
+.neighborhood-card {
+  @apply relative overflow-hidden;
+}
+.neighborhood-card .card-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent transition-all duration-500;
+}
+.neighborhood-card:hover .card-overlay {
+  @apply from-forest-green/80 via-forest-green/30;
+}
+.neighborhood-card .card-image {
+  @apply transition-transform duration-700 ease-out;
+}
+.neighborhood-card:hover .card-image {
+  @apply scale-110;
+}
+.neighborhood-card .card-content {
+  @apply transition-transform duration-500;
+}
+.neighborhood-card:hover .card-content {
+  @apply -translate-y-2;
+}
+
+/* Image zoom on hover */
+.img-zoom {
+  @apply overflow-hidden;
+}
+.img-zoom img {
+  @apply transition-transform duration-700 ease-out;
+}
+.img-zoom:hover img {
+  @apply scale-110;
+}
+
+/* Team card */
+.team-card {
+  @apply transition-all duration-300;
+}
+.team-card:hover {
+  @apply shadow-brand-lg -translate-y-2;
+}
+.team-card .team-photo {
+  @apply transition-transform duration-500;
+}
+.team-card:hover .team-photo {
+  @apply scale-105;
+}
+
+/* Button hover glow */
+.btn-glow {
+  @apply relative overflow-hidden;
+}
+.btn-glow::after {
+  content: '';
+  @apply absolute inset-0 bg-white/10 opacity-0 transition-opacity duration-300;
+}
+.btn-glow:hover::after {
+  @apply opacity-100;
+}
+
+/* Value card */
+.value-card {
+  @apply transition-all duration-300;
+}
+.value-card:hover {
+  @apply shadow-brand-md -translate-y-1 bg-white;
+}
+.value-card .value-icon {
+  @apply transition-all duration-300;
+}
+.value-card:hover .value-icon {
+  @apply bg-forest-green text-white scale-110;
+}
+
+/* Testimonial card */
+.testimonial-card {
+  @apply transition-all duration-300;
+}
+.testimonial-card:hover {
+  @apply shadow-brand-md -translate-y-1;
+}
+
+/* Decorative line animation */
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 60px; }
+}
+
+.decorative-line {
+  height: 2px;
+  background: var(--color-forest-green);
+  animation: drawLine 0.8s ease-out forwards;
+}
+
+/* Gradient text */
+.text-gradient {
+  background: linear-gradient(135deg, var(--color-forest-green), var(--color-deep-pine));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Subtle float animation */
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+.animate-float {
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Shimmer effect */
+@keyframes shimmer {
+  0% { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.shimmer-bg {
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(255,255,255,0.05) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: shimmer 3s linear infinite;
+}
+
 /* Custom scrollbar */
 ::-webkit-scrollbar {
   width: 8px;
