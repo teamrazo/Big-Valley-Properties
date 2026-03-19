@@ -2,6 +2,8 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
+import { ThemeProvider } from '@/components/ThemeProvider'
+import AIChatbot from '@/components/AIChatbot'
 
 export const metadata: Metadata = {
   title: 'Big Valley Properties | Trinity & Shasta County Real Estate',
@@ -15,7 +17,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
@@ -24,12 +26,15 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="min-h-screen flex flex-col">
-        <Header />
-        <main className="flex-1 pt-[var(--nav-height)]">
-          {children}
-        </main>
-        <Footer />
+      <body className="min-h-screen flex flex-col bg-warm-alabaster dark:bg-gray-950 text-charcoal-ink dark:text-gray-100 transition-colors duration-300">
+        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange={false}>
+          <Header />
+          <main className="flex-1 pt-[var(--nav-height)]">
+            {children}
+          </main>
+          <Footer />
+          <AIChatbot />
+        </ThemeProvider>
       </body>
     </html>
   )

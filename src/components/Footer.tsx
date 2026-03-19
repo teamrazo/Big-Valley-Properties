@@ -3,18 +3,18 @@ import Image from 'next/image'
 
 export default function Footer() {
   return (
-    <footer className="bg-cabin-timber text-white">
+    <footer className="bg-cabin-timber dark:bg-gray-950 text-white">
       {/* Main Footer */}
       <div className="container-bvp py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12">
           {/* Brand */}
           <div className="lg:col-span-1">
             <Image
-              src="/images/logo.png"
+              src="/images/logo-transparent.png"
               alt="Big Valley Properties"
-              width={160}
-              height={44}
-              className="h-12 w-auto brightness-0 invert mb-4"
+              width={180}
+              height={100}
+              className="h-14 w-auto brightness-0 invert mb-4"
             />
             <p className="text-white/70 text-sm leading-relaxed mt-4">
               The top-selling brokerage in Trinity County. Making dreams become reality, one property at a time.

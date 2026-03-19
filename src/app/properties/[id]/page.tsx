@@ -12,5 +12,10 @@ export default function PropertyDetailPage({ params }: { params: { id: string } 
   if (!property) return notFound()
   const agent = getAgent(property.agentId)
 
-  return <PropertyDetailClient property={property} agent={agent || null} />
+  // Find similar properties (same county or type, excluding current)
+  const similarProperties = properties
+    .filter(p => p.id !== property.id && (p.county === property.county || p.propertyType === property.propertyType))
+    .slice(0, 3)
+
+  return <PropertyDetailClient property={property} agent={agent || null} similarProperties={similarProperties} />
 }
