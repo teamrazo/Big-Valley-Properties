@@ -88,7 +88,7 @@ export const agents: Agent[] = [
     phone: '(530) 394-0239',
     email: 'lydia@bvptrinity.com',
     photo: '/images/agents/lydia-mcallister-real.png',
-    bio: 'Lydia McAllister is a dedicated REALTOR® at Big Valley Properties with an exceptional understanding of the Trinity County real estate market. Lydia\'s commitment to client satisfaction and her deep knowledge of the region\'s unique properties — from mountain retreats to riverside cabins — make her a trusted partner for anyone looking to buy or sell in the area.',
+    bio: 'Lydia McAllister is a dedicated REALTOR® at Big Valley Properties with an exceptional understanding of the Trinity County real estate market. Lydia\'s commitment to client satisfaction and her deep knowledge of the region\'s unique properties, from mountain retreats to riverside cabins, make her a trusted partner for anyone looking to buy or sell in the area.',
     specialties: ['Rural Properties', 'Mountain Homes', 'Land Sales', 'Buyer Representation'],
     counties: ['Trinity'],
     social: {},

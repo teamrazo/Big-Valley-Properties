@@ -89,7 +89,7 @@ export default function Footer() {
               </div>
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
-                <span>Mon–Fri: 10am – 5pm<br />Weekends by Appointment</span>
+                <span>Mon-Fri: 10am - 5pm<br />Weekends by Appointment</span>
               </div>
             </div>
           </div>

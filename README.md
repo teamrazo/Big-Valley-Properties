@@ -1,4 +1,4 @@
-# Big Valley Properties — Website
+# Big Valley Properties - Website
 
 A modern, high-performance real estate website for **Big Valley Properties**, the top-selling brokerage in Trinity County, California. Built with Next.js 14, TypeScript, and Tailwind CSS.
 
@@ -6,16 +6,16 @@ A modern, high-performance real estate website for **Big Valley Properties**, th
 
 ## ✨ Features
 
-- **Homepage** — Hero section, broker spotlight, featured properties, county sections, testimonials
-- **Property Listings** — Filterable grid with county, price, type, and acreage filters
-- **Property Detail Pages** — Image gallery with lightbox, property info, agent contact, video placeholder, map placeholder, social share buttons
-- **Agent Profiles** — Individual pages with bio, specialties, social links, and their listings
-- **About Page** — Company story, service areas (Trinity & Shasta Counties), team overview
-- **Contact Page** — Contact form (UI), office information, map placeholder
-- **Responsive Design** — Optimized for mobile, tablet, and desktop
-- **Brand-Compliant** — Uses official BVP 2026 color palette, typography (Tenor Sans, Montserrat, Playfair Display), and design tokens
+- **Homepage** - Hero section, broker spotlight, featured properties, county sections, testimonials
+- **Property Listings** - Filterable grid with county, price, type, and acreage filters
+- **Property Detail Pages** - Image gallery with lightbox, property info, agent contact, video placeholder, map placeholder, social share buttons
+- **Agent Profiles** - Individual pages with bio, specialties, social links, and their listings
+- **About Page** - Company story, service areas (Trinity & Shasta Counties), team overview
+- **Contact Page** - Contact form (UI), office information, map placeholder
+- **Responsive Design** - Optimized for mobile, tablet, and desktop
+- **Brand-Compliant** - Uses official BVP 2026 color palette, typography (Tenor Sans, Montserrat, Playfair Display), and design tokens
 
-## 🛠 Tech Stack
+## Tech Stack
 
 - **Framework:** Next.js 14 (App Router)
 - **Language:** TypeScript
@@ -23,7 +23,7 @@ A modern, high-performance real estate website for **Big Valley Properties**, th
 - **Fonts:** Google Fonts (Tenor Sans, Montserrat, Playfair Display)
 - **Images:** Next.js Image optimization (AVIF/WebP)
 
-## 📁 Project Structure
+## Project Structure
 
 ```
 src/
@@ -52,7 +52,7 @@ src/
 └── lib/                      # Utility functions (future)
 ```
 
-## 🚀 Getting Started
+## Getting Started
 
 ### Prerequisites
 - Node.js 18+ 
@@ -81,7 +81,7 @@ npm run build
 npm start
 ```
 
-## 🌐 Deploy to Vercel
+## Deploy to Vercel
 
 This project is configured for seamless deployment on Vercel:
 
@@ -94,7 +94,7 @@ Or deploy manually:
 npx vercel --prod
 ```
 
-## 🎨 Brand Guidelines
+## Brand Guidelines
 
 | Color | Hex | Usage |
 |-------|-----|-------|
@@ -112,7 +112,7 @@ npx vercel --prod
 - Body: Montserrat 400/500/700
 - Accents: Playfair Display (italic quotes)
 
-## 📋 Phase 1 Status (Current)
+## Phase 1 Status (Current)
 
 - [x] Homepage with all sections
 - [x] Property listings with filters
@@ -123,7 +123,7 @@ npx vercel --prod
 - [x] Responsive design
 - [x] Mock data (10 properties, 4 agents)
 
-## 🔮 Future Phases
+## Future Phases
 
 - [ ] Sanity CMS integration
 - [ ] MLS/IDX integration
@@ -134,7 +134,7 @@ npx vercel --prod
 - [ ] Interactive maps
 - [ ] Social sharing functionality
 
-## 📄 License
+## License
 
 © 2026 Big Valley Properties. All rights reserved.
 

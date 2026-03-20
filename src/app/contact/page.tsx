@@ -106,7 +106,7 @@ export default function ContactPage() {
                     </div>
                     <div>
                       <p className="font-medium text-charcoal-ink text-sm">Office Hours</p>
-                      <p className="text-cabin-timber text-sm mt-0.5">Monday – Friday: 10am – 5pm<br />Weekends: By Appointment</p>
+                      <p className="text-cabin-timber text-sm mt-0.5">Monday - Friday: 10am - 5pm<br />Weekends: By Appointment</p>
                     </div>
                   </div>
                 </div>

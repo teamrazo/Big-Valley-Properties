@@ -32,7 +32,7 @@ export default function AboutPage() {
                 Big Valley Properties was founded by Retta Treanor with a simple mission: to provide exceptional, personalized real estate service to the communities of Northern California. What started as one broker&apos;s passion for helping families find their perfect home has grown into the region&apos;s most trusted brokerage.
               </p>
               <p className="text-cabin-timber leading-relaxed mb-6">
-                We specialize in the unique properties that define life in Trinity and Shasta Counties — from riverside cabins and historic homesteads to sprawling ranches and lakeside retreats. Our agents don&apos;t just sell homes; they help people find their place in one of America&apos;s most beautiful landscapes.
+                We specialize in the unique properties that define life in Trinity and Shasta Counties: from riverside cabins and historic homesteads to sprawling ranches and lakeside retreats. Our agents don&apos;t just sell homes; they help people find their place in one of America&apos;s most beautiful landscapes.
               </p>
               <p className="text-cabin-timber leading-relaxed">
                 Every transaction is guided by our core values: <strong className="text-forest-green">Educate, Negotiate, Communicate.</strong> We believe that informed clients make the best decisions, and our job is to ensure you feel confident and supported every step of the way.

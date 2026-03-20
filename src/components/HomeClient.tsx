@@ -106,7 +106,7 @@ export default function HomeClient({
           overlay="bg-gradient-to-r from-black/80 via-black/50 to-black/20"
           priority
         />
-        {/* Video overlay — desktop only, lazy loaded */}
+        {/* Video overlay - desktop only, lazy loaded */}
         <HeroVideo />
         {/* Gradient overlay on top of video */}
         <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20 z-[1]" />
@@ -209,14 +209,14 @@ export default function HomeClient({
         <div className="container-bvp">
           <div className="flex flex-wrap items-center justify-center gap-8 md:gap-12">
             {[
-              { label: '#1 Brokerage', sublabel: 'Trinity County', icon: '🏆' },
-              { label: 'REALTOR® Certified', sublabel: 'Licensed Agents', icon: '✅' },
-              { label: '4.9★ Rating', sublabel: '50+ Google Reviews', icon: '⭐' },
-              { label: '500+ Sales', sublabel: 'Successful Closings', icon: '🏠' },
-              { label: '20+ Years', sublabel: 'Serving NorCal', icon: '📅' },
+              { label: '#1 Brokerage', sublabel: 'Trinity County' },
+              { label: 'REALTOR® Certified', sublabel: 'Licensed Agents' },
+              { label: '4.9-Star Rating', sublabel: '50+ Google Reviews' },
+              { label: '500+ Sales', sublabel: 'Successful Closings' },
+              { label: '20+ Years', sublabel: 'Serving NorCal' },
             ].map((badge) => (
               <div key={badge.label} className="flex items-center gap-3 trust-badge">
-                <span className="text-2xl">{badge.icon}</span>
+                <div className="w-2 h-2 rounded-full bg-forest-green flex-shrink-0" />
                 <div>
                   <p className="text-sm font-bold text-charcoal-ink dark:text-white">{badge.label}</p>
                   <p className="text-xs text-alpine-slate dark:text-gray-500">{badge.sublabel}</p>
@@ -264,7 +264,7 @@ export default function HomeClient({
               <p className="text-forest-green dark:text-river-stone font-body text-sm uppercase tracking-brand-widest mb-3">Our Story</p>
               <h2 className="section-heading">About Big Valley Properties</h2>
               <p className="text-cabin-timber dark:text-gray-300 leading-relaxed text-lg mb-6">
-                Big Valley Properties is more than a brokerage — we&apos;re your neighbors, your advocates,
+                Big Valley Properties is more than a brokerage. We&apos;re your neighbors, your advocates,
                 and your guides to Northern California&apos;s most beautiful landscapes.
               </p>
               <p className="text-cabin-timber dark:text-gray-400 leading-relaxed mb-6">
@@ -281,16 +281,15 @@ export default function HomeClient({
               {/* Values */}
               <StaggerContainer className="grid grid-cols-3 gap-4 mb-8">
                 {[
-                  { icon: '📖', title: 'Educate' },
-                  { icon: '🛡️', title: 'Negotiate' },
-                  { icon: '💬', title: 'Communicate' },
+                  { title: 'Educate' },
+                  { title: 'Negotiate' },
+                  { title: 'Communicate' },
                 ].map((v) => (
                   <motion.div
                     key={v.title}
                     variants={staggerItem}
                     className="text-center p-4 bg-white dark:bg-gray-900 rounded shadow-sm value-card cursor-default"
                   >
-                    <span className="text-2xl mb-2 block">{v.icon}</span>
                     <p className="font-heading text-sm text-charcoal-ink dark:text-white">{v.title}</p>
                   </motion.div>
                 ))}
@@ -340,7 +339,7 @@ export default function HomeClient({
                     Trinity Alps &amp; Beyond
                   </h3>
                   <p className="text-white/80 text-sm leading-relaxed max-w-md mb-4">
-                    Pristine rivers, ancient forests, and towering peaks — discover authentic mountain living
+                    Pristine rivers, ancient forests, and towering peaks. Discover authentic mountain living
                     in Weaverville, Hayfork, Lewiston, and beyond.
                   </p>
                   <span className="inline-flex items-center gap-2 text-white font-body text-sm font-medium uppercase tracking-brand-wide group-hover:gap-3 transition-all duration-300">
@@ -372,7 +371,7 @@ export default function HomeClient({
                     Majestic Mt. Shasta Region
                   </h3>
                   <p className="text-white/80 text-sm leading-relaxed max-w-md mb-4">
-                    From rolling ranchlands to lakeside retreats near Mt. Shasta and Shasta Lake —
+                    From rolling ranchlands to lakeside retreats near Mt. Shasta and Shasta Lake.
                     Northern California living at its finest.
                   </p>
                   <span className="inline-flex items-center gap-2 text-white font-body text-sm font-medium uppercase tracking-brand-wide group-hover:gap-3 transition-all duration-300">
@@ -569,7 +568,7 @@ export default function HomeClient({
             <h2 className="font-heading text-h1 text-white mb-4">Ready to Find Your Place?</h2>
             <p className="text-white/80 text-lg max-w-2xl mx-auto mb-8">
               Whether you&apos;re looking for a creekside cabin, a sprawling ranch, or your family&apos;s
-              forever home — we&apos;re here to help you every step of the way.
+              forever home. We&apos;re here to help you every step of the way.
             </p>
             <div className="flex flex-wrap justify-center gap-4">
               <Link
@@ -636,7 +635,7 @@ export default function HomeClient({
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                         (530) 628-5850
                       </a>
-                      <p className="text-alpine-slate dark:text-gray-500 text-xs mt-2">Mon–Sat: 8am – 5pm • Sun: 8am – 5pm</p>
+                      <p className="text-alpine-slate dark:text-gray-500 text-xs mt-2">Mon-Sat: 8am - 5pm | Sun: 8am - 5pm</p>
                     </div>
                   </div>
                 </div>
@@ -674,7 +673,7 @@ export default function HomeClient({
                         <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
                         (530) 623-5690
                       </a>
-                      <p className="text-alpine-slate dark:text-gray-500 text-xs mt-2">Mon–Fri: 10am – 5pm • Weekends by Appt</p>
+                      <p className="text-alpine-slate dark:text-gray-500 text-xs mt-2">Mon-Fri: 10am - 5pm | Weekends by Appt</p>
                     </div>
                   </div>
                 </div>

@@ -149,7 +149,7 @@ export default function PropertiesContent() {
               {/* Price Range Slider */}
               <div>
                 <label className="block text-sm font-medium text-charcoal-ink dark:text-gray-300 mb-3">
-                  Price Range: {formatSliderPrice(minPrice)} — {formatSliderPrice(maxPrice)}
+                  Price Range: {formatSliderPrice(minPrice)} - {formatSliderPrice(maxPrice)}
                 </label>
                 <div className="space-y-3">
                   <div>

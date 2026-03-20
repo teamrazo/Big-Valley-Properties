@@ -13,7 +13,7 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const location = getLocation(params.slug)
   if (!location) return { title: 'Location Not Found' }
   return {
-    title: `${location.name}, CA — ${location.county} County | Big Valley Properties`,
+    title: `${location.name}, CA - ${location.county} County | Big Valley Properties`,
     description: location.overview.slice(0, 160),
   }
 }

@@ -144,7 +144,7 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
                     &ldquo;{agent.testimonial.text}&rdquo;
                   </p>
                   <p className="text-sm font-medium text-forest-green">
-                    — {agent.testimonial.author}, {agent.testimonial.location}
+                    - {agent.testimonial.author}, {agent.testimonial.location}
                   </p>
                 </div>
               )}

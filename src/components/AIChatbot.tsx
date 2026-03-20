@@ -23,7 +23,7 @@ export default function AIChatbot() {
     {
       id: '1',
       role: 'assistant',
-      content: 'Welcome to Big Valley Properties! 🏔️ I\'m your AI assistant. How can I help you find your dream property in Northern California?',
+      content: 'Welcome to Big Valley Properties. I\'m your AI assistant. How can I help you find your dream property in Northern California?',
       timestamp: new Date(),
     },
   ])
@@ -57,10 +57,10 @@ export default function AIChatbot() {
     // Simulate AI response
     setTimeout(() => {
       const responses: Record<string, string> = {
-        'Show me properties under $500k': 'We have several beautiful properties under $500k! 🏡 I\'d recommend checking out our listings in Hayfork and Junction City — great cabins and mountain homes at wonderful prices. Visit our Properties page to browse with filters!',
-        'What areas do you serve?': 'We serve Trinity and Shasta Counties in Northern California! 🌲 Our communities include Weaverville, Hayfork, Lewiston, Junction City, Redding, Anderson, Shasta Lake, and Cottonwood.',
-        'Schedule a consultation': 'I\'d love to help you schedule a consultation! 📅 You can reach us at (530) 410-1992 or visit our Contact page to fill out a form. Our team is available Mon-Fri 10am-5pm.',
-        'Tell me about Trinity County': 'Trinity County is a hidden gem! 🏔️ Known for the stunning Trinity Alps Wilderness, pristine rivers, and small-town charm. It offers affordable mountain living with properties ranging from cozy cabins to expansive ranches.',
+        'Show me properties under $500k': 'We have several beautiful properties under $500k. I\'d recommend checking out our listings in Hayfork and Junction City. Great cabins and mountain homes at wonderful prices. Visit our Properties page to browse with filters!',
+        'What areas do you serve?': 'We serve Trinity and Shasta Counties in Northern California. Our communities include Weaverville, Hayfork, Lewiston, Junction City, Redding, Anderson, Shasta Lake, and Cottonwood.',
+        'Schedule a consultation': 'I\'d love to help you schedule a consultation. You can reach us at (530) 410-1992 or visit our Contact page to fill out a form. Our team is available Mon-Fri 10am-5pm.',
+        'Tell me about Trinity County': 'Trinity County is a hidden gem. Known for the stunning Trinity Alps Wilderness, pristine rivers, and small-town charm. It offers affordable mountain living with properties ranging from cozy cabins to expansive ranches.',
       }
       const reply = responses[msg] || 'Thanks for your question! For the best assistance, I\'d recommend contacting our team directly at (530) 410-1992 or visiting our Contact page. Our agents are experts in Trinity & Shasta County properties and would love to help you!'
       setMessages(prev => [
@@ -128,7 +128,7 @@ export default function AIChatbot() {
                 </p>
               </div>
               <div className="ml-auto px-2 py-1 rounded-full bg-white/10 text-white/70 text-[10px] font-medium">
-                ✨ AI
+                AI
               </div>
             </div>
 

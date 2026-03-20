@@ -221,15 +221,14 @@ export default function PropertyDetailClient({ property, agent, similarPropertie
 
               <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 p-6 bg-canvas-sand dark:bg-gray-900 rounded-lg mb-8">
                 {[
-                  { label: 'Bedrooms', value: property.beds, icon: '🛏️' },
-                  { label: 'Bathrooms', value: property.baths, icon: '🚿' },
-                  { label: 'Sq Ft', value: property.sqft.toLocaleString(), icon: '📐' },
-                  { label: 'Acreage', value: property.acreage, icon: '🌲' },
+                  { label: 'Bedrooms', value: property.beds },
+                  { label: 'Bathrooms', value: property.baths },
+                  { label: 'Sq Ft', value: property.sqft.toLocaleString() },
+                  { label: 'Acreage', value: property.acreage },
                 ].map(stat => (
                   <div key={stat.label} className="text-center">
-                    <p className="text-2xl mb-1">{stat.icon}</p>
                     <p className="font-heading text-xl text-charcoal-ink dark:text-white">{stat.value}</p>
-                    <p className="text-xs text-alpine-slate dark:text-gray-500">{stat.label}</p>
+                    <p className="text-xs text-alpine-slate dark:text-gray-500 mt-1">{stat.label}</p>
                   </div>
                 ))}
               </div>
