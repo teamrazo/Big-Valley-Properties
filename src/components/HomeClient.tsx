@@ -103,13 +103,13 @@ export default function HomeClient({
           alt="Trinity Alps wilderness"
           className="absolute inset-0"
           speed={0.25}
-          overlay="bg-gradient-to-r from-black/80 via-black/50 to-black/20"
+          overlay="bg-gradient-to-r from-black/65 via-black/35 to-black/10"
           priority
         />
         {/* Video overlay - desktop only, lazy loaded */}
         <HeroVideo />
         {/* Gradient overlay on top of video */}
-        <div className="absolute inset-0 bg-gradient-to-r from-black/80 via-black/50 to-black/20 z-[1]" />
+        <div className="absolute inset-0 bg-gradient-to-r from-black/65 via-black/35 to-black/10 z-[1]" />
 
         <div className="container-bvp relative z-10 py-20" style={{ zIndex: 2 }}>
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -120,7 +120,7 @@ export default function HomeClient({
                 transition={{ duration: 0.6, delay: 0.2 }}
                 className="text-river-stone font-body text-sm uppercase tracking-brand-widest mb-4"
               >
-                Top-Selling Brokerage in Trinity County
+                Serving Trinity and Shasta Counties
               </motion.p>
 
               <motion.h1
@@ -269,7 +269,7 @@ export default function HomeClient({
               </p>
               <p className="text-cabin-timber dark:text-gray-400 leading-relaxed mb-6">
                 Founded by Retta Treanor with a vision of personalized, ethical real estate service,
-                we&apos;ve grown to become the top-selling brokerage in Trinity County. Our team of
+                we&apos;ve grown to become the leading brokerage serving Trinity and Shasta Counties. Our team of
                 dedicated agents brings deep local knowledge, strong negotiation skills, and a genuine
                 passion for the communities we serve.
               </p>

@@ -16,7 +16,7 @@ export default function AboutPage() {
           <p className="text-river-stone font-body text-sm uppercase tracking-brand-widest mb-3">Our Story</p>
           <h1 className="font-heading text-h1 text-white mb-4 max-w-2xl">Making Dreams Become Reality, One Property at a Time</h1>
           <p className="text-white/80 text-lg max-w-2xl">
-            Big Valley Properties is the top-selling brokerage in Trinity County, serving families across Trinity and Shasta Counties with integrity, expertise, and heart.
+            Big Valley Properties is the leading brokerage serving families across Trinity and Shasta Counties with dedication, expertise, and heart.
           </p>
         </div>
       </section>
@@ -72,10 +72,10 @@ export default function AboutPage() {
               </div>
               <div className="p-6">
                 <p className="text-cabin-timber leading-relaxed mb-4">
-                  The heart of our business. Trinity County offers unmatched natural beauty with the Trinity Alps Wilderness, pristine rivers, and charming mountain communities. We serve Weaverville, Hayfork, Lewiston, Junction City, Big Bar, Hyampom, and surrounding areas.
+                  The heart of our business. Trinity County offers unmatched natural beauty with the Trinity Alps Wilderness, pristine rivers, and charming mountain communities. We serve Weaverville, Hayfork, Lewiston, Junction City, Hyampom, Trinity Center, Coffee Creek, and surrounding areas.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Weaverville', 'Hayfork', 'Lewiston', 'Junction City', 'Big Bar', 'Hyampom'].map(area => (
+                  {['Weaverville', 'Hayfork', 'Lewiston', 'Junction City', 'Hyampom', 'Trinity Center / Coffee Creek'].map(area => (
                     <span key={area} className="px-3 py-1 bg-canvas-sand text-sm text-cabin-timber rounded">
                       {area}
                     </span>

@@ -39,9 +39,9 @@ export default function Header() {
           <Image
             src="/images/logo-transparent.png"
             alt="Big Valley Properties"
-            width={180}
-            height={100}
-            className="h-14 w-auto dark:brightness-0 dark:invert"
+            width={250}
+            height={140}
+            className="h-[4.75rem] w-auto dark:brightness-0 dark:invert"
             priority
           />
         </Link>

@@ -7,7 +7,7 @@ import AIChatbot from '@/components/AIChatbot'
 
 export const metadata: Metadata = {
   title: 'Big Valley Properties | Trinity & Shasta County Real Estate',
-  description: 'Big Valley Properties is the top-selling brokerage in Trinity County, California. Browse mountain cabins, ranches, land, and homes in Trinity and Shasta Counties.',
+  description: 'Big Valley Properties is the leading brokerage serving Trinity and Shasta Counties, California. Browse mountain cabins, ranches, land, and homes across Northern California.',
   keywords: 'Trinity County real estate, Shasta County homes, Weaverville CA, mountain cabins, ranch property, Big Valley Properties, Retta Treanor',
 }
 

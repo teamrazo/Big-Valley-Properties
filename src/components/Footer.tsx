@@ -17,7 +17,7 @@ export default function Footer() {
               className="h-14 w-auto brightness-0 invert mb-4"
             />
             <p className="text-white/70 text-sm leading-relaxed mt-4">
-              The top-selling brokerage in Trinity County. Making dreams become reality, one property at a time.
+              Serving Trinity and Shasta Counties with dedication, expertise, and heart. Making dreams become reality, one property at a time.
             </p>
             <div className="flex gap-4 mt-6">
               <a href="https://facebook.com/bigvalleyproperties" target="_blank" rel="noopener noreferrer" className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-forest-green transition-colors" aria-label="Facebook">
@@ -35,6 +35,7 @@ export default function Footer() {
             <ul className="space-y-3">
               {[
                 { href: '/properties', label: 'Property Search' },
+                { href: '/locations', label: 'Communities' },
                 { href: '/agents', label: 'Our Team' },
                 { href: '/about', label: 'About Us' },
                 { href: '/contact', label: 'Contact' },
@@ -46,17 +47,16 @@ export default function Footer() {
                 </li>
               ))}
             </ul>
-          </div>
 
-          {/* Service Areas */}
-          <div>
-            <h4 className="font-heading text-lg mb-6 tracking-brand-wide uppercase text-white/90">Service Areas</h4>
-            <ul className="space-y-3">
+            <h4 className="font-heading text-lg mb-4 mt-8 tracking-brand-wide uppercase text-white/90">Service Areas</h4>
+            <ul className="space-y-2">
               {[
                 { name: 'Weaverville', slug: 'weaverville' },
                 { name: 'Hayfork', slug: 'hayfork' },
                 { name: 'Lewiston', slug: 'lewiston' },
                 { name: 'Junction City', slug: 'junction-city' },
+                { name: 'Hyampom', slug: 'hyampom' },
+                { name: 'Trinity Center / Coffee Creek', slug: 'trinity-center-coffee-creek' },
                 { name: 'Redding', slug: 'redding' },
                 { name: 'Anderson', slug: 'anderson' },
                 { name: 'Shasta Lake', slug: 'shasta-lake' },
@@ -71,25 +71,51 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact */}
+          {/* Weaverville Office */}
           <div>
-            <h4 className="font-heading text-lg mb-6 tracking-brand-wide uppercase text-white/90">Contact Us</h4>
+            <h4 className="font-heading text-lg mb-6 tracking-brand-wide uppercase text-white/90">Weaverville Office</h4>
             <div className="space-y-4 text-sm text-white/60">
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
-                <span>1313 Main St A<br />Weaverville, CA 96093</span>
+                <a href="https://maps.app.goo.gl/UHEFNkZZn8iDZSJm6" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  1313 Main St A<br />Weaverville, CA 96093
+                </a>
               </div>
               <div className="flex items-center gap-3">
                 <svg className="w-5 h-5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
-                <a href="tel:5304101992" className="hover:text-white transition-colors">(530) 410-1992</a>
-              </div>
-              <div className="flex items-center gap-3">
-                <svg className="w-5 h-5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
-                <a href="mailto:retta@bvptrinity.com" className="hover:text-white transition-colors">retta@bvptrinity.com</a>
+                <a href="tel:5306235690" className="hover:text-white transition-colors">(530) 623-5690</a>
               </div>
               <div className="flex items-start gap-3">
                 <svg className="w-5 h-5 mt-0.5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
                 <span>Mon-Fri: 10am - 5pm<br />Weekends by Appointment</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Hayfork Office */}
+          <div>
+            <h4 className="font-heading text-lg mb-6 tracking-brand-wide uppercase text-white/90">Hayfork Office</h4>
+            <div className="space-y-4 text-sm text-white/60">
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 mt-0.5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+                <a href="https://maps.app.goo.gl/wxvBHJSNST7N3VBd7" target="_blank" rel="noopener noreferrer" className="hover:text-white transition-colors">
+                  7050 CA-3<br />Hayfork, CA 96041
+                </a>
+              </div>
+              <div className="flex items-center gap-3">
+                <svg className="w-5 h-5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" /></svg>
+                <a href="tel:5306285850" className="hover:text-white transition-colors">(530) 628-5850</a>
+              </div>
+              <div className="flex items-start gap-3">
+                <svg className="w-5 h-5 mt-0.5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+                <span>Mon-Sat: 8am - 5pm<br />Sun: 8am - 5pm</span>
+              </div>
+            </div>
+
+            <div className="mt-6">
+              <div className="flex items-center gap-3 text-sm text-white/60">
+                <svg className="w-5 h-5 text-river-stone shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+                <a href="mailto:retta@bvptrinity.com" className="hover:text-white transition-colors">retta@bvptrinity.com</a>
               </div>
             </div>
           </div>
@@ -100,7 +126,7 @@ export default function Footer() {
       <div className="border-t border-white/10">
         <div className="container-bvp py-6 flex flex-col md:flex-row items-center justify-between gap-4">
           <p className="text-white/40 text-xs">
-            © {new Date().getFullYear()} Big Valley Properties. All rights reserved.
+            &copy; {new Date().getFullYear()} Big Valley Properties. All rights reserved.
           </p>
           <div className="flex gap-6 text-xs text-white/40">
             <span>Privacy Policy</span>
