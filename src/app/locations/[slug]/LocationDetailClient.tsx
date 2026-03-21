@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import type { Location, LocationAttraction, LocationResource } from '@/data/locations'
+import type { Location, LocationAttraction, LocationResource, CommunityResource } from '@/data/locations'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -76,6 +76,30 @@ function HealthcareIcon({ category }: { category: LocationResource['category'] }
       return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
     default:
       return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+  }
+}
+
+function CommunityResourceIcon({ category }: { category: CommunityResource['category'] }) {
+  const cls = 'w-5 h-5'
+  switch (category) {
+    case 'library':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" /></svg>
+    case 'government':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
+    case 'chamber':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+    case 'post_office':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" /></svg>
+    case 'community_center':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0z" /></svg>
+    case 'visitor_center':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+    case 'museum':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M8 14v3m4-3v3m4-3v3M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
+    case 'fire_department':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M17.657 18.657A8 8 0 016.343 7.343S7 9 9 10c0-2 .5-5 2.986-7C14 5 16.09 5.777 17.656 7.343A7.975 7.975 0 0120 13a7.975 7.975 0 01-2.343 5.657z" /><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9.879 16.121A3 3 0 1012.015 11L11 14H9c0 .768.293 1.536.879 2.121z" /></svg>
+    default:
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
   }
 }
 
@@ -236,14 +260,38 @@ export default function LocationDetailClient({ location }: { location: Location 
         </div>
       </section>
 
-      {/* ── Community & Family ── */}
+      {/* ── Community Resources ── */}
       <section id="community" className="py-20 md:py-28">
         <div className="container-bvp">
           <motion.div initial="hidden" whileInView="visible" viewport={{ once: true, margin: '-80px' }} variants={stagger}>
             <motion.div variants={fadeUp} className="text-center mb-14">
               <p className="text-forest-green font-body text-sm tracking-[0.2em] uppercase mb-3">Community</p>
-              <h2 className="font-heading text-3xl md:text-4xl text-charcoal-ink">Family & Community Life</h2>
-              <p className="text-gray-600 font-body mt-4 max-w-2xl mx-auto leading-relaxed">{location.lifestyle}</p>
+              <h2 className="font-heading text-3xl md:text-4xl text-charcoal-ink">Community Resources</h2>
+              <p className="text-gray-600 font-body mt-4 max-w-2xl mx-auto leading-relaxed">{location.communityResourcesOverview}</p>
+            </motion.div>
+
+            {/* Community Resources Grid */}
+            {location.communityResources && location.communityResources.length > 0 && (
+              <motion.div variants={fadeUp} className="max-w-4xl mx-auto grid sm:grid-cols-2 gap-5 mb-16">
+                {location.communityResources.map((item) => (
+                  <div key={item.name} className="flex items-start gap-4 bg-white rounded-lg p-5 shadow-luxury-sm hover:shadow-luxury transition-shadow duration-300">
+                    <div className="w-10 h-10 rounded-full bg-forest-green/10 flex items-center justify-center shrink-0 text-forest-green">
+                      <CommunityResourceIcon category={item.category} />
+                    </div>
+                    <div className="min-w-0">
+                      <h4 className="text-charcoal-ink font-heading text-[15px] font-semibold leading-snug">{item.name}</h4>
+                      <p className="text-gray-500 font-body text-sm leading-relaxed mt-1">{item.description}</p>
+                      <ContactLinks phone={item.phone} website={item.website} compact />
+                    </div>
+                  </div>
+                ))}
+              </motion.div>
+            )}
+
+            {/* Family & Community Life */}
+            <motion.div variants={fadeUp} className="text-center mb-10">
+              <h3 className="font-heading text-2xl text-charcoal-ink">Family & Community Life</h3>
+              <p className="text-gray-600 font-body mt-3 max-w-2xl mx-auto leading-relaxed">{location.lifestyle}</p>
             </motion.div>
             <div className="grid lg:grid-cols-2 gap-12">
               <motion.div variants={fadeUp}>

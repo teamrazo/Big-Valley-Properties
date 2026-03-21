@@ -23,6 +23,14 @@ export interface LocationResource {
   category: 'hospital' | 'clinic' | 'emergency' | 'specialty' | 'government'
 }
 
+export interface CommunityResource {
+  name: string
+  description: string
+  phone?: string
+  website?: string
+  category: 'library' | 'government' | 'chamber' | 'post_office' | 'community_center' | 'visitor_center' | 'museum' | 'fire_department'
+}
+
 export interface Location {
   name: string
   slug: string
@@ -38,6 +46,8 @@ export interface Location {
   whyLiveHere: string[]
   schools: LocationSchool[]
   schoolsOverview: string
+  communityResources: CommunityResource[]
+  communityResourcesOverview: string
   healthcare: LocationResource[]
   healthcareOverview: string
   recreation: LocationAttraction[]
@@ -81,6 +91,15 @@ export const locations: Location[] = [
       { name: 'Trinity County Community College', grades: 'Higher Ed', type: 'Community College', highlight: 'Local continuing education', phone: '(530) 242-7750', website: 'https://www.shastacollege.edu/campuses/trinity/' },
     ],
     schoolsOverview: 'Weaverville\'s public schools are rated above average, with dedicated teachers and a low student-to-teacher ratio that ensures personalized attention. The tight-knit school community fosters academic success and strong extracurricular programs, from athletics to outdoor education.',
+    communityResources: [
+      { name: 'Trinity County Library - Weaverville Branch', description: 'Public library offering books, audiobooks, digital resources, story time programs, and community events', phone: '(530) 623-1373', website: 'https://www.trinitycounty.org/292/Library', category: 'library' },
+      { name: 'Trinity County Government Offices', description: 'County administrative offices including assessor, clerk-recorder, treasurer, and board of supervisors', phone: '(530) 623-1382', website: 'https://www.trinitycounty.org', category: 'government' },
+      { name: 'Trinity County Chamber of Commerce', description: 'Business support, visitor information, community events, and local economic development', phone: '(530) 623-6101', website: 'https://weavervilleca.org', category: 'chamber' },
+      { name: 'Weaverville Post Office', description: 'Full-service United States Post Office serving the Weaverville community', phone: '(530) 623-2479', category: 'post_office' },
+      { name: 'Highland Art Center', description: 'Community art center offering exhibits, classes, and cultural events in historic downtown Weaverville', phone: '(530) 623-5111', website: 'https://www.highlandartcenter.org', category: 'community_center' },
+      { name: 'Trinity County Visitor Center', description: 'Visitor information, maps, recreation guides, and local event listings for the Trinity County area', phone: '(530) 623-6101', website: 'https://www.visittrinity.com', category: 'visitor_center' },
+    ],
+    communityResourcesOverview: 'Weaverville is the county seat of Trinity County and serves as the civic and cultural hub for the region. Residents enjoy access to a public library, county government offices, an active chamber of commerce, and a vibrant downtown with local businesses and community events year-round.',
     healthcare: [
       { name: 'Trinity Hospital', description: 'Full-service community hospital with 24-hour ER, surgery, imaging, and skilled nursing', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
       { name: 'Trinity County Health & Human Services', description: 'Public health, social services, and community wellness programs', phone: '(530) 623-1265', website: 'https://www.trinitycounty.org/227/Health-and-Human-Services', category: 'government' },
@@ -148,6 +167,14 @@ export const locations: Location[] = [
       { name: 'Hyampom Arts Magnet School', grades: 'K-8', type: 'Public Magnet', highlight: 'Arts-integrated curriculum', phone: '(530) 628-5912', website: 'https://www.mvusd.us' },
     ],
     schoolsOverview: 'The Mountain Valley Unified School District serves Hayfork with six schools offering diverse educational approaches. Small class sizes ensure every student receives individualized attention, and the schools are deeply integrated into the fabric of community life.',
+    communityResources: [
+      { name: 'Trinity County Library - Hayfork Branch', description: 'Public library branch offering books, public computers, internet access, and community programs', phone: '(530) 628-5304', website: 'https://www.trinitycounty.org/292/Library', category: 'library' },
+      { name: 'Hayfork Post Office', description: 'Full-service United States Post Office serving the Hayfork community', phone: '(530) 628-5221', category: 'post_office' },
+      { name: 'Hayfork Community Hall', description: 'Community gathering space for local events, meetings, and celebrations', category: 'community_center' },
+      { name: 'Trinity County Probation - Hayfork Office', description: 'County probation services for the Hayfork area', phone: '(530) 628-5622', website: 'https://www.trinitycounty.org', category: 'government' },
+      { name: 'Hayfork Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency services to the Hayfork area', phone: '(530) 628-4424', category: 'fire_department' },
+    ],
+    communityResourcesOverview: 'Hayfork is the second-largest community in Trinity County and offers essential civic resources including a public library branch, post office, and strong community organizations. The town\'s agricultural heritage is celebrated through annual events and a tight-knit community spirit.',
     healthcare: [
       { name: 'Mountain Communities Healthcare District', description: 'District providing comprehensive healthcare services', phone: '(530) 623-5541', website: 'https://www.mcmedical.org', category: 'clinic' },
       { name: 'Hayfork Community Health Center', description: 'Federally designated Rural Health Clinic with primary care, urgent care, and lab services', phone: '(530) 628-5517', website: 'https://www.mcmedical.org/community-clinics', category: 'clinic' },
@@ -212,6 +239,13 @@ export const locations: Location[] = [
       { name: 'Lewiston Elementary School', grades: 'K-8', type: 'Public', highlight: 'Intimate school with personalized education', phone: '(530) 778-3984', website: 'https://www.lewistonesd.com' },
     ],
     schoolsOverview: 'Lewiston Elementary School provides a close-knit educational experience where every child is known and supported. With small class sizes and dedicated teachers, the school offers a nurturing environment. High school students attend Trinity High School in nearby Weaverville.',
+    communityResources: [
+      { name: 'Lewiston Post Office', description: 'United States Post Office serving the Lewiston community', phone: '(530) 778-3564', category: 'post_office' },
+      { name: 'Lewiston Community Church', description: 'Community gathering place that hosts local events and serves as a neighborhood connection point', category: 'community_center' },
+      { name: 'Lewiston Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency response services', phone: '(530) 778-3588', category: 'fire_department' },
+      { name: 'Trinity County Services - Weaverville', description: 'Full county government services available in nearby Weaverville, a scenic 15-minute drive', phone: '(530) 623-1382', website: 'https://www.trinitycounty.org', category: 'government' },
+    ],
+    communityResourcesOverview: 'Lewiston is a small, peaceful community with a strong sense of neighborly connection. While services are limited due to its size, residents value the close community bonds and the convenience of nearby Weaverville for additional civic resources.',
     healthcare: [
       { name: 'Trinity Hospital', description: 'Full-service community hospital in Weaverville, approximately 15 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
       { name: 'Local emergency medical services', description: 'Emergency response services for the Lewiston area', category: 'emergency' },
@@ -275,6 +309,13 @@ export const locations: Location[] = [
       { name: 'Junction City Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small, community-centered school', phone: '(530) 623-6381', website: 'https://www.jcesd.org' },
     ],
     schoolsOverview: 'Junction City Elementary serves the community with an intimate, family-like educational environment. Older students attend Trinity High School in Weaverville, just a short drive along the scenic Trinity River corridor.',
+    communityResources: [
+      { name: 'Junction City Post Office', description: 'United States Post Office serving the Junction City community', phone: '(530) 623-6626', category: 'post_office' },
+      { name: 'Junction City Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency services to the community', phone: '(530) 623-3711', category: 'fire_department' },
+      { name: 'Junction City Community Hall', description: 'Local gathering space for community events, meetings, and neighborhood activities', category: 'community_center' },
+      { name: 'Trinity County Services - Weaverville', description: 'Full county government and library services available in Weaverville, just a 10-minute drive', phone: '(530) 623-1382', website: 'https://www.trinitycounty.org', category: 'government' },
+    ],
+    communityResourcesOverview: 'Junction City is a quiet, close-knit community nestled along the Trinity River. While most civic services are accessed in nearby Weaverville, the town maintains a post office and active volunteer organizations that keep community ties strong.',
     healthcare: [
       { name: 'Trinity Hospital', description: 'Full-service community hospital in Weaverville, approximately 10 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
       { name: 'Local emergency response services', description: 'Emergency response for Junction City and surrounding areas', category: 'emergency' },
@@ -341,6 +382,15 @@ export const locations: Location[] = [
       { name: 'Simpson University', grades: 'Higher Ed', type: 'Private University', highlight: 'Four-year private university', phone: '(530) 224-5600', website: 'https://simpsonu.edu' },
     ],
     schoolsOverview: 'Redding offers a comprehensive educational system from pre-K through university. Multiple school districts provide diverse learning environments, while Shasta College and Simpson University offer higher education right in town. Charter schools and private options add even more choice for families.',
+    communityResources: [
+      { name: 'Shasta Public Libraries - Redding Branch', description: 'Main branch offering extensive book collections, digital resources, makerspace, meeting rooms, genealogy, and youth programs', phone: '(530) 245-7250', website: 'https://www.shastalibraries.org/redding-library/', category: 'library' },
+      { name: 'Shasta County Government Center', description: 'Full county government offices including assessor, clerk-recorder, elections, planning, and board of supervisors', phone: '(530) 225-5561', website: 'https://www.shastacounty.gov', category: 'government' },
+      { name: 'City of Redding', description: 'City government services including planning, utilities, parks, public works, and community development', phone: '(530) 225-4060', website: 'https://www.cityofredding.org', category: 'government' },
+      { name: 'Redding Chamber of Commerce', description: 'Business support, networking events, economic development, and community advocacy for the Greater Redding area', phone: '(530) 225-4433', website: 'https://reddingchamber.com', category: 'chamber' },
+      { name: 'Redding Convention & Visitors Bureau', description: 'Visitor information, tourism promotion, event listings, and recreation guides for the Redding area', phone: '(530) 225-4010', website: 'https://www.visitredding.com', category: 'visitor_center' },
+      { name: 'Turtle Bay Exploration Park', description: 'Museum and educational center with natural history exhibits, botanical gardens, and the iconic Sundial Bridge', phone: '(530) 243-8850', website: 'https://www.turtlebay.org', category: 'museum' },
+    ],
+    communityResourcesOverview: 'As the largest city in the region, Redding is the civic, cultural, and commercial hub for Northern California. Residents enjoy a full spectrum of community resources including multiple libraries, government offices, a vibrant chamber of commerce, museums, and a thriving downtown.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital and Level II Trauma Center with 283 beds', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital with 226 beds, emergency care, and specialty services', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
@@ -409,6 +459,14 @@ export const locations: Location[] = [
       { name: 'Shasta Christian Academy', grades: 'K-12', type: 'Private', highlight: 'Faith-based education option' },
     ],
     schoolsOverview: 'Anderson\'s educational system offers diverse options for families. The Cascade Union Elementary District serves over 1,300 students with quality elementary and middle school education, while Anderson Union High School and Anderson New Tech provide traditional and innovative high school pathways.',
+    communityResources: [
+      { name: 'Shasta Public Libraries - Anderson Branch', description: 'Public library offering books, audiobooks, public computers, meeting rooms, makerspace, and youth programs', phone: '(530) 365-7685', website: 'https://www.shastalibraries.org/anderson-library/', category: 'library' },
+      { name: 'City of Anderson', description: 'City government services including planning, public works, parks and recreation, and community development', phone: '(530) 378-6636', website: 'https://www.ci.anderson.ca.us', category: 'government' },
+      { name: 'Anderson Chamber of Commerce', description: 'Business support, community events, networking, and economic development for the Anderson area', phone: '(530) 356-8095', website: 'https://andersonchamberofcommerce.com', category: 'chamber' },
+      { name: 'Anderson Post Office', description: 'Full-service United States Post Office serving the Anderson community', phone: '(530) 365-6173', category: 'post_office' },
+      { name: 'Anderson Community Center', description: 'Community gathering space for events, recreation programs, and civic activities', phone: '(530) 378-6636', website: 'https://www.ci.anderson.ca.us', category: 'community_center' },
+    ],
+    communityResourcesOverview: 'Anderson is a growing community with a well-established civic infrastructure. Residents benefit from a public library, active chamber of commerce, city parks and recreation department, and convenient access to the full range of Shasta County services.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding, approximately 10 minutes away', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital in Redding, approximately 10 minutes away', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
@@ -475,6 +533,14 @@ export const locations: Location[] = [
       { name: 'Central Valley High School', grades: '9-12', type: 'Public', highlight: 'Strong academics and college prep support', phone: '(530) 275-7075', website: 'https://cvhs.gatewayusd.org' },
     ],
     schoolsOverview: 'The Gateway Unified School District serves the Shasta Lake community with eight schools spanning K-12. Grand Oaks Elementary receives high marks from families, while Central Valley High School provides comprehensive academics, sports programs, and college preparation support.',
+    communityResources: [
+      { name: 'City of Shasta Lake City Hall', description: 'Municipal government offices providing city services, planning, permits, and community programs', phone: '(530) 275-7400', website: 'https://www.cityofshastalake.gov', category: 'government' },
+      { name: 'Larry J. Farr Community Center', description: 'Community center with meeting rooms, event space, audio-visual system, and kitchen facilities for community events', phone: '(530) 275-7487', website: 'https://www.cityofshastalake.gov/1072/Larry-J-Farr-Community-Center-Civic-Cent', category: 'community_center' },
+      { name: 'Shasta Lake Visitor Center', description: 'Visitor information and community meeting room available for groups and organizations', phone: '(530) 275-7487', website: 'https://www.cityofshastalake.gov', category: 'visitor_center' },
+      { name: 'Shasta Lake Post Office', description: 'Full-service United States Post Office serving the Shasta Lake community', phone: '(530) 275-1591', category: 'post_office' },
+      { name: 'Shasta Lake Historical Society', description: 'Preserving and sharing the history of Shasta Dam and the communities of the Shasta Lake area', website: 'https://www.shastalakehistorical.org', category: 'museum' },
+    ],
+    communityResourcesOverview: 'The City of Shasta Lake offers a full range of municipal services and community resources. With its own city hall, community center, and visitor center, the city provides residents with convenient access to government services and community gathering spaces.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 10 minutes south', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 10 minutes south', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
@@ -542,6 +608,13 @@ export const locations: Location[] = [
       { name: 'Cottonwood Creek Charter School', grades: 'K-8', type: 'Charter', highlight: 'Innovative charter school option', phone: '(530) 347-7200', website: 'https://www.cottonwoodcreekcharter.com' },
     ],
     schoolsOverview: 'Cottonwood\'s schools are rated above average, making the community especially attractive to families. The Cottonwood Union School District and Anderson Union High School District work together to provide quality education from kindergarten through graduation, with charter school options adding flexibility.',
+    communityResources: [
+      { name: 'Cottonwood Community Library', description: 'Independent nonprofit library offering books, audiobooks, movies, public computers, internet access, and story time programs', phone: '(530) 347-4818', website: 'https://www.cottonwoodcommunitylibrary.com', category: 'library' },
+      { name: 'Cottonwood Post Office', description: 'Full-service United States Post Office serving the Cottonwood community', phone: '(530) 347-5425', category: 'post_office' },
+      { name: 'Cottonwood Community Hall', description: 'Local gathering space for community events, meetings, and neighborhood celebrations', category: 'community_center' },
+      { name: 'Cottonwood Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency services to the community', phone: '(530) 347-3411', category: 'fire_department' },
+    ],
+    communityResourcesOverview: 'Cottonwood offers a charming small-town experience with essential community resources. The independent community library serves as a cultural hub, while the town\'s strategic location between Redding and Red Bluff provides access to broader services in both directions.',
     healthcare: [
       { name: 'St. Elizabeth Community Hospital', description: 'Community hospital in Red Bluff with emergency services, approximately 15 minutes south', phone: '(530) 529-8000', website: 'https://www.dignityhealth.org/north-state/locations/stelizabethhospital', category: 'hospital' },
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes north', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
@@ -606,6 +679,13 @@ export const locations: Location[] = [
       { name: 'Hyampom Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school with dedicated staff', phone: '(530) 628-5912', website: 'https://www.mvusd.us' },
     ],
     schoolsOverview: 'Hyampom Elementary School serves the local community with extremely small class sizes and a personalized approach to education. High school students typically attend Hayfork High School or participate in distance learning programs.',
+    communityResources: [
+      { name: 'Hyampom Post Office', description: 'United States Post Office serving the remote Hyampom community', phone: '(530) 628-5291', category: 'post_office' },
+      { name: 'Hyampom Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency medical response in the Hyampom valley', phone: '(530) 628-5800', category: 'fire_department' },
+      { name: 'Hyampom Community Hall', description: 'Community gathering space for local events, potlucks, and neighborhood meetings', category: 'community_center' },
+      { name: 'Trinity County Services', description: 'County government services available in Weaverville, the county seat, approximately 45 minutes by road', phone: '(530) 623-1382', website: 'https://www.trinitycounty.org', category: 'government' },
+    ],
+    communityResourcesOverview: 'Hyampom is one of Trinity County\'s most remote communities, where self-sufficiency and community cooperation define daily life. Essential services are provided through dedicated volunteer organizations, and the tight-knit community supports one another in true mountain fashion.',
     healthcare: [
       { name: 'Hyampom Volunteer Fire Department', description: 'Local emergency services and fire protection for the Hyampom community', category: 'emergency' },
       { name: 'Hayfork Community Health Center', description: 'Rural Health Clinic in Hayfork, approximately 45 minutes away', phone: '(530) 628-5517', website: 'https://www.mcmedical.org/community-clinics', category: 'clinic' },
@@ -668,6 +748,13 @@ export const locations: Location[] = [
       { name: 'Trinity Center Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small class sizes with strong community involvement', phone: '(530) 266-3342', website: 'https://www.trinitycenterschool.org' },
     ],
     schoolsOverview: 'Trinity Center Elementary School offers an intimate, personalized learning environment with extremely small class sizes and a focus on outdoor education. High school students typically attend Trinity High School in Weaverville.',
+    communityResources: [
+      { name: 'Trinity County Library - Trinity Center Branch', description: 'Small community library branch offering books, public computers, and community programs', phone: '(530) 266-3242', website: 'https://www.trinitycounty.org/292/Library', category: 'library' },
+      { name: 'Trinity Center Post Office', description: 'United States Post Office serving the Trinity Center community', phone: '(530) 266-3224', category: 'post_office' },
+      { name: 'Scott Museum', description: 'Local history museum preserving the heritage and artifacts of the Trinity Center area', phone: '(530) 266-3242', category: 'museum' },
+      { name: 'Trinity Center Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency services to the community', phone: '(530) 266-3505', category: 'fire_department' },
+    ],
+    communityResourcesOverview: 'Trinity Center maintains a small but vital set of community resources for this lakeside community. The local library branch, post office, and active volunteer organizations provide essential services while preserving the area\'s peaceful, rural character.',
     healthcare: [
       { name: 'Trinity Center Volunteer Fire Department', description: 'Local emergency services and fire protection', category: 'emergency' },
       { name: 'Trinity Hospital', description: 'Community hospital in Weaverville, approximately 40 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
@@ -730,6 +817,12 @@ export const locations: Location[] = [
       { name: 'Coffee Creek Elementary School', grades: 'K-8', type: 'Public', highlight: 'Mountain school with outdoor education focus', phone: '(530) 266-3344', website: 'https://www.coffeecreekesd.org' },
     ],
     schoolsOverview: 'Coffee Creek Elementary School offers an incredibly intimate learning environment emphasizing outdoor education and environmental awareness. High school students typically attend Trinity High School in Weaverville.',
+    communityResources: [
+      { name: 'Coffee Creek Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency response in the Coffee Creek area', category: 'fire_department' },
+      { name: 'Trinity Center Post Office', description: 'Nearest post office serving Coffee Creek residents, located in nearby Trinity Center', phone: '(530) 266-3224', category: 'post_office' },
+      { name: 'Trinity County Services', description: 'County government and library services available in Weaverville, the county seat', phone: '(530) 623-1382', website: 'https://www.trinitycounty.org', category: 'government' },
+    ],
+    communityResourcesOverview: 'Coffee Creek is a deeply rural community where self-reliance is a way of life. Community resources are minimal by design, as residents choose this area specifically for its seclusion. Essential services are accessed through neighboring Trinity Center or Weaverville.',
     healthcare: [
       { name: 'Coffee Creek Volunteer Fire Department', description: 'Local emergency services and fire protection', category: 'emergency' },
       { name: 'Trinity Hospital', description: 'Community hospital in Weaverville, approximately 50 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
@@ -792,6 +885,13 @@ export const locations: Location[] = [
       { name: 'Douglas City Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school with dedicated staff', phone: '(530) 623-6350', website: 'https://www.dcesd.org' },
     ],
     schoolsOverview: 'Douglas City Elementary School serves the community with small class sizes and personalized attention. High school students attend Trinity High School in nearby Weaverville, just a short drive along the scenic Trinity River corridor.',
+    communityResources: [
+      { name: 'Douglas City Post Office', description: 'United States Post Office serving the Douglas City community', phone: '(530) 623-6161', category: 'post_office' },
+      { name: 'Douglas City Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency services to the community', phone: '(530) 623-2555', category: 'fire_department' },
+      { name: 'Douglas City Community Hall', description: 'Community gathering space for local events and neighborhood meetings', category: 'community_center' },
+      { name: 'Trinity County Services - Weaverville', description: 'Full county government, library, and civic services available in Weaverville, just 10 minutes away', phone: '(530) 623-1382', website: 'https://www.trinitycounty.org', category: 'government' },
+    ],
+    communityResourcesOverview: 'Douglas City is a small, historic community along the Trinity River with a handful of essential services. Its proximity to Weaverville (just 10 minutes) provides convenient access to the full range of county and community resources.',
     healthcare: [
       { name: 'Trinity Hospital', description: 'Full-service community hospital in Weaverville, approximately 10 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
       { name: 'Local emergency response services', description: 'Emergency response for Douglas City and surrounding areas', category: 'emergency' },
@@ -855,6 +955,12 @@ export const locations: Location[] = [
       { name: 'Local home-school and distance learning options', grades: 'K-12', type: 'Various', highlight: 'Flexible education for remote community' },
     ],
     schoolsOverview: 'Due to its remote location, most families in Big Flat utilize distance learning, home-school programs, or commute to schools in the Weaverville area. The community values self-directed education and outdoor learning experiences.',
+    communityResources: [
+      { name: 'Big Flat Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency medical response in the Big Flat area', category: 'fire_department' },
+      { name: 'Big Bar Post Office', description: 'Nearest United States Post Office serving the Big Flat and Big Bar communities', phone: '(530) 623-6205', category: 'post_office' },
+      { name: 'Trinity County Services', description: 'County government and civic services available in Weaverville, the county seat', phone: '(530) 623-1382', website: 'https://www.trinitycounty.org', category: 'government' },
+    ],
+    communityResourcesOverview: 'Big Flat is among the most remote communities in Trinity County, where self-sufficiency defines the lifestyle. Community resources are provided through dedicated volunteer organizations, and residents embrace the independence that comes with living in this spectacular river canyon setting.',
     healthcare: [
       { name: 'Local volunteer emergency services', description: 'Community volunteer emergency response', category: 'emergency' },
       { name: 'Trinity Hospital', description: 'Community hospital in Weaverville, approximately 40 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
@@ -920,6 +1026,13 @@ export const locations: Location[] = [
       { name: 'Chrysalis Charter School', grades: 'K-8', type: 'Charter', highlight: 'Innovative charter education option', phone: '(530) 547-9726', website: 'https://www.chrysalischarter.org' },
     ],
     schoolsOverview: 'Palo Cedro is renowned for its exceptional schools. Foothill High School consistently ranks among the top public high schools in Northern California, and the elementary schools in the area receive high marks from families. The strong educational system is a primary reason families choose to live here.',
+    communityResources: [
+      { name: 'Greater Palo Cedro Area Chamber of Commerce', description: 'Business support, community events, scholarships, and local networking for the Palo Cedro area', website: 'https://www.palocedrochamber.org', category: 'chamber' },
+      { name: 'Palo Cedro Community Park', description: 'Community park with playground, disc golf, walking trail, basketball court, picnic areas, and event pavilion', website: 'https://www.pcpark.org', category: 'community_center' },
+      { name: 'Palo Cedro Post Office', description: 'United States Post Office serving the Palo Cedro community', phone: '(530) 547-3578', category: 'post_office' },
+      { name: 'Shasta County Government', description: 'County government services available at the Shasta County Government Center in Redding', phone: '(530) 225-5561', website: 'https://www.shastacounty.gov', category: 'government' },
+    ],
+    communityResourcesOverview: 'Palo Cedro is an upscale rural community with an active chamber of commerce and well-maintained community park. While it operates as an unincorporated community within Shasta County, the strong civic engagement of its residents supports a high quality of life.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes west', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 15 minutes west', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
@@ -985,6 +1098,13 @@ export const locations: Location[] = [
       { name: 'Foothill High School', grades: '9-12', type: 'Public', highlight: 'Top-rated high school serving the area' },
     ],
     schoolsOverview: 'The Bella Vista Elementary School District serves younger students with a community-focused approach. Older students attend Foothill High School, one of the highest-rated public high schools in Northern California, located in nearby Palo Cedro.',
+    communityResources: [
+      { name: 'Bella Vista Post Office', description: 'United States Post Office serving the Bella Vista community', phone: '(530) 549-4318', category: 'post_office' },
+      { name: 'Bella Vista Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency services to the community', phone: '(530) 549-3399', category: 'fire_department' },
+      { name: 'Shasta County Government', description: 'County government services available at the Shasta County Government Center in Redding', phone: '(530) 225-5561', website: 'https://www.shastacounty.gov', category: 'government' },
+      { name: 'Shasta Public Libraries - Redding Branch', description: 'Nearest public library serving Bella Vista residents, located in Redding', phone: '(530) 245-7250', website: 'https://www.shastalibraries.org', category: 'library' },
+    ],
+    communityResourcesOverview: 'Bella Vista is a quiet, unincorporated community within Shasta County that values its rural character. Essential civic services are provided through the county, while the community maintains its own volunteer organizations and neighborhood connections.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes south', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 15 minutes south', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
@@ -1049,6 +1169,14 @@ export const locations: Location[] = [
       { name: 'Burney Junior-Senior High School', grades: '6-12', type: 'Public', highlight: 'Comprehensive education in a small-town setting', phone: '(530) 335-4576', website: 'https://www.frjusd.org' },
     ],
     schoolsOverview: 'The Fall River Joint Unified School District serves Burney with quality schools from kindergarten through high school. Small class sizes and dedicated teachers ensure personalized attention in a supportive community environment.',
+    communityResources: [
+      { name: 'Shasta Public Libraries - Burney Branch', description: 'Public library offering books, audiobooks, digital resources, public computers, and community programs', phone: '(530) 335-4317', website: 'https://www.shastalibraries.org/burney-library/', category: 'library' },
+      { name: 'Burney Chamber of Commerce', description: 'Business support, visitor information, community events, and economic development for the Burney area', phone: '(530) 335-2111', website: 'https://www.burneychamber.com', category: 'chamber' },
+      { name: 'Burney Post Office', description: 'Full-service United States Post Office serving the Burney community', phone: '(530) 335-2101', category: 'post_office' },
+      { name: 'Burney Fire Protection District', description: 'Fire protection and emergency services for the Burney community and surrounding area', phone: '(530) 335-2212', category: 'fire_department' },
+      { name: 'Shasta County Government', description: 'County government services available at the Shasta County Government Center in Redding', phone: '(530) 225-5561', website: 'https://www.shastacounty.gov', category: 'government' },
+    ],
+    communityResourcesOverview: 'Burney is the commercial and civic hub for the Intermountain area of eastern Shasta County. Residents benefit from a public library, active chamber of commerce, and a range of essential services that support this mountain community.',
     healthcare: [
       { name: 'Mayers Memorial Hospital District', description: 'Rural health center providing primary care, urgent care, and lab services', phone: '(530) 335-6070', website: 'https://www.mayersmemorial.com', category: 'hospital' },
       { name: 'Local medical and dental clinics', description: 'Medical and dental providers serving the Burney area', category: 'clinic' },
@@ -1113,6 +1241,13 @@ export const locations: Location[] = [
       { name: 'Local schools within Redding school districts', grades: 'K-12', type: 'Public', highlight: 'Access to Redding\'s comprehensive school system' },
     ],
     schoolsOverview: 'Students in the Shasta area attend schools within Redding\'s school districts, providing access to the full range of educational options available in the region, including multiple elementary, middle, and high school choices.',
+    communityResources: [
+      { name: 'Shasta State Historic Park & Courthouse Museum', description: 'State-managed historic park featuring the 1855 Courthouse Museum with Gold Rush exhibits and California artwork', phone: '(530) 243-8194', website: 'https://www.parks.ca.gov/?page_id=456', category: 'museum' },
+      { name: 'Shasta Historical Society', description: 'Organization dedicated to preserving and sharing the history of the Shasta region', website: 'https://www.shastahistorical.org', category: 'museum' },
+      { name: 'Shasta County Government', description: 'County government services available at the Shasta County Government Center in nearby Redding', phone: '(530) 225-5561', website: 'https://www.shastacounty.gov', category: 'government' },
+      { name: 'Shasta Public Libraries - Redding Branch', description: 'Nearest public library serving the Shasta area, located in Redding just 6 miles east', phone: '(530) 245-7250', website: 'https://www.shastalibraries.org', category: 'library' },
+    ],
+    communityResourcesOverview: 'The Shasta Historic District, often referred to simply as \'Old Shasta,\' is a state-preserved historic area that blends living community with rich Gold Rush heritage. The Shasta State Historic Park serves as the primary civic and cultural resource for this unique area.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 10 minutes east', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 10 minutes east', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
@@ -1177,6 +1312,14 @@ export const locations: Location[] = [
       { name: 'Fall River Jr and Sr High School', grades: '6-12', type: 'Public', highlight: 'California Distinguished School', phone: '(530) 336-5515', website: 'https://frhs.frjusd.org' },
     ],
     schoolsOverview: 'Both Fall River Elementary and Fall River Jr and Sr High School have been recognized as California Distinguished Schools, reflecting the community\'s commitment to quality education despite its rural setting.',
+    communityResources: [
+      { name: 'Fall River Valley Library', description: 'Community library with books, audiobooks, movies, public computers, Wi-Fi, conference room, and garden space', phone: '(530) 336-6445', website: 'https://www.fallrivervalleylibrary.com', category: 'library' },
+      { name: 'Fall River Mills Post Office', description: 'United States Post Office serving the Fall River Mills community', phone: '(530) 336-5413', category: 'post_office' },
+      { name: 'Fall River Valley Community Services District', description: 'Local services district providing water services and community infrastructure', phone: '(530) 336-5263', website: 'https://frvcsd.org', category: 'government' },
+      { name: 'Fall River Valley Fire Department', description: 'Fire protection and emergency services for the Fall River Valley area', phone: '(530) 336-5281', category: 'fire_department' },
+      { name: 'Shasta County Government', description: 'County government services available at the Shasta County Government Center in Redding', phone: '(530) 225-5561', website: 'https://www.shastacounty.gov', category: 'government' },
+    ],
+    communityResourcesOverview: 'Fall River Mills is the hub of the Fall River Valley, offering essential community resources for this scenic agricultural community. The local library, post office, and active service clubs provide important gathering points and civic services for valley residents.',
     healthcare: [
       { name: 'Mayers Memorial Hospital District', description: 'Hospital and healthcare district providing comprehensive medical services', phone: '(530) 336-5511', website: 'https://www.mayersmemorial.com', category: 'hospital' },
       { name: 'Local medical clinics', description: 'Medical clinics serving the Fall River Mills community', category: 'clinic' },
@@ -1241,6 +1384,13 @@ export const locations: Location[] = [
       { name: 'Mountain Gate area schools', grades: 'K-12', type: 'Public', highlight: 'Served by Gateway Unified School District' },
     ],
     schoolsOverview: 'Mountain Gate students are served by the Gateway Unified School District, which provides quality education from kindergarten through high school graduation, including Central Valley High School.',
+    communityResources: [
+      { name: 'Mountain Gate Community Services District', description: 'Local services district providing water and fire protection services to the Mountain Gate community', phone: '(530) 275-3002', website: 'https://www.mountaingatecsd.com', category: 'government' },
+      { name: 'Mountain Gate Fire Department', description: 'Fire department providing fire suppression and emergency services, also serving the Shasta Lake Recreation area', phone: '(530) 275-3003', website: 'https://www.mountaingatecsd.com', category: 'fire_department' },
+      { name: 'City of Shasta Lake', description: 'Nearest municipal government services available in Shasta Lake City, just minutes away', phone: '(530) 275-7400', website: 'https://www.cityofshastalake.gov', category: 'government' },
+      { name: 'Shasta Public Libraries - Redding Branch', description: 'Nearest public library serving Mountain Gate residents, located in Redding', phone: '(530) 245-7250', website: 'https://www.shastalibraries.org', category: 'library' },
+    ],
+    communityResourcesOverview: 'Mountain Gate is a quiet residential community served by the Mountain Gate Community Services District, which provides essential water and fire protection services. Additional civic and community resources are easily accessible in nearby Shasta Lake City and Redding.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 10 minutes south', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 10 minutes south', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
@@ -1304,6 +1454,13 @@ export const locations: Location[] = [
       { name: 'French Gulch-Whiskeytown Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school in a historic setting', phone: '(530) 359-2151', website: 'https://www.frenchgulchschool.com' },
     ],
     schoolsOverview: 'French Gulch-Whiskeytown Elementary School serves the community with an intimate educational experience. Older students attend schools in the Redding area, just a short drive along scenic Highway 299.',
+    communityResources: [
+      { name: 'French Gulch Post Office', description: 'Historic post office and community gathering point serving the French Gulch area', phone: '(530) 359-2100', category: 'post_office' },
+      { name: 'French Gulch Volunteer Fire Department', description: 'Volunteer fire department providing fire suppression and emergency services to the community', category: 'fire_department' },
+      { name: 'Shasta County Government', description: 'County government services available at the Shasta County Government Center in Redding, 15 minutes east', phone: '(530) 225-5561', website: 'https://www.shastacounty.gov', category: 'government' },
+      { name: 'Shasta Public Libraries - Redding Branch', description: 'Nearest public library serving French Gulch residents, located in Redding', phone: '(530) 245-7250', website: 'https://www.shastalibraries.org', category: 'library' },
+    ],
+    communityResourcesOverview: 'French Gulch is a small, historic community with a handful of essential services that preserve its old-west character. The general store and post office serve as community gathering points, while broader civic services are available in nearby Redding.',
     healthcare: [
       { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes east', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
       { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 15 minutes east', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
