@@ -372,16 +372,39 @@ export default function LocationDetailClient({ location }: { location: Location 
               <p className="text-gray-600 font-body mt-4 max-w-2xl mx-auto leading-relaxed">{location.recreationOverview}</p>
             </motion.div>
             <motion.div variants={fadeUp} className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
-              {location.recreation.map((item) => (
-                <div key={item.name} className="group bg-white rounded-lg p-6 shadow-luxury-sm hover:shadow-luxury transition-all duration-300 hover:-translate-y-1">
-                  <div className="w-12 h-12 rounded-full bg-forest-green/10 flex items-center justify-center mb-4 text-forest-green group-hover:bg-forest-green group-hover:text-white transition-colors duration-300">
-                    <IconForType type={item.icon} />
+              {location.recreation.map((item) => {
+                const CardContent = (
+                  <>
+                    <div className={`w-12 h-12 rounded-full bg-forest-green/10 flex items-center justify-center mb-4 text-forest-green group-hover:bg-forest-green group-hover:text-white transition-colors duration-300`}>
+                      <IconForType type={item.icon} />
+                    </div>
+                    <h4 className="font-heading text-lg text-charcoal-ink mb-2 flex items-center gap-2">
+                      {item.name}
+                      {item.website && (
+                        <svg className="w-4 h-4 text-forest-green/50 group-hover:text-forest-green transition-colors shrink-0" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                          <path strokeLinecap="round" strokeLinejoin="round" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+                        </svg>
+                      )}
+                    </h4>
+                    <p className="text-gray-600 font-body text-sm leading-relaxed">{item.description}</p>
+                  </>
+                )
+                return item.website ? (
+                  <a
+                    key={item.name}
+                    href={item.website}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="group bg-white rounded-lg p-6 shadow-luxury-sm hover:shadow-luxury transition-all duration-300 hover:-translate-y-1 cursor-pointer block"
+                  >
+                    {CardContent}
+                  </a>
+                ) : (
+                  <div key={item.name} className="group bg-white rounded-lg p-6 shadow-luxury-sm hover:shadow-luxury transition-all duration-300 hover:-translate-y-1">
+                    {CardContent}
                   </div>
-                  <h4 className="font-heading text-lg text-charcoal-ink mb-2">{item.name}</h4>
-                  <p className="text-gray-600 font-body text-sm leading-relaxed">{item.description}</p>
-                  <ContactLinks phone={item.phone} website={item.website} compact />
-                </div>
-              ))}
+                )
+              })}
             </motion.div>
           </motion.div>
         </div>
