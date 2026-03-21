@@ -4,7 +4,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import { useRef } from 'react'
-import type { Location, LocationAttraction } from '@/data/locations'
+import type { Location, LocationAttraction, LocationResource } from '@/data/locations'
 
 const fadeUp = {
   hidden: { opacity: 0, y: 30 },
@@ -13,6 +13,70 @@ const fadeUp = {
 
 const stagger = {
   visible: { transition: { staggerChildren: 0.12 } },
+}
+
+function PhoneIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
+    </svg>
+  )
+}
+
+function WebIcon({ className = 'w-4 h-4' }: { className?: string }) {
+  return (
+    <svg className={className} fill="none" stroke="currentColor" viewBox="0 0 24 24">
+      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14" />
+    </svg>
+  )
+}
+
+function ContactLinks({ phone, website, compact = false }: { phone?: string; website?: string; compact?: boolean }) {
+  if (!phone && !website) return null
+  return (
+    <div className={`flex flex-wrap gap-3 ${compact ? 'mt-2' : 'mt-3'}`}>
+      {phone && (
+        <a
+          href={`tel:${phone.replace(/[^\d+]/g, '')}`}
+          className="inline-flex items-center gap-1.5 text-sm text-forest-green hover:text-deep-pine transition-colors font-body font-medium"
+          title={`Call ${phone}`}
+        >
+          <PhoneIcon className="w-3.5 h-3.5" />
+          {phone}
+        </a>
+      )}
+      {website && (
+        <a
+          href={website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1.5 text-sm text-forest-green hover:text-deep-pine transition-colors font-body font-medium"
+          title="Visit website"
+        >
+          <WebIcon className="w-3.5 h-3.5" />
+          Website
+        </a>
+      )}
+    </div>
+  )
+}
+
+function HealthcareIcon({ category }: { category: LocationResource['category'] }) {
+  const cls = 'w-5 h-5'
+  switch (category) {
+    case 'hospital':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" /></svg>
+    case 'clinic':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+    case 'emergency':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-3L13.732 4c-.77-1.333-2.694-1.333-3.464 0L3.34 16c-.77 1.333.192 3 1.732 3z" /></svg>
+    case 'government':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10h16v11H4V10z" /></svg>
+    case 'specialty':
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" /></svg>
+    default:
+      return <svg className={cls} fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+  }
 }
 
 function IconForType({ type }: { type: LocationAttraction['icon'] }) {
@@ -164,6 +228,7 @@ export default function LocationDetailClient({ location }: { location: Location 
                   <h4 className="font-heading text-lg text-charcoal-ink mb-1">{school.name}</h4>
                   <p className="text-sm text-gray-500 font-body mb-2">{school.grades} · {school.type}</p>
                   {school.highlight && <p className="text-sm text-forest-green font-body font-medium">{school.highlight}</p>}
+                  <ContactLinks phone={school.phone} website={school.website} compact />
                 </div>
               ))}
             </motion.div>
@@ -233,11 +298,15 @@ export default function LocationDetailClient({ location }: { location: Location 
             </motion.div>
             <motion.div variants={fadeUp} className="max-w-3xl mx-auto grid sm:grid-cols-2 gap-5">
               {location.healthcare.map((item) => (
-                <div key={item} className="flex items-start gap-4 bg-white rounded-lg p-5 shadow-luxury-sm">
-                  <div className="w-10 h-10 rounded-full bg-deep-pine/10 flex items-center justify-center shrink-0">
-                    <svg className="w-5 h-5 text-deep-pine" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z" /></svg>
+                <div key={item.name} className="flex items-start gap-4 bg-white rounded-lg p-5 shadow-luxury-sm hover:shadow-luxury transition-shadow duration-300">
+                  <div className="w-10 h-10 rounded-full bg-deep-pine/10 flex items-center justify-center shrink-0 text-deep-pine">
+                    <HealthcareIcon category={item.category} />
                   </div>
-                  <p className="text-gray-700 font-body text-[15px] leading-relaxed">{item}</p>
+                  <div className="min-w-0">
+                    <h4 className="text-charcoal-ink font-heading text-[15px] font-semibold leading-snug">{item.name}</h4>
+                    <p className="text-gray-500 font-body text-sm leading-relaxed mt-1">{item.description}</p>
+                    <ContactLinks phone={item.phone} website={item.website} compact />
+                  </div>
                 </div>
               ))}
             </motion.div>
@@ -262,6 +331,7 @@ export default function LocationDetailClient({ location }: { location: Location 
                   </div>
                   <h4 className="font-heading text-lg text-charcoal-ink mb-2">{item.name}</h4>
                   <p className="text-gray-600 font-body text-sm leading-relaxed">{item.description}</p>
+                  <ContactLinks phone={item.phone} website={item.website} compact />
                 </div>
               ))}
             </motion.div>

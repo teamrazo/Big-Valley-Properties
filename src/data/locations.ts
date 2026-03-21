@@ -3,12 +3,24 @@ export interface LocationSchool {
   grades: string
   type: string
   highlight?: string
+  phone?: string
+  website?: string
 }
 
 export interface LocationAttraction {
   name: string
   description: string
   icon: 'hiking' | 'water' | 'park' | 'historic' | 'dining' | 'shopping' | 'nature' | 'sports'
+  phone?: string
+  website?: string
+}
+
+export interface LocationResource {
+  name: string
+  description: string
+  phone?: string
+  website?: string
+  category: 'hospital' | 'clinic' | 'emergency' | 'specialty' | 'government'
 }
 
 export interface Location {
@@ -26,7 +38,7 @@ export interface Location {
   whyLiveHere: string[]
   schools: LocationSchool[]
   schoolsOverview: string
-  healthcare: string[]
+  healthcare: LocationResource[]
   healthcareOverview: string
   recreation: LocationAttraction[]
   recreationOverview: string
@@ -64,22 +76,22 @@ export const locations: Location[] = [
       'Clean mountain air, four distinct seasons, and a peaceful pace of life',
     ],
     schools: [
-      { name: 'Weaverville Elementary School', grades: 'K-8', type: 'Public', highlight: 'Above average public school ratings' },
-      { name: 'Trinity High School', grades: '9-12', type: 'Public', highlight: 'Strong athletics and community involvement' },
-      { name: 'Trinity County Community College', grades: 'Higher Ed', type: 'Community College', highlight: 'Local continuing education' },
+      { name: 'Weaverville Elementary School', grades: 'K-8', type: 'Public', highlight: 'Above average public school ratings', phone: '(530) 623-5533', website: 'https://www.weswildcats.org' },
+      { name: 'Trinity High School', grades: '9-12', type: 'Public', highlight: 'Strong athletics and community involvement', phone: '(530) 623-6127', website: 'https://www.trinitywolves.org' },
+      { name: 'Trinity County Community College', grades: 'Higher Ed', type: 'Community College', highlight: 'Local continuing education', phone: '(530) 242-7750', website: 'https://www.shastacollege.edu/campuses/trinity/' },
     ],
     schoolsOverview: 'Weaverville\'s public schools are rated above average, with dedicated teachers and a low student-to-teacher ratio that ensures personalized attention. The tight-knit school community fosters academic success and strong extracurricular programs, from athletics to outdoor education.',
     healthcare: [
-      'Trinity Hospital - full-service community hospital',
-      'Trinity County Health & Human Services',
-      'Mountain Communities Healthcare District',
-      'Local dental, vision, and specialty clinics',
+      { name: 'Trinity Hospital', description: 'Full-service community hospital with 24-hour ER, surgery, imaging, and skilled nursing', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
+      { name: 'Trinity County Health & Human Services', description: 'Public health, social services, and community wellness programs', phone: '(530) 623-1265', website: 'https://www.trinitycounty.org/227/Health-and-Human-Services', category: 'government' },
+      { name: 'Mountain Communities Healthcare District', description: 'District overseeing healthcare services including rural health clinics', phone: '(530) 623-5541', website: 'https://www.mcmedical.org', category: 'clinic' },
+      { name: 'Local dental, vision, and specialty clinics', description: 'Various dental, vision, and specialty providers in the Weaverville area', category: 'specialty' },
     ],
     healthcareOverview: 'Trinity Hospital anchors the healthcare network in Weaverville, providing emergency services, primary care, and outpatient services. Multiple clinics and specialty providers ensure residents have access to quality healthcare close to home.',
     recreation: [
       { name: 'Trinity Alps Wilderness', description: 'Over 500,000 acres of pristine wilderness with alpine lakes, jagged peaks, and hundreds of miles of trails', icon: 'hiking' },
       { name: 'Trinity Lake', description: 'California\'s third largest reservoir, just 15 minutes from town. Perfect for boating, fishing, and swimming', icon: 'water' },
-      { name: 'Joss House State Historic Park', description: 'California\'s oldest active Chinese temple, a fascinating window into Gold Rush-era history', icon: 'historic' },
+      { name: 'Joss House State Historic Park', description: 'California\'s oldest active Chinese temple, a fascinating window into Gold Rush-era history', icon: 'historic', phone: '(530) 623-5284', website: 'https://www.parks.ca.gov/?page_id=457' },
       { name: 'Jake Jackson Museum', description: 'Rich displays of Gold Rush equipment, tools, and memorabilia in an original 1850s building', icon: 'historic' },
       { name: 'Weaverville Basin Trail System', description: 'Professionally maintained hiking and biking trails of varying difficulty in and around town', icon: 'hiking' },
       { name: 'Trinity River Fishing', description: 'World-class steelhead and salmon fishing along the Trinity River corridor', icon: 'water' },
@@ -130,17 +142,17 @@ export const locations: Location[] = [
       'Dark skies, clean air, and the peaceful rhythm of rural life',
     ],
     schools: [
-      { name: 'Hayfork Elementary School', grades: 'K-8', type: 'Public', highlight: 'Community-focused education' },
-      { name: 'Hayfork High School', grades: '9-12', type: 'Public', highlight: 'Small class sizes and strong community support' },
-      { name: 'Valley High School', grades: '9-12', type: 'Alternative', highlight: 'Flexible learning options' },
-      { name: 'Hyampom Arts Magnet School', grades: 'K-8', type: 'Public Magnet', highlight: 'Arts-integrated curriculum' },
+      { name: 'Hayfork Elementary School', grades: 'K-8', type: 'Public', highlight: 'Community-focused education', phone: '(530) 628-5294', website: 'https://www.mvusd.us' },
+      { name: 'Hayfork High School', grades: '9-12', type: 'Public', highlight: 'Small class sizes and strong community support', phone: '(530) 628-5261', website: 'https://www.mvusd.us' },
+      { name: 'Valley High School', grades: '9-12', type: 'Alternative', highlight: 'Flexible learning options', phone: '(530) 628-5294', website: 'https://www.mvusd.us' },
+      { name: 'Hyampom Arts Magnet School', grades: 'K-8', type: 'Public Magnet', highlight: 'Arts-integrated curriculum', phone: '(530) 628-5912', website: 'https://www.mvusd.us' },
     ],
     schoolsOverview: 'The Mountain Valley Unified School District serves Hayfork with six schools offering diverse educational approaches. Small class sizes ensure every student receives individualized attention, and the schools are deeply integrated into the fabric of community life.',
     healthcare: [
-      'Mountain Communities Healthcare District',
-      'Hayfork Community Health Center',
-      'Local dental and wellness clinics',
-      'Emergency medical services',
+      { name: 'Mountain Communities Healthcare District', description: 'District providing comprehensive healthcare services', phone: '(530) 623-5541', website: 'https://www.mcmedical.org', category: 'clinic' },
+      { name: 'Hayfork Community Health Center', description: 'Federally designated Rural Health Clinic with primary care, urgent care, and lab services', phone: '(530) 628-5517', website: 'https://www.mcmedical.org/community-clinics', category: 'clinic' },
+      { name: 'Local dental and wellness clinics', description: 'Dental and wellness providers serving the Hayfork Valley', category: 'specialty' },
+      { name: 'Hayfork Ambulance Department', description: 'Emergency medical services for the Hayfork area', phone: '(530) 628-5893', website: 'https://www.mcmedical.org/contact-us', category: 'emergency' },
     ],
     healthcareOverview: 'Hayfork\'s healthcare network provides essential medical services right in the valley. The Mountain Communities Healthcare District and community health center offer primary care, dental services, and wellness programs, with larger facilities accessible in Weaverville and Redding.',
     recreation: [
@@ -197,13 +209,13 @@ export const locations: Location[] = [
       'Close proximity to both Trinity Lake and Weaverville amenities',
     ],
     schools: [
-      { name: 'Lewiston Elementary School', grades: 'K-8', type: 'Public', highlight: 'Intimate school with personalized education' },
+      { name: 'Lewiston Elementary School', grades: 'K-8', type: 'Public', highlight: 'Intimate school with personalized education', phone: '(530) 778-3984', website: 'https://www.lewistonesd.com' },
     ],
     schoolsOverview: 'Lewiston Elementary School provides a close-knit educational experience where every child is known and supported. With small class sizes and dedicated teachers, the school offers a nurturing environment. High school students attend Trinity High School in nearby Weaverville.',
     healthcare: [
-      'Trinity Hospital (Weaverville, 15 min)',
-      'Local emergency medical services',
-      'Telehealth services available',
+      { name: 'Trinity Hospital', description: 'Full-service community hospital in Weaverville, approximately 15 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
+      { name: 'Local emergency medical services', description: 'Emergency response services for the Lewiston area', category: 'emergency' },
+      { name: 'Telehealth services', description: 'Remote healthcare consultations available through Mountain Communities Healthcare District', website: 'https://www.mcmedical.org', category: 'clinic' },
     ],
     healthcareOverview: 'While Lewiston maintains local emergency services, residents enjoy quick access to Trinity Hospital and full medical facilities in Weaverville, just a scenic 15-minute drive away.',
     recreation: [
@@ -260,13 +272,13 @@ export const locations: Location[] = [
       'Canyon Creek access for gold panning, swimming, and exploration',
     ],
     schools: [
-      { name: 'Junction City Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small, community-centered school' },
+      { name: 'Junction City Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small, community-centered school', phone: '(530) 623-6381', website: 'https://www.jcesd.org' },
     ],
     schoolsOverview: 'Junction City Elementary serves the community with an intimate, family-like educational environment. Older students attend Trinity High School in Weaverville, just a short drive along the scenic Trinity River corridor.',
     healthcare: [
-      'Trinity Hospital (Weaverville, 10 min)',
-      'Local emergency response services',
-      'Telehealth and visiting clinic services',
+      { name: 'Trinity Hospital', description: 'Full-service community hospital in Weaverville, approximately 10 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
+      { name: 'Local emergency response services', description: 'Emergency response for Junction City and surrounding areas', category: 'emergency' },
+      { name: 'Telehealth and visiting clinic services', description: 'Remote consultations and periodic visiting clinics', website: 'https://www.mcmedical.org', category: 'clinic' },
     ],
     healthcareOverview: 'Junction City\'s proximity to Weaverville means residents are just 10 minutes from Trinity Hospital and full healthcare services, while local emergency response teams provide immediate assistance when needed.',
     recreation: [
@@ -323,26 +335,26 @@ export const locations: Location[] = [
       'Growing economy with strong job market in healthcare, education, and services',
     ],
     schools: [
-      { name: 'Shasta Union High School District', grades: '9-12', type: 'Public', highlight: 'Multiple comprehensive high schools' },
-      { name: 'Enterprise Elementary District', grades: 'K-8', type: 'Public', highlight: 'Highly rated elementary schools' },
-      { name: 'Shasta College', grades: 'Higher Ed', type: 'Community College', highlight: 'Founded in 1948, extensive programs' },
-      { name: 'Simpson University', grades: 'Higher Ed', type: 'Private University', highlight: 'Four-year private university' },
+      { name: 'Shasta Union High School District', grades: '9-12', type: 'Public', highlight: 'Multiple comprehensive high schools', phone: '(530) 241-3261', website: 'https://www.suhsd.net' },
+      { name: 'Enterprise Elementary District', grades: 'K-8', type: 'Public', highlight: 'Highly rated elementary schools', phone: '(530) 224-4100', website: 'https://www.eesd.net' },
+      { name: 'Shasta College', grades: 'Higher Ed', type: 'Community College', highlight: 'Founded in 1948, extensive programs', phone: '(530) 242-7500', website: 'https://www.shastacollege.edu' },
+      { name: 'Simpson University', grades: 'Higher Ed', type: 'Private University', highlight: 'Four-year private university', phone: '(530) 224-5600', website: 'https://simpsonu.edu' },
     ],
     schoolsOverview: 'Redding offers a comprehensive educational system from pre-K through university. Multiple school districts provide diverse learning environments, while Shasta College and Simpson University offer higher education right in town. Charter schools and private options add even more choice for families.',
     healthcare: [
-      'Mercy Medical Center Redding - major regional hospital',
-      'Shasta Regional Medical Center - full-service hospital',
-      'Redding VA Outpatient Clinic',
-      'Numerous specialty clinics and medical offices',
-      'Surgery centers and rehabilitation facilities',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital and Level II Trauma Center with 283 beds', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital with 226 beds, emergency care, and specialty services', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Redding VA Outpatient Clinic', description: 'Comprehensive VA healthcare including primary care, mental health, and specialty services', phone: '(530) 226-7555', website: 'https://www.va.gov/northern-california-health-care/locations/redding-va-clinic/', category: 'clinic' },
+      { name: 'Numerous specialty clinics and medical offices', description: 'Extensive network of specialty providers across all medical fields', category: 'specialty' },
+      { name: 'Surgery centers and rehabilitation facilities', description: 'Outpatient surgery centers and rehabilitation services throughout Redding', category: 'specialty' },
     ],
     healthcareOverview: 'Redding serves as the healthcare hub for all of Northern California. Two major hospitals, a VA clinic, and dozens of specialty providers ensure world-class medical care is available locally, from emergency services to advanced surgical procedures.',
     recreation: [
-      { name: 'Sundial Bridge & Turtle Bay', description: 'Santiago Calatrava\'s iconic bridge leads to the Turtle Bay Exploration Park with museums, gardens, and nature trails', icon: 'park' },
+      { name: 'Sundial Bridge & Turtle Bay', description: 'Santiago Calatrava\'s iconic bridge leads to the Turtle Bay Exploration Park with museums, gardens, and nature trails', icon: 'park', phone: '(530) 243-8850', website: 'https://www.turtlebay.org' },
       { name: 'Shasta Lake', description: 'California\'s largest reservoir with 365 miles of shoreline, houseboating, fishing, and water sports', icon: 'water' },
-      { name: 'Whiskeytown National Recreation Area', description: 'Crystal-clear lake surrounded by waterfalls, hiking trails, and Gold Rush history', icon: 'water' },
+      { name: 'Whiskeytown National Recreation Area', description: 'Crystal-clear lake surrounded by waterfalls, hiking trails, and Gold Rush history', icon: 'water', phone: '(530) 246-1225', website: 'https://www.nps.gov/whis/' },
       { name: 'Sacramento River Trail', description: 'Over 200 miles of interconnected trails for biking, running, and walking through the city', icon: 'hiking' },
-      { name: 'Lake Shasta Caverns', description: 'Spectacular limestone caves accessible by boat and bus tour on the shores of Shasta Lake', icon: 'nature' },
+      { name: 'Lake Shasta Caverns', description: 'Spectacular limestone caves accessible by boat and bus tour on the shores of Shasta Lake', icon: 'nature', phone: '(530) 238-2341', website: 'https://www.lakeshastacaverns.com' },
       { name: 'Mt. Shasta & Lassen Peak', description: 'Two of California\'s most majestic volcanic peaks within easy day-trip distance', icon: 'hiking' },
     ],
     recreationOverview: 'Redding has been named an "Outdoor Paradise" by NPR, the US Capital of Kayaking by TIME Magazine, and one of Forbes\' Top 10 Trout-Fishing Towns. With world-class lakes, rivers, trails, and mountain access, there\'s no shortage of adventure.',
@@ -391,17 +403,17 @@ export const locations: Location[] = [
       'Sacramento River access for fishing, swimming, and nature walks',
     ],
     schools: [
-      { name: 'Cascade Union Elementary School District', grades: 'K-8', type: 'Public', highlight: '4 schools serving 1,300 students' },
-      { name: 'Anderson Union High School', grades: '9-12', type: 'Public', highlight: 'Comprehensive high school program' },
-      { name: 'Anderson New Tech High School', grades: '9-12', type: 'Charter', highlight: 'Innovative project-based learning' },
+      { name: 'Cascade Union Elementary School District', grades: 'K-8', type: 'Public', highlight: '4 schools serving 1,300 students', phone: '(530) 378-7000', website: 'https://www.cuesd.com' },
+      { name: 'Anderson Union High School', grades: '9-12', type: 'Public', highlight: 'Comprehensive high school program', phone: '(530) 365-2741', website: 'https://www.auhsd.net' },
+      { name: 'Anderson New Tech High School', grades: '9-12', type: 'Charter', highlight: 'Innovative project-based learning', phone: '(530) 365-3100', website: 'https://www.anths.org' },
       { name: 'Shasta Christian Academy', grades: 'K-12', type: 'Private', highlight: 'Faith-based education option' },
     ],
     schoolsOverview: 'Anderson\'s educational system offers diverse options for families. The Cascade Union Elementary District serves over 1,300 students with quality elementary and middle school education, while Anderson Union High School and Anderson New Tech provide traditional and innovative high school pathways.',
     healthcare: [
-      'Quick access to Mercy Medical Center (Redding)',
-      'Quick access to Shasta Regional Medical Center (Redding)',
-      'Local medical and dental clinics',
-      'Urgent care facilities',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding, approximately 10 minutes away', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital in Redding, approximately 10 minutes away', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Local medical and dental clinics', description: 'Medical and dental providers serving Anderson residents', category: 'clinic' },
+      { name: 'Urgent care facilities', description: 'Walk-in urgent care services available in the Anderson area', category: 'clinic' },
     ],
     healthcareOverview: 'Anderson residents enjoy convenient access to Redding\'s comprehensive healthcare network, including two major hospitals just 10 minutes away. Local clinics provide everyday medical and dental needs right in town.',
     recreation: [
@@ -458,22 +470,22 @@ export const locations: Location[] = [
       'Growing community with strong neighborhood identity',
     ],
     schools: [
-      { name: 'Gateway Unified School District', grades: 'K-12', type: 'Public', highlight: '8 schools serving 2,300+ students' },
-      { name: 'Grand Oaks Elementary', grades: 'K-5', type: 'Public', highlight: 'Highly rated elementary school' },
-      { name: 'Central Valley High School', grades: '9-12', type: 'Public', highlight: 'Strong academics and college prep support' },
+      { name: 'Gateway Unified School District', grades: 'K-12', type: 'Public', highlight: '8 schools serving 2,300+ students', phone: '(530) 245-7900', website: 'https://www.gatewayusd.org' },
+      { name: 'Grand Oaks Elementary', grades: 'K-5', type: 'Public', highlight: 'Highly rated elementary school', phone: '(530) 275-7040', website: 'https://goes.gatewayusd.org' },
+      { name: 'Central Valley High School', grades: '9-12', type: 'Public', highlight: 'Strong academics and college prep support', phone: '(530) 275-7075', website: 'https://cvhs.gatewayusd.org' },
     ],
     schoolsOverview: 'The Gateway Unified School District serves the Shasta Lake community with eight schools spanning K-12. Grand Oaks Elementary receives high marks from families, while Central Valley High School provides comprehensive academics, sports programs, and college preparation support.',
     healthcare: [
-      'Mercy Medical Center (Redding, 10 min)',
-      'Shasta Regional Medical Center (Redding, 10 min)',
-      'Local clinics and medical offices',
-      'Pharmacy and urgent care services',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 10 minutes south', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 10 minutes south', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Local clinics and medical offices', description: 'Medical offices and clinics serving Shasta Lake residents', category: 'clinic' },
+      { name: 'Pharmacy and urgent care services', description: 'Pharmacy and walk-in care options in the Shasta Lake area', category: 'clinic' },
     ],
     healthcareOverview: 'Shasta Lake residents enjoy quick access to Redding\'s two major hospitals, both just 10 minutes south. Local medical offices and urgent care facilities handle everyday health needs right in the community.',
     recreation: [
       { name: 'Shasta Lake', description: 'California\'s largest reservoir with 365 miles of shoreline. The houseboating capital of the world', icon: 'water' },
       { name: 'Shasta Dam', description: 'The second tallest dam in the US, offering tours and spectacular views of the lake and Mt. Shasta', icon: 'historic' },
-      { name: 'Lake Shasta Caverns', description: 'Stunning underground caverns accessible by boat cruise and scenic bus ride', icon: 'nature' },
+      { name: 'Lake Shasta Caverns', description: 'Stunning underground caverns accessible by boat cruise and scenic bus ride', icon: 'nature', phone: '(530) 238-2341', website: 'https://www.lakeshastacaverns.com' },
       { name: 'Shasta Lake Water Sports', description: 'World-class bass fishing, water skiing, jet skiing, kayaking, and swimming', icon: 'water' },
       { name: 'Houseboating', description: 'Shasta Lake is known worldwide as the houseboating capital, with dozens of rental companies', icon: 'water' },
       { name: 'Hiking & Biking Trails', description: 'Miles of trails along the lake shore and through surrounding National Forest land', icon: 'hiking' },
@@ -524,17 +536,17 @@ export const locations: Location[] = [
       'Growing local businesses and services',
     ],
     schools: [
-      { name: 'West Valley High School', grades: '9-12', type: 'Public', highlight: '~900 students with strong programs' },
-      { name: 'West Cottonwood Junior High', grades: '5-8', type: 'Public', highlight: 'Bridge between elementary and high school' },
-      { name: 'North Cottonwood Elementary', grades: 'K-4', type: 'Public', highlight: 'Community-centered elementary education' },
-      { name: 'Cottonwood Creek Charter School', grades: 'K-8', type: 'Charter', highlight: 'Innovative charter school option' },
+      { name: 'West Valley High School', grades: '9-12', type: 'Public', highlight: '~900 students with strong programs', phone: '(530) 347-7171', website: 'https://www.auhsd.net' },
+      { name: 'West Cottonwood Junior High', grades: '5-8', type: 'Public', highlight: 'Bridge between elementary and high school', phone: '(530) 347-3123', website: 'https://west.cwusd.com' },
+      { name: 'North Cottonwood Elementary', grades: 'K-4', type: 'Public', highlight: 'Community-centered elementary education', phone: '(530) 347-1698', website: 'https://north.cwusd.com' },
+      { name: 'Cottonwood Creek Charter School', grades: 'K-8', type: 'Charter', highlight: 'Innovative charter school option', phone: '(530) 347-7200', website: 'https://www.cottonwoodcreekcharter.com' },
     ],
     schoolsOverview: 'Cottonwood\'s schools are rated above average, making the community especially attractive to families. The Cottonwood Union School District and Anderson Union High School District work together to provide quality education from kindergarten through graduation, with charter school options adding flexibility.',
     healthcare: [
-      'St. Elizabeth Community Hospital (Red Bluff, 15 min)',
-      'Mercy Medical Center (Redding, 15 min)',
-      'Local medical clinics',
-      'Pharmacy services',
+      { name: 'St. Elizabeth Community Hospital', description: 'Community hospital in Red Bluff with emergency services, approximately 15 minutes south', phone: '(530) 529-8000', website: 'https://www.dignityhealth.org/north-state/locations/stelizabethhospital', category: 'hospital' },
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes north', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Local medical clinics', description: 'Medical providers serving the Cottonwood community', category: 'clinic' },
+      { name: 'Pharmacy services', description: 'Local pharmacy services in the Cottonwood area', category: 'specialty' },
     ],
     healthcareOverview: 'Cottonwood\'s central location between Redding and Red Bluff means residents are within 15 minutes of two hospital systems. Local clinics and pharmacies handle everyday health needs, while specialized care is easily accessible in either direction.',
     recreation: [
@@ -591,13 +603,13 @@ export const locations: Location[] = [
       'Dark skies, clean air, and a pace of life that restores the soul',
     ],
     schools: [
-      { name: 'Hyampom Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school with dedicated staff' },
+      { name: 'Hyampom Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school with dedicated staff', phone: '(530) 628-5912', website: 'https://www.mvusd.us' },
     ],
     schoolsOverview: 'Hyampom Elementary School serves the local community with extremely small class sizes and a personalized approach to education. High school students typically attend Hayfork High School or participate in distance learning programs.',
     healthcare: [
-      'Hyampom Volunteer Fire Department (emergency services)',
-      'Mountain Communities Healthcare District (Hayfork)',
-      'Trinity Hospital (Weaverville) for full-service care',
+      { name: 'Hyampom Volunteer Fire Department', description: 'Local emergency services and fire protection for the Hyampom community', category: 'emergency' },
+      { name: 'Hayfork Community Health Center', description: 'Rural Health Clinic in Hayfork, approximately 45 minutes away', phone: '(530) 628-5517', website: 'https://www.mcmedical.org/community-clinics', category: 'clinic' },
+      { name: 'Trinity Hospital', description: 'Full-service community hospital in Weaverville for comprehensive care', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
     ],
     healthcareOverview: 'As a remote community, Hyampom relies on its dedicated volunteer fire department for emergency services. Routine healthcare is available in Hayfork (approximately 45 minutes), while Weaverville and Redding offer comprehensive medical facilities.',
     recreation: [
@@ -653,13 +665,13 @@ export const locations: Location[] = [
       'Four-season recreation including skiing at nearby Mt. Shasta',
     ],
     schools: [
-      { name: 'Trinity Center Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small class sizes with strong community involvement' },
+      { name: 'Trinity Center Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small class sizes with strong community involvement', phone: '(530) 266-3342', website: 'https://www.trinitycenterschool.org' },
     ],
     schoolsOverview: 'Trinity Center Elementary School offers an intimate, personalized learning environment with extremely small class sizes and a focus on outdoor education. High school students typically attend Trinity High School in Weaverville.',
     healthcare: [
-      'Trinity Center Volunteer Fire Department (emergency services)',
-      'Trinity Hospital in Weaverville (approximately 40 minutes)',
-      'Mercy Medical Center in Redding for comprehensive care',
+      { name: 'Trinity Center Volunteer Fire Department', description: 'Local emergency services and fire protection', category: 'emergency' },
+      { name: 'Trinity Hospital', description: 'Community hospital in Weaverville, approximately 40 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding for comprehensive medical care', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
     ],
     healthcareOverview: 'Emergency services are provided by a dedicated volunteer fire department. Routine and comprehensive medical care is accessible in Weaverville (approximately 40 minutes) and Redding (approximately 75 minutes). Residents value the trade-off of distance for the exceptional quality of life the area provides.',
     recreation: [
@@ -715,13 +727,13 @@ export const locations: Location[] = [
       'Close to Trinity Lake for boating and water recreation',
     ],
     schools: [
-      { name: 'Coffee Creek Elementary School', grades: 'K-8', type: 'Public', highlight: 'Mountain school with outdoor education focus' },
+      { name: 'Coffee Creek Elementary School', grades: 'K-8', type: 'Public', highlight: 'Mountain school with outdoor education focus', phone: '(530) 266-3344', website: 'https://www.coffeecreekesd.org' },
     ],
     schoolsOverview: 'Coffee Creek Elementary School offers an incredibly intimate learning environment emphasizing outdoor education and environmental awareness. High school students typically attend Trinity High School in Weaverville.',
     healthcare: [
-      'Coffee Creek Volunteer Fire Department (emergency services)',
-      'Trinity Hospital in Weaverville (approximately 50 minutes)',
-      'Mercy Medical Center in Redding for comprehensive care',
+      { name: 'Coffee Creek Volunteer Fire Department', description: 'Local emergency services and fire protection', category: 'emergency' },
+      { name: 'Trinity Hospital', description: 'Community hospital in Weaverville, approximately 50 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding for comprehensive medical care', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
     ],
     healthcareOverview: 'Emergency services are provided by a dedicated volunteer fire department. Medical care is accessible in Weaverville and Redding. Residents embrace the trade-off of distance for the extraordinary quality of life the area provides.',
     recreation: [
@@ -777,13 +789,13 @@ export const locations: Location[] = [
       'Gateway to both the Trinity Alps and the downriver communities',
     ],
     schools: [
-      { name: 'Douglas City Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school with dedicated staff' },
+      { name: 'Douglas City Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school with dedicated staff', phone: '(530) 623-6350', website: 'https://www.dcesd.org' },
     ],
     schoolsOverview: 'Douglas City Elementary School serves the community with small class sizes and personalized attention. High school students attend Trinity High School in nearby Weaverville, just a short drive along the scenic Trinity River corridor.',
     healthcare: [
-      'Trinity Hospital (Weaverville, 10 min)',
-      'Local emergency response services',
-      'Access to Redding medical facilities',
+      { name: 'Trinity Hospital', description: 'Full-service community hospital in Weaverville, approximately 10 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
+      { name: 'Local emergency response services', description: 'Emergency response for Douglas City and surrounding areas', category: 'emergency' },
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding for advanced medical care', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
     ],
     healthcareOverview: 'Douglas City\'s proximity to Weaverville means residents are just 10 minutes from Trinity Hospital and full healthcare services. Comprehensive medical facilities in Redding are also accessible within about an hour.',
     recreation: [
@@ -844,9 +856,9 @@ export const locations: Location[] = [
     ],
     schoolsOverview: 'Due to its remote location, most families in Big Flat utilize distance learning, home-school programs, or commute to schools in the Weaverville area. The community values self-directed education and outdoor learning experiences.',
     healthcare: [
-      'Local volunteer emergency services',
-      'Trinity Hospital (Weaverville, approximately 40 min)',
-      'Mercy Medical Center (Redding) for comprehensive care',
+      { name: 'Local volunteer emergency services', description: 'Community volunteer emergency response', category: 'emergency' },
+      { name: 'Trinity Hospital', description: 'Community hospital in Weaverville, approximately 40 minutes away', phone: '(530) 623-5541', website: 'https://www.mcmedical.org/trinity-hospital', category: 'hospital' },
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding for comprehensive care', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
     ],
     healthcareOverview: 'As a remote community, Big Flat relies on volunteer emergency services. Residents access routine medical care in Weaverville and comprehensive services in Redding, accepting the distance as part of their chosen lifestyle.',
     recreation: [
@@ -902,17 +914,17 @@ export const locations: Location[] = [
       'Just 8 miles from Redding\'s full urban amenities',
     ],
     schools: [
-      { name: 'North Cow Creek Elementary School', grades: 'K-5', type: 'Public', highlight: 'Highly rated elementary school' },
-      { name: 'Junction Elementary School', grades: 'K-5', type: 'Public', highlight: 'Community-focused education' },
-      { name: 'Foothill High School', grades: '9-12', type: 'Public', highlight: 'One of the best public high schools in Northern California' },
-      { name: 'Chrysalis Charter School', grades: 'K-8', type: 'Charter', highlight: 'Innovative charter education option' },
+      { name: 'North Cow Creek Elementary School', grades: 'K-5', type: 'Public', highlight: 'Highly rated elementary school', phone: '(530) 549-4488', website: 'https://www.northcowcreek.org' },
+      { name: 'Junction Elementary School', grades: 'K-5', type: 'Public', highlight: 'Community-focused education', phone: '(530) 547-3274', website: 'https://www.junctionesd.net' },
+      { name: 'Foothill High School', grades: '9-12', type: 'Public', highlight: 'One of the best public high schools in Northern California', phone: '(530) 547-1700', website: 'https://www.foothillcougars.com' },
+      { name: 'Chrysalis Charter School', grades: 'K-8', type: 'Charter', highlight: 'Innovative charter education option', phone: '(530) 547-9726', website: 'https://www.chrysalischarter.org' },
     ],
     schoolsOverview: 'Palo Cedro is renowned for its exceptional schools. Foothill High School consistently ranks among the top public high schools in Northern California, and the elementary schools in the area receive high marks from families. The strong educational system is a primary reason families choose to live here.',
     healthcare: [
-      'Mercy Medical Center (Redding, 15 min)',
-      'Shasta Regional Medical Center (Redding, 15 min)',
-      'Local medical and dental clinics',
-      'Specialty practices in the area',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes west', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 15 minutes west', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Local medical and dental clinics', description: 'Medical and dental providers serving Palo Cedro residents', category: 'clinic' },
+      { name: 'Specialty practices in the area', description: 'Various specialty medical practices in the greater Palo Cedro-Redding area', category: 'specialty' },
     ],
     healthcareOverview: 'Palo Cedro residents enjoy convenient access to Redding\'s comprehensive healthcare network, including two major hospitals just 15 minutes away. Local clinics provide everyday medical needs right in the community.',
     recreation: [
@@ -969,14 +981,14 @@ export const locations: Location[] = [
       'Ideal for those seeking space for animals, gardens, and outdoor living',
     ],
     schools: [
-      { name: 'Bella Vista Elementary School', grades: 'K-5', type: 'Public', highlight: 'Community-centered elementary education' },
+      { name: 'Bella Vista Elementary School', grades: 'K-5', type: 'Public', highlight: 'Community-centered elementary education', phone: '(530) 549-4415', website: 'https://www.bveagles.com' },
       { name: 'Foothill High School', grades: '9-12', type: 'Public', highlight: 'Top-rated high school serving the area' },
     ],
     schoolsOverview: 'The Bella Vista Elementary School District serves younger students with a community-focused approach. Older students attend Foothill High School, one of the highest-rated public high schools in Northern California, located in nearby Palo Cedro.',
     healthcare: [
-      'Mercy Medical Center (Redding, 15 min)',
-      'Shasta Regional Medical Center (Redding, 15 min)',
-      'Local medical services',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes south', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 15 minutes south', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Local medical services', description: 'Medical providers serving the Bella Vista community', category: 'clinic' },
     ],
     healthcareOverview: 'Bella Vista residents enjoy quick access to Redding\'s comprehensive healthcare network. Two major hospitals and numerous specialty providers are just 15 minutes away.',
     recreation: [
@@ -1033,15 +1045,15 @@ export const locations: Location[] = [
       'Warm-summer Mediterranean climate at a comfortable mountain elevation',
     ],
     schools: [
-      { name: 'Burney Elementary School', grades: 'K-5', type: 'Public', highlight: 'Community-focused elementary education' },
-      { name: 'Burney Junior-Senior High School', grades: '6-12', type: 'Public', highlight: 'Comprehensive education in a small-town setting' },
+      { name: 'Burney Elementary School', grades: 'K-5', type: 'Public', highlight: 'Community-focused elementary education', phone: '(530) 335-2279', website: 'https://bes.frjusd.org' },
+      { name: 'Burney Junior-Senior High School', grades: '6-12', type: 'Public', highlight: 'Comprehensive education in a small-town setting', phone: '(530) 335-4576', website: 'https://www.frjusd.org' },
     ],
     schoolsOverview: 'The Fall River Joint Unified School District serves Burney with quality schools from kindergarten through high school. Small class sizes and dedicated teachers ensure personalized attention in a supportive community environment.',
     healthcare: [
-      'Mayers Memorial Hospital District',
-      'Local medical and dental clinics',
-      'Emergency medical services',
-      'Mercy Medical Center (Redding, 50 min) for advanced care',
+      { name: 'Mayers Memorial Hospital District', description: 'Rural health center providing primary care, urgent care, and lab services', phone: '(530) 335-6070', website: 'https://www.mayersmemorial.com', category: 'hospital' },
+      { name: 'Local medical and dental clinics', description: 'Medical and dental providers serving the Burney area', category: 'clinic' },
+      { name: 'Emergency medical services', description: 'Emergency response services for the Burney community', category: 'emergency' },
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding for advanced care, approximately 50 minutes away', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
     ],
     healthcareOverview: 'Mayers Memorial Hospital provides essential healthcare services to the Burney community, including emergency care and primary medical services. For specialized care, residents access facilities in Redding, approximately 50 minutes away.',
     recreation: [
@@ -1102,9 +1114,9 @@ export const locations: Location[] = [
     ],
     schoolsOverview: 'Students in the Shasta area attend schools within Redding\'s school districts, providing access to the full range of educational options available in the region, including multiple elementary, middle, and high school choices.',
     healthcare: [
-      'Mercy Medical Center (Redding, 10 min)',
-      'Shasta Regional Medical Center (Redding, 10 min)',
-      'Full access to Redding\'s healthcare network',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 10 minutes east', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 10 minutes east', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Full access to Redding\'s healthcare network', description: 'Complete access to all medical, dental, and specialty services in Redding', category: 'specialty' },
     ],
     healthcareOverview: 'Shasta\'s proximity to Redding means residents are just minutes from two major hospitals and the full spectrum of healthcare services available in the region\'s largest city.',
     recreation: [
@@ -1161,15 +1173,15 @@ export const locations: Location[] = [
       'Ahjumawi Lava Springs State Park, accessible only by water',
     ],
     schools: [
-      { name: 'Fall River Elementary School', grades: 'K-5', type: 'Public', highlight: 'California Distinguished School' },
-      { name: 'Fall River Jr and Sr High School', grades: '6-12', type: 'Public', highlight: 'California Distinguished School' },
+      { name: 'Fall River Elementary School', grades: 'K-5', type: 'Public', highlight: 'California Distinguished School', phone: '(530) 336-5551', website: 'https://www.frjusd.org' },
+      { name: 'Fall River Jr and Sr High School', grades: '6-12', type: 'Public', highlight: 'California Distinguished School', phone: '(530) 336-5515', website: 'https://frhs.frjusd.org' },
     ],
     schoolsOverview: 'Both Fall River Elementary and Fall River Jr and Sr High School have been recognized as California Distinguished Schools, reflecting the community\'s commitment to quality education despite its rural setting.',
     healthcare: [
-      'Mayers Memorial Hospital District',
-      'Local medical clinics',
-      'Emergency medical services',
-      'Mercy Medical Center (Redding, 60 min) for advanced care',
+      { name: 'Mayers Memorial Hospital District', description: 'Hospital and healthcare district providing comprehensive medical services', phone: '(530) 336-5511', website: 'https://www.mayersmemorial.com', category: 'hospital' },
+      { name: 'Local medical clinics', description: 'Medical clinics serving the Fall River Mills community', category: 'clinic' },
+      { name: 'Emergency medical services', description: 'Emergency response services for Fall River Mills and surrounding area', category: 'emergency' },
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital in Redding for advanced care, approximately 60 minutes away', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
     ],
     healthcareOverview: 'Mayers Memorial Hospital District provides essential medical services to the Fall River Valley. For specialized care, residents access Redding\'s comprehensive medical facilities, approximately one hour away.',
     recreation: [
@@ -1230,9 +1242,9 @@ export const locations: Location[] = [
     ],
     schoolsOverview: 'Mountain Gate students are served by the Gateway Unified School District, which provides quality education from kindergarten through high school graduation, including Central Valley High School.',
     healthcare: [
-      'Mercy Medical Center (Redding, 10 min)',
-      'Shasta Regional Medical Center (Redding, 10 min)',
-      'Local medical services',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 10 minutes south', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 10 minutes south', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Local medical services', description: 'Medical providers serving the Mountain Gate community', category: 'clinic' },
     ],
     healthcareOverview: 'Mountain Gate\'s position between Redding and Shasta Lake City means residents are just minutes from comprehensive healthcare services, including two major hospitals in Redding.',
     recreation: [
@@ -1289,13 +1301,13 @@ export const locations: Location[] = [
       'Affordable rural properties in a stunningly beautiful canyon setting',
     ],
     schools: [
-      { name: 'French Gulch-Whiskeytown Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school in a historic setting' },
+      { name: 'French Gulch-Whiskeytown Elementary School', grades: 'K-8', type: 'Public', highlight: 'Small community school in a historic setting', phone: '(530) 359-2151', website: 'https://www.frenchgulchschool.com' },
     ],
     schoolsOverview: 'French Gulch-Whiskeytown Elementary School serves the community with an intimate educational experience. Older students attend schools in the Redding area, just a short drive along scenic Highway 299.',
     healthcare: [
-      'Mercy Medical Center (Redding, 15 min)',
-      'Shasta Regional Medical Center (Redding, 15 min)',
-      'Local emergency response services',
+      { name: 'Mercy Medical Center Redding', description: 'Major regional hospital, approximately 15 minutes east', phone: '(530) 225-6000', website: 'https://www.dignityhealth.org/north-state/locations/mercy-redding', category: 'hospital' },
+      { name: 'Shasta Regional Medical Center', description: 'Full-service hospital, approximately 15 minutes east', phone: '(530) 244-5400', website: 'https://shastaregional.com', category: 'hospital' },
+      { name: 'Local emergency response services', description: 'Emergency response services for the French Gulch area', category: 'emergency' },
     ],
     healthcareOverview: 'French Gulch residents enjoy convenient access to Redding\'s comprehensive healthcare network. Two major hospitals are just 15 minutes away, while local emergency services provide immediate response.',
     recreation: [
