@@ -388,6 +388,133 @@ export default function HomeClient({
       </section>
 
       {/* ═══════════════════════════════════════════════
+          SERVICE AREAS
+      ═══════════════════════════════════════════════ */}
+      <section className="section-padding bg-warm-cream dark:bg-gray-950">
+        <div className="container-bvp">
+          <MotionWrapper className="text-center mb-12">
+            <p className="text-forest-green dark:text-river-stone font-body text-sm uppercase tracking-brand-widest mb-3">
+              20+ Communities
+            </p>
+            <h2 className="section-heading">Our Service Areas</h2>
+            <p className="section-subheading mx-auto">
+              From the Trinity Alps to Mt. Shasta, we serve communities across two of Northern California&apos;s most beautiful counties.
+            </p>
+          </MotionWrapper>
+
+          <div className="grid md:grid-cols-2 gap-8">
+            {/* Trinity County */}
+            <MotionWrapper variant="fadeLeft" delay={0.1}>
+              <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-100 dark:border-gray-800 overflow-hidden shadow-luxury-sm">
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="/images/areas/trinity-alps-1.jpg"
+                    alt="Trinity Alps"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-green/80 via-forest-green/30 to-transparent" />
+                  <div className="absolute bottom-4 left-6">
+                    <h3 className="font-heading text-h3 text-white">Trinity County</h3>
+                    <p className="text-white/80 text-sm">9 Communities</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {[
+                      { name: 'Weaverville', slug: 'weaverville' },
+                      { name: 'Hayfork', slug: 'hayfork' },
+                      { name: 'Lewiston', slug: 'lewiston' },
+                      { name: 'Douglas City', slug: 'douglas-city' },
+                      { name: 'Junction City', slug: 'junction-city' },
+                      { name: 'Big Flat', slug: 'big-flat' },
+                      { name: 'Hyampom', slug: 'hyampom' },
+                      { name: 'Trinity Center', slug: 'trinity-center' },
+                      { name: 'Coffee Creek', slug: 'coffee-creek' },
+                    ].map((area) => (
+                      <Link
+                        key={area.slug}
+                        href={`/locations/${area.slug}`}
+                        className="text-sm text-cabin-timber dark:text-gray-300 hover:text-forest-green dark:hover:text-river-stone transition-colors flex items-center gap-1.5 py-1"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-forest-green/40 flex-shrink-0" />
+                        {area.name}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link
+                    href="/properties?county=Trinity"
+                    className="inline-flex items-center gap-2 text-forest-green dark:text-river-stone font-medium text-sm mt-5 hover:gap-3 transition-all duration-300"
+                  >
+                    View Trinity County Properties
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </MotionWrapper>
+
+            {/* Shasta County */}
+            <MotionWrapper variant="fadeRight" delay={0.2}>
+              <div className="bg-white dark:bg-gray-900 rounded-lg border border-gray-100 dark:border-gray-800 overflow-hidden shadow-luxury-sm">
+                <div className="relative h-48 overflow-hidden">
+                  <Image
+                    src="/images/areas/mt-shasta-1.jpg"
+                    alt="Mt. Shasta"
+                    fill
+                    className="object-cover"
+                    sizes="(max-width: 768px) 100vw, 50vw"
+                  />
+                  <div className="absolute inset-0 bg-gradient-to-t from-forest-green/80 via-forest-green/30 to-transparent" />
+                  <div className="absolute bottom-4 left-6">
+                    <h3 className="font-heading text-h3 text-white">Shasta County</h3>
+                    <p className="text-white/80 text-sm">11 Communities</p>
+                  </div>
+                </div>
+                <div className="p-6">
+                  <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
+                    {[
+                      { name: 'Redding', slug: 'redding' },
+                      { name: 'Shasta Lake', slug: 'shasta-lake' },
+                      { name: 'Anderson', slug: 'anderson' },
+                      { name: 'Palo Cedro', slug: 'palo-cedro' },
+                      { name: 'Bella Vista', slug: 'bella-vista' },
+                      { name: 'Cottonwood', slug: 'cottonwood' },
+                      { name: 'Burney', slug: 'burney' },
+                      { name: 'Shasta', slug: 'shasta-historic-district' },
+                      { name: 'Fall River Mills', slug: 'fall-river-mills' },
+                      { name: 'Mountain Gate', slug: 'mountain-gate' },
+                      { name: 'French Gulch', slug: 'french-gulch' },
+                    ].map((area) => (
+                      <Link
+                        key={area.slug}
+                        href={`/locations/${area.slug}`}
+                        className="text-sm text-cabin-timber dark:text-gray-300 hover:text-forest-green dark:hover:text-river-stone transition-colors flex items-center gap-1.5 py-1"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-forest-green/40 flex-shrink-0" />
+                        {area.name}
+                      </Link>
+                    ))}
+                  </div>
+                  <Link
+                    href="/properties?county=Shasta"
+                    className="inline-flex items-center gap-2 text-forest-green dark:text-river-stone font-medium text-sm mt-5 hover:gap-3 transition-all duration-300"
+                  >
+                    View Shasta County Properties
+                    <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                    </svg>
+                  </Link>
+                </div>
+              </div>
+            </MotionWrapper>
+          </div>
+        </div>
+      </section>
+
+      {/* ═══════════════════════════════════════════════
           FEATURED PROPERTIES
       ═══════════════════════════════════════════════ */}
       <section className="section-padding bg-warm-cream dark:bg-gray-950">

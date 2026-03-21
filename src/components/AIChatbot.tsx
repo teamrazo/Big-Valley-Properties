@@ -58,7 +58,7 @@ export default function AIChatbot() {
     setTimeout(() => {
       const responses: Record<string, string> = {
         'Show me properties under $500k': 'We have several beautiful properties under $500k. I\'d recommend checking out our listings in Hayfork and Junction City. Great cabins and mountain homes at wonderful prices. Visit our Properties page to browse with filters!',
-        'What areas do you serve?': 'We serve Trinity and Shasta Counties in Northern California. Our communities include Weaverville, Hayfork, Lewiston, Junction City, Hyampom, Trinity Center, Coffee Creek, Redding, Anderson, Shasta Lake, and Cottonwood.',
+        'What areas do you serve?': 'We serve Trinity and Shasta Counties in Northern California. In Trinity County: Weaverville, Hayfork, Lewiston, Douglas City, Junction City, Big Flat, Hyampom, Trinity Center, and Coffee Creek. In Shasta County: Redding, Shasta Lake, Anderson, Palo Cedro, Bella Vista, Cottonwood, Burney, Shasta, Fall River Mills, Mountain Gate, and French Gulch.',
         'Schedule a consultation': 'I\'d love to help you schedule a consultation. You can reach our Weaverville office at (530) 623-5690 or our Hayfork office at (530) 628-5850, or visit our Contact page to fill out a form.',
         'Tell me about Trinity County': 'Trinity County is a hidden gem. Known for the stunning Trinity Alps Wilderness, pristine rivers, and small-town charm. It offers affordable mountain living with properties ranging from cozy cabins to expansive ranches.',
       }

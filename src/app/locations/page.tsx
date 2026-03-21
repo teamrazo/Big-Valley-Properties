@@ -5,7 +5,7 @@ import LocationsOverviewClient from './LocationsOverviewClient'
 export const metadata: Metadata = {
   title: 'Service Areas - Trinity & Shasta County Communities | Big Valley Properties',
   description:
-    'Explore 10 beautiful Northern California communities served by Big Valley Properties. From the historic charm of Weaverville to the vibrant city of Redding, find your perfect home.',
+    'Explore 20 beautiful Northern California communities served by Big Valley Properties across Trinity and Shasta Counties. From the historic charm of Weaverville to the vibrant city of Redding, find your perfect home.',
 }
 
 export default function LocationsPage() {

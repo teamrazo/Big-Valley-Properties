@@ -72,10 +72,10 @@ export default function AboutPage() {
               </div>
               <div className="p-6">
                 <p className="text-cabin-timber leading-relaxed mb-4">
-                  The heart of our business. Trinity County offers unmatched natural beauty with the Trinity Alps Wilderness, pristine rivers, and charming mountain communities. We serve Weaverville, Hayfork, Lewiston, Junction City, Hyampom, Trinity Center, Coffee Creek, and surrounding areas.
+                  The heart of our business. Trinity County offers unmatched natural beauty with the Trinity Alps Wilderness, pristine rivers, and charming mountain communities. We serve Weaverville, Hayfork, Lewiston, Douglas City, Junction City, Big Flat, Hyampom, Trinity Center, Coffee Creek, and surrounding areas.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Weaverville', 'Hayfork', 'Lewiston', 'Junction City', 'Hyampom', 'Trinity Center / Coffee Creek'].map(area => (
+                  {['Weaverville', 'Hayfork', 'Lewiston', 'Douglas City', 'Junction City', 'Big Flat', 'Hyampom', 'Trinity Center', 'Coffee Creek'].map(area => (
                     <span key={area} className="px-3 py-1 bg-canvas-sand text-sm text-cabin-timber rounded">
                       {area}
                     </span>
@@ -93,10 +93,10 @@ export default function AboutPage() {
               </div>
               <div className="p-6">
                 <p className="text-cabin-timber leading-relaxed mb-4">
-                  From the majesty of Mt. Shasta to the shores of Shasta Lake, Shasta County offers diverse living opportunities. We serve Redding, Anderson, Cottonwood, Shasta Lake, Lakehead, and surrounding communities.
+                  From the majesty of Mt. Shasta to the shores of Shasta Lake, Shasta County offers diverse living opportunities. We serve Redding, Anderson, Shasta Lake, Palo Cedro, Bella Vista, Cottonwood, Burney, Shasta, Fall River Mills, Mountain Gate, French Gulch, and surrounding communities.
                 </p>
                 <div className="flex flex-wrap gap-2">
-                  {['Redding', 'Anderson', 'Cottonwood', 'Shasta Lake', 'Lakehead'].map(area => (
+                  {['Redding', 'Anderson', 'Shasta Lake', 'Palo Cedro', 'Bella Vista', 'Cottonwood', 'Burney', 'Shasta', 'Fall River Mills', 'Mountain Gate', 'French Gulch'].map(area => (
                     <span key={area} className="px-3 py-1 bg-canvas-sand text-sm text-cabin-timber rounded">
                       {area}
                     </span>
