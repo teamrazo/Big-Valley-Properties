@@ -24,13 +24,13 @@ CREATE POLICY "users_select_authenticated" ON users
 
 -- Users can update their own profile
 CREATE POLICY "users_update_own" ON users
-  FOR UPDATE USING (auth_id = auth.uid()::text);
+  FOR UPDATE USING ("authId" = auth.uid()::text);
 
 -- Brokers/Super Admins can update any user
 CREATE POLICY "users_update_admin" ON users
   FOR UPDATE USING (
     EXISTS (
-      SELECT 1 FROM users u WHERE u.auth_id = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN')
+      SELECT 1 FROM users u WHERE u."authId" = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN')
     )
   );
 
@@ -49,27 +49,27 @@ CREATE POLICY "listings_select_public" ON listings
 -- Authenticated agents: read own listings (any status)
 CREATE POLICY "listings_select_own" ON listings
   FOR SELECT USING (
-    agent_id IN (SELECT id FROM users WHERE auth_id = auth.uid()::text)
+    "agentId" IN (SELECT id FROM users WHERE "authId" = auth.uid()::text)
   );
 
 -- Brokers/Super Admins: read all listings
 CREATE POLICY "listings_select_admin" ON listings
   FOR SELECT USING (
     EXISTS (
-      SELECT 1 FROM users u WHERE u.auth_id = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN')
+      SELECT 1 FROM users u WHERE u."authId" = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN')
     )
   );
 
 -- Agents can insert their own listings
 CREATE POLICY "listings_insert_own" ON listings
   FOR INSERT WITH CHECK (
-    agent_id IN (SELECT id FROM users WHERE auth_id = auth.uid()::text)
+    "agentId" IN (SELECT id FROM users WHERE "authId" = auth.uid()::text)
   );
 
 -- Agents can update their own listings (not ACTIVE — requires broker)
 CREATE POLICY "listings_update_own" ON listings
   FOR UPDATE USING (
-    agent_id IN (SELECT id FROM users WHERE auth_id = auth.uid()::text)
+    "agentId" IN (SELECT id FROM users WHERE "authId" = auth.uid()::text)
     AND status NOT IN ('ACTIVE', 'SOLD')
   );
 
@@ -77,7 +77,7 @@ CREATE POLICY "listings_update_own" ON listings
 CREATE POLICY "listings_update_admin" ON listings
   FOR UPDATE USING (
     EXISTS (
-      SELECT 1 FROM users u WHERE u.auth_id = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN')
+      SELECT 1 FROM users u WHERE u."authId" = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN')
     )
   );
 
@@ -86,45 +86,45 @@ CREATE POLICY "listings_update_admin" ON listings
 -- Public: media for active listings
 CREATE POLICY "media_select_public" ON media
   FOR SELECT USING (
-    listing_id IN (SELECT id FROM listings WHERE status = 'ACTIVE')
+    "listingId" IN (SELECT id FROM listings WHERE status = 'ACTIVE')
   );
 
 -- Agents: media for own listings
 CREATE POLICY "media_select_own" ON media
   FOR SELECT USING (
-    listing_id IN (
+    "listingId" IN (
       SELECT l.id FROM listings l
-      JOIN users u ON l.agent_id = u.id
-      WHERE u.auth_id = auth.uid()::text
+      JOIN users u ON l."agentId" = u.id
+      WHERE u."authId" = auth.uid()::text
     )
   );
 
 -- Agents can insert media for own listings
 CREATE POLICY "media_insert_own" ON media
   FOR INSERT WITH CHECK (
-    listing_id IN (
+    "listingId" IN (
       SELECT l.id FROM listings l
-      JOIN users u ON l.agent_id = u.id
-      WHERE u.auth_id = auth.uid()::text
+      JOIN users u ON l."agentId" = u.id
+      WHERE u."authId" = auth.uid()::text
     )
   );
 
 -- Agents can update/delete media for own listings
 CREATE POLICY "media_update_own" ON media
   FOR UPDATE USING (
-    listing_id IN (
+    "listingId" IN (
       SELECT l.id FROM listings l
-      JOIN users u ON l.agent_id = u.id
-      WHERE u.auth_id = auth.uid()::text
+      JOIN users u ON l."agentId" = u.id
+      WHERE u."authId" = auth.uid()::text
     )
   );
 
 CREATE POLICY "media_delete_own" ON media
   FOR DELETE USING (
-    listing_id IN (
+    "listingId" IN (
       SELECT l.id FROM listings l
-      JOIN users u ON l.agent_id = u.id
-      WHERE u.auth_id = auth.uid()::text
+      JOIN users u ON l."agentId" = u.id
+      WHERE u."authId" = auth.uid()::text
     )
   );
 
@@ -132,20 +132,20 @@ CREATE POLICY "media_delete_own" ON media
 
 CREATE POLICY "listing_features_select_public" ON listing_features
   FOR SELECT USING (
-    listing_id IN (SELECT id FROM listings WHERE status = 'ACTIVE')
+    "listingId" IN (SELECT id FROM listings WHERE status = 'ACTIVE')
   );
 
 CREATE POLICY "listing_features_select_own" ON listing_features
   FOR SELECT USING (
-    listing_id IN (
-      SELECT l.id FROM listings l JOIN users u ON l.agent_id = u.id WHERE u.auth_id = auth.uid()::text
+    "listingId" IN (
+      SELECT l.id FROM listings l JOIN users u ON l."agentId" = u.id WHERE u."authId" = auth.uid()::text
     )
   );
 
 CREATE POLICY "listing_features_insert_own" ON listing_features
   FOR INSERT WITH CHECK (
-    listing_id IN (
-      SELECT l.id FROM listings l JOIN users u ON l.agent_id = u.id WHERE u.auth_id = auth.uid()::text
+    "listingId" IN (
+      SELECT l.id FROM listings l JOIN users u ON l."agentId" = u.id WHERE u."authId" = auth.uid()::text
     )
   );
 
@@ -153,27 +153,27 @@ CREATE POLICY "listing_features_insert_own" ON listing_features
 
 CREATE POLICY "status_history_select_own" ON listing_status_history
   FOR SELECT USING (
-    listing_id IN (
-      SELECT l.id FROM listings l JOIN users u ON l.agent_id = u.id WHERE u.auth_id = auth.uid()::text
+    "listingId" IN (
+      SELECT l.id FROM listings l JOIN users u ON l."agentId" = u.id WHERE u."authId" = auth.uid()::text
     )
   );
 
 CREATE POLICY "status_history_select_admin" ON listing_status_history
   FOR SELECT USING (
-    EXISTS (SELECT 1 FROM users u WHERE u.auth_id = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN'))
+    EXISTS (SELECT 1 FROM users u WHERE u."authId" = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN'))
   );
 
 -- ─── Open Houses ───────────────────────────────────────────
 
 CREATE POLICY "open_houses_select_public" ON open_houses
   FOR SELECT USING (
-    listing_id IN (SELECT id FROM listings WHERE status = 'ACTIVE')
+    "listingId" IN (SELECT id FROM listings WHERE status = 'ACTIVE')
   );
 
 CREATE POLICY "open_houses_insert_own" ON open_houses
   FOR INSERT WITH CHECK (
-    listing_id IN (
-      SELECT l.id FROM listings l JOIN users u ON l.agent_id = u.id WHERE u.auth_id = auth.uid()::text
+    "listingId" IN (
+      SELECT l.id FROM listings l JOIN users u ON l."agentId" = u.id WHERE u."authId" = auth.uid()::text
     )
   );
 
@@ -182,13 +182,13 @@ CREATE POLICY "open_houses_insert_own" ON open_houses
 -- Agents see leads assigned to them
 CREATE POLICY "leads_select_own" ON lead_submissions
   FOR SELECT USING (
-    agent_id IN (SELECT id FROM users WHERE auth_id = auth.uid()::text)
+    "agentId" IN (SELECT id FROM users WHERE "authId" = auth.uid()::text)
   );
 
 -- Brokers see all leads
 CREATE POLICY "leads_select_admin" ON lead_submissions
   FOR SELECT USING (
-    EXISTS (SELECT 1 FROM users u WHERE u.auth_id = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN'))
+    EXISTS (SELECT 1 FROM users u WHERE u."authId" = auth.uid()::text AND u.role IN ('BROKER', 'SUPER_ADMIN'))
   );
 
 -- Public can insert leads (contact forms)
@@ -199,12 +199,12 @@ CREATE POLICY "leads_insert_public" ON lead_submissions
 
 CREATE POLICY "sync_queue_select_own" ON offline_sync_queue
   FOR SELECT USING (
-    agent_id IN (SELECT id FROM users WHERE auth_id = auth.uid()::text)
+    "agentId" IN (SELECT id FROM users WHERE "authId" = auth.uid()::text)
   );
 
 CREATE POLICY "sync_queue_insert_own" ON offline_sync_queue
   FOR INSERT WITH CHECK (
-    agent_id IN (SELECT id FROM users WHERE auth_id = auth.uid()::text)
+    "agentId" IN (SELECT id FROM users WHERE "authId" = auth.uid()::text)
   );
 
 -- ─── Lookup Values ─────────────────────────────────────────
