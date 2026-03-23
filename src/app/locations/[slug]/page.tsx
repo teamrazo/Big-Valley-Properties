@@ -12,9 +12,20 @@ export function generateStaticParams() {
 export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const location = getLocation(params.slug)
   if (!location) return { title: 'Location Not Found' }
+  const title = `${location.name}, CA - ${location.county} County | Big Valley Properties`
+  const description = location.overview.slice(0, 160)
+  const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bigvalleyproperties.com'
   return {
-    title: `${location.name}, CA - ${location.county} County | Big Valley Properties`,
-    description: location.overview.slice(0, 160),
+    title,
+    description,
+    alternates: { canonical: `${BASE_URL}/locations/${location.slug}` },
+    openGraph: {
+      title,
+      description,
+      url: `${BASE_URL}/locations/${location.slug}`,
+      siteName: 'Big Valley Properties',
+      type: 'website',
+    },
   }
 }
 

@@ -1,14 +1,52 @@
 import type { Metadata } from 'next'
+import { Montserrat, Playfair_Display, Tenor_Sans } from 'next/font/google'
 import './globals.css'
 import Header from '@/components/Header'
 import Footer from '@/components/Footer'
 import { ThemeProvider } from '@/components/ThemeProvider'
-import AIChatbot from '@/components/AIChatbot'
+import dynamic from 'next/dynamic'
+import { generateLocalBusinessJsonLd } from '@/lib/jsonLd'
+
+const AIChatbot = dynamic(() => import('@/components/AIChatbot'), { ssr: false })
+
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  variable: '--font-montserrat',
+  weight: ['400', '500', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const playfairDisplay = Playfair_Display({
+  subsets: ['latin'],
+  variable: '--font-playfair',
+  weight: ['400', '700'],
+  style: ['normal', 'italic'],
+  display: 'swap',
+})
+
+const tenorSans = Tenor_Sans({
+  subsets: ['latin'],
+  variable: '--font-tenor',
+  weight: '400',
+  display: 'swap',
+})
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bigvalleyproperties.com'
 
 export const metadata: Metadata = {
+  metadataBase: new URL(BASE_URL),
   title: 'Big Valley Properties | Trinity & Shasta County Real Estate',
   description: 'Big Valley Properties is the leading brokerage serving Trinity and Shasta Counties, California. Browse mountain cabins, ranches, land, and homes across Northern California.',
   keywords: 'Trinity County real estate, Shasta County homes, Weaverville CA, mountain cabins, ranch property, Big Valley Properties, Retta Treanor',
+  alternates: { canonical: BASE_URL },
+  openGraph: {
+    title: 'Big Valley Properties | Trinity & Shasta County Real Estate',
+    description: 'Big Valley Properties is the leading brokerage serving Trinity and Shasta Counties, California.',
+    url: BASE_URL,
+    siteName: 'Big Valley Properties',
+    type: 'website',
+  },
 }
 
 export default function RootLayout({
@@ -16,17 +54,29 @@ export default function RootLayout({
 }: {
   children: React.ReactNode
 }) {
+  const gtmId = process.env.NEXT_PUBLIC_GTM_ID
+
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en" suppressHydrationWarning className={`${montserrat.variable} ${playfairDisplay.variable} ${tenorSans.variable}`}>
       <head>
-        <link rel="preconnect" href="https://fonts.googleapis.com" />
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="anonymous" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,400;0,500;0,700;1,400&family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Tenor+Sans&display=swap"
-          rel="stylesheet"
-        />
+        {gtmId && (
+          <script
+            dangerouslySetInnerHTML={{
+              __html: `(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','${gtmId}');`,
+            }}
+          />
+        )}
       </head>
       <body className="min-h-screen flex flex-col bg-warm-alabaster dark:bg-gray-950 text-charcoal-ink dark:text-gray-100 transition-colors duration-300">
+        {gtmId && (
+          <noscript>
+            <iframe src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`} height="0" width="0" style={{ display: 'none', visibility: 'hidden' }} />
+          </noscript>
+        )}
         <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange={false}>
           <Header />
           <main className="flex-1 pt-[var(--nav-height)]">

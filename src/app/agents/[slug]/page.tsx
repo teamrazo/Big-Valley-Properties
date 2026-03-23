@@ -4,9 +4,33 @@ import PropertyCard from '@/components/PropertyCard'
 import { agents, getAgent } from '@/data/agents'
 import { properties } from '@/data/properties'
 import { notFound } from 'next/navigation'
+import { generateAgentJsonLd } from '@/lib/jsonLd'
+import type { Metadata } from 'next'
+
+const BASE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://bigvalleyproperties.com'
 
 export function generateStaticParams() {
   return agents.map(a => ({ slug: a.slug }))
+}
+
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+  const agent = getAgent(params.slug)
+  if (!agent) return { title: 'Agent Not Found' }
+  const title = `${agent.name} - ${agent.title} | Big Valley Properties`
+  const description = agent.bio.slice(0, 160)
+  return {
+    title,
+    description,
+    alternates: { canonical: `${BASE_URL}/agents/${agent.slug}` },
+    openGraph: {
+      title,
+      description,
+      url: `${BASE_URL}/agents/${agent.slug}`,
+      siteName: 'Big Valley Properties',
+      images: agent.photo ? [{ url: `${BASE_URL}${agent.photo}` }] : [],
+      type: 'profile',
+    },
+  }
 }
 
 export default function AgentDetailPage({ params }: { params: { slug: string } }) {
@@ -14,12 +38,14 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
   if (!agent) return notFound()
 
   const agentProperties = properties.filter(p => p.agentId === agent.id)
+  const jsonLd = generateAgentJsonLd(agent)
 
   return (
     <>
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       {/* Profile Header */}
       <section className="relative bg-forest-green py-16 md:py-24 overflow-hidden">
-        {/* Decorative elements */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute top-0 right-0 w-96 h-96 bg-white/10 rounded-full -translate-y-1/2 translate-x-1/2" />
           <div className="absolute bottom-0 left-0 w-64 h-64 bg-white/5 rounded-full translate-y-1/2 -translate-x-1/2" />
@@ -35,22 +61,11 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
           </nav>
 
           <div className="flex flex-col md:flex-row items-center md:items-start gap-8 lg:gap-12">
-            {/* Agent Photo */}
             <div className="relative shrink-0">
               <div className="w-48 h-48 md:w-56 md:h-56 rounded-2xl overflow-hidden border-4 border-white/20 shadow-2xl">
-                <Image
-                  src={agent.photo}
-                  alt={agent.name}
-                  width={224}
-                  height={224}
-                  className="object-cover object-top w-full h-full"
-                  priority
-                />
+                <Image src={agent.photo} alt={agent.name} width={224} height={224} className="object-cover object-top w-full h-full" priority />
               </div>
-              {/* Status badge */}
-              <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">
-                Active Agent
-              </div>
+              <div className="absolute -bottom-2 -right-2 bg-green-500 text-white text-xs font-bold px-3 py-1 rounded-full shadow-lg">Active Agent</div>
             </div>
 
             <div className="flex-1 text-center md:text-left">
@@ -58,21 +73,16 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
               <p className="text-river-stone text-lg font-medium mb-1">{agent.title}</p>
               <p className="text-white/60 text-sm mb-4">{agent.licenseNumber}</p>
 
-              {/* Experience badge */}
               {agent.yearsExperience && (
                 <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-4">
-                  <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-                  </svg>
+                  <svg className="w-4 h-4 text-amber-400" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
                   <span className="text-white text-sm">{agent.yearsExperience}+ Years Experience</span>
                 </div>
               )}
 
               <div className="flex flex-wrap justify-center md:justify-start gap-2 mb-6">
                 {agent.counties.map(county => (
-                  <span key={county} className="px-3 py-1 bg-white/10 backdrop-blur-sm text-white text-sm rounded-full">
-                    {county} County
-                  </span>
+                  <span key={county} className="px-3 py-1 bg-white/10 backdrop-blur-sm text-white text-sm rounded-full">{county} County</span>
                 ))}
               </div>
 
@@ -87,7 +97,6 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
                 </a>
               </div>
 
-              {/* Social Links */}
               {(agent.social.facebook || agent.social.instagram || agent.social.linkedin) && (
                 <div className="flex justify-center md:justify-start gap-3 mt-4">
                   {agent.social.facebook && (
@@ -116,12 +125,10 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
       <section className="section-padding bg-white dark:bg-gray-950">
         <div className="container-bvp">
           <div className="grid lg:grid-cols-3 gap-12">
-            {/* Bio */}
             <div className="lg:col-span-2">
               <h2 className="font-heading text-h3 text-charcoal-ink dark:text-white mb-6">About {agent.name.split(' ')[0]}</h2>
               <p className="text-cabin-timber dark:text-gray-300 leading-relaxed text-lg mb-8">{agent.bio}</p>
 
-              {/* Achievements */}
               {agent.achievements && agent.achievements.length > 0 && (
                 <div className="mb-8">
                   <h3 className="font-heading text-h4 text-charcoal-ink dark:text-white mb-4">Achievements</h3>
@@ -136,23 +143,16 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
                 </div>
               )}
 
-              {/* Client Testimonial */}
               {agent.testimonial && (
                 <div className="bg-forest-green/5 dark:bg-forest-green/10 border-l-4 border-forest-green rounded-r-lg p-6">
                   <svg className="w-8 h-8 text-forest-green/30 mb-3" fill="currentColor" viewBox="0 0 24 24"><path d="M14.017 21v-7.391c0-5.704 3.731-9.57 8.983-10.609l.995 2.151c-2.432.917-3.995 3.638-3.995 5.849h4v10h-9.983zm-14.017 0v-7.391c0-5.704 3.748-9.57 9-10.609l.996 2.151c-2.433.917-3.996 3.638-3.996 5.849h3.983v10h-9.983z"/></svg>
-                  <p className="font-accent italic text-charcoal-ink dark:text-gray-200 text-lg leading-relaxed mb-4">
-                    &ldquo;{agent.testimonial.text}&rdquo;
-                  </p>
-                  <p className="text-sm font-medium text-forest-green">
-                    - {agent.testimonial.author}, {agent.testimonial.location}
-                  </p>
+                  <p className="font-accent italic text-charcoal-ink dark:text-gray-200 text-lg leading-relaxed mb-4">&ldquo;{agent.testimonial.text}&rdquo;</p>
+                  <p className="text-sm font-medium text-forest-green">- {agent.testimonial.author}, {agent.testimonial.location}</p>
                 </div>
               )}
             </div>
 
-            {/* Sidebar */}
             <div className="space-y-8">
-              {/* Specialties */}
               <div>
                 <h3 className="font-heading text-h4 text-charcoal-ink dark:text-white mb-4">Specialties</h3>
                 <div className="space-y-2">
@@ -165,7 +165,6 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
                 </div>
               </div>
 
-              {/* Certifications */}
               {agent.certifications && agent.certifications.length > 0 && (
                 <div>
                   <h3 className="font-heading text-h4 text-charcoal-ink dark:text-white mb-4">Certifications</h3>
@@ -180,16 +179,12 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
                 </div>
               )}
 
-              {/* Schedule Consultation CTA */}
               <div className="bg-forest-green rounded-lg p-6 text-center">
                 <h3 className="font-heading text-lg text-white mb-2">Schedule a Consultation</h3>
                 <p className="text-white/70 text-sm mb-4">Get personalized guidance for your real estate journey.</p>
-                <Link href="/contact" className="inline-flex items-center justify-center w-full px-6 py-3 bg-white text-forest-green rounded-sm font-body font-medium text-sm uppercase tracking-brand-wide hover:bg-gray-100 transition-all duration-300">
-                  Book Now
-                </Link>
+                <Link href="/contact" className="inline-flex items-center justify-center w-full px-6 py-3 bg-white text-forest-green rounded-sm font-body font-medium text-sm uppercase tracking-brand-wide hover:bg-gray-100 transition-all duration-300">Book Now</Link>
               </div>
 
-              {/* Connect */}
               {(agent.social.facebook || agent.social.instagram || agent.social.linkedin) && (
                 <div>
                   <h3 className="font-heading text-h4 text-charcoal-ink dark:text-white mb-4">Connect</h3>
@@ -217,7 +212,6 @@ export default function AgentDetailPage({ params }: { params: { slug: string } }
         </div>
       </section>
 
-      {/* Agent's Listings */}
       {agentProperties.length > 0 && (
         <section className="section-padding bg-canvas-sand dark:bg-gray-900">
           <div className="container-bvp">
