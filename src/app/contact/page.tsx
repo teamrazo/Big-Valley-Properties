@@ -1,8 +1,41 @@
 'use client'
 
+import { useState, useRef } from 'react'
 import Image from 'next/image'
 
 export default function ContactPage() {
+  const formRef = useRef<HTMLFormElement>(null)
+  const [submitting, setSubmitting] = useState(false)
+  const [submitted, setSubmitted] = useState(false)
+  const [error, setError] = useState<string | null>(null)
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault()
+    setSubmitting(true)
+    setError(null)
+    const fd = new FormData(e.currentTarget)
+    try {
+      const res = await fetch('/api/leads', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          source: 'website-contact',
+          firstName: fd.get('firstName') as string,
+          lastName: fd.get('lastName') as string,
+          email: fd.get('email') as string,
+          phone: (fd.get('phone') as string) || undefined,
+          message: `Type: ${fd.get('contactType') || 'N/A'}\n\n${fd.get('message') || ''}`,
+        }),
+      })
+      if (!res.ok) throw new Error('Failed to submit')
+      setSubmitted(true)
+    } catch {
+      setError('Something went wrong. Please try again or call us directly.')
+    } finally {
+      setSubmitting(false)
+    }
+  }
+
   return (
     <>
       {/* Hero */}
@@ -23,30 +56,37 @@ export default function ContactPage() {
             {/* Form */}
             <div className="lg:col-span-3">
               <h2 className="font-heading text-h3 text-charcoal-ink mb-6">Send Us a Message</h2>
-              <form className="space-y-5" onSubmit={e => e.preventDefault()}>
+              {submitted ? (
+                <div className="text-center py-8">
+                  <div className="text-4xl mb-4">✅</div>
+                  <h3 className="font-heading text-h3 text-charcoal-ink mb-2">Message Sent!</h3>
+                  <p className="text-cabin-timber">Thank you for reaching out. We&apos;ll get back to you within 24 hours.</p>
+                </div>
+              ) : (
+              <form ref={formRef} className="space-y-5" onSubmit={handleSubmit}>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-charcoal-ink mb-1.5">First Name *</label>
-                    <input type="text" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="John" />
+                    <input name="firstName" type="text" required className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="John" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-charcoal-ink mb-1.5">Last Name *</label>
-                    <input type="text" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="Doe" />
+                    <input name="lastName" type="text" required className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="Doe" />
                   </div>
                 </div>
                 <div className="grid sm:grid-cols-2 gap-5">
                   <div>
                     <label className="block text-sm font-medium text-charcoal-ink mb-1.5">Email *</label>
-                    <input type="email" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="john@example.com" />
+                    <input name="email" type="email" required className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="john@example.com" />
                   </div>
                   <div>
                     <label className="block text-sm font-medium text-charcoal-ink mb-1.5">Phone</label>
-                    <input type="tel" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="(530) 555-0123" />
+                    <input name="phone" type="tel" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none" placeholder="(530) 555-0123" />
                   </div>
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-charcoal-ink mb-1.5">I am a... *</label>
-                  <select className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none">
+                  <select name="contactType" className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none">
                     <option value="">Select one</option>
                     <option value="buyer">Buyer</option>
                     <option value="seller">Seller</option>
@@ -57,15 +97,17 @@ export default function ContactPage() {
                 </div>
                 <div>
                   <label className="block text-sm font-medium text-charcoal-ink mb-1.5">Message *</label>
-                  <textarea rows={5} className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none resize-none" placeholder="Tell us how we can help..." />
+                  <textarea name="message" rows={5} className="w-full px-4 py-3 border border-gray-200 rounded-sm text-sm bg-white focus:border-forest-green focus:ring-1 focus:ring-forest-green outline-none resize-none" placeholder="Tell us how we can help..." />
                 </div>
-                <button type="submit" className="btn-primary">
-                  Send Message
+                {error && <div className="text-red-600 text-sm bg-red-50 p-3 rounded-lg">{error}</div>}
+                <button type="submit" disabled={submitting} className="btn-primary disabled:opacity-50">
+                  {submitting ? 'Sending...' : 'Send Message'}
                 </button>
                 <p className="text-xs text-alpine-slate/60">
                   By submitting this form, you agree to our privacy policy. We&apos;ll never share your information with third parties.
                 </p>
               </form>
+              )}
             </div>
 
             {/* Contact Info */}
