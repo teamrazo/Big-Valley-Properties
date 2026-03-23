@@ -1,0 +1,256 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum UserRole {
+  SUPER_ADMIN
+  BROKER
+  AGENT
+}
+
+enum ListingStatus {
+  DRAFT
+  PENDING_REVIEW
+  ACTIVE
+  UNDER_CONTRACT
+  SOLD
+  WITHDRAWN
+  EXPIRED
+}
+
+enum MediaCategory {
+  PHOTO
+  FLOOR_PLAN
+  VIDEO
+  DOCUMENT
+  VIRTUAL_TOUR
+}
+
+enum OpenHouseType {
+  PUBLIC
+  BROKER
+}
+
+enum SyncStatus {
+  PENDING
+  PROCESSING
+  COMPLETED
+  FAILED
+}
+
+model User {
+  id             String    @id @default(cuid())
+  email          String    @unique
+  firstName      String
+  lastName       String
+  role           UserRole  @default(AGENT)
+  phone          String?
+  photo          String?
+  bio            String?   @db.Text
+  specialties    String[]
+  counties       String[]
+  licenseNumber  String?
+  slug           String    @unique
+  mlsMemberId    String?
+  mlsAgentKey    String?
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+
+  listings              Listing[]
+  statusChanges         ListingStatusHistory[] @relation("ChangedBy")
+  offlineSyncQueue      OfflineSyncQueue[]
+  assignedLeads         LeadSubmission[]       @relation("AssignedAgent")
+
+  @@map("users")
+}
+
+model Office {
+  id           String   @id @default(cuid())
+  name         String
+  address      String
+  city         String
+  county       String
+  state        String   @default("CA")
+  zip          String
+  phone        String?
+  email        String?
+  mlsOfficeId  String?
+  mlsOfficeKey String?
+  createdAt    DateTime @default(now())
+  updatedAt    DateTime @updatedAt
+
+  listings Listing[]
+
+  @@map("offices")
+}
+
+model Listing {
+  id                   String        @id @default(cuid())
+  agentId              String
+  officeId             String?
+  status               ListingStatus @default(DRAFT)
+  listPrice            Float
+  previousListPrice    Float?
+  originalListPrice    Float?
+  closePrice           Float?
+  closeDate            DateTime?
+  streetAddress        String
+  city                 String
+  county               String
+  stateOrProvince      String        @default("CA")
+  postalCode           String
+  country              String        @default("US")
+  latitude             Float?
+  longitude            Float?
+  propertyType         String
+  propertySubType      String?
+  bedrooms             Int?
+  bathrooms            Float?
+  bathroomsFull        Int?
+  bathroomsHalf        Int?
+  livingArea           Float?
+  lotSizeAcres         Float?
+  lotSizeSquareFeet    Float?
+  yearBuilt            Int?
+  publicRemarks        String?       @db.Text
+  privateRemarks       String?       @db.Text
+  showingInstructions  String?       @db.Text
+  directions           String?       @db.Text
+  ownerName            String?
+  voiceNotes           String?
+  hasHOA               Boolean       @default(false)
+  hoaFeeMonthly        Float?
+  hoaFeeAnnual         Float?
+  expirationDate       DateTime?
+  isFeatured           Boolean       @default(false)
+  mlsListingKey        String?
+  mlsStatus            String?
+  listingContractDate  DateTime?
+  daysOnMarket         Int?
+  createdAt            DateTime      @default(now())
+  updatedAt            DateTime      @updatedAt
+
+  agent          User                   @relation(fields: [agentId], references: [id])
+  office         Office?                @relation(fields: [officeId], references: [id])
+  media          Media[]
+  features       ListingFeature[]
+  statusHistory  ListingStatusHistory[]
+  openHouses     OpenHouse[]
+  leads          LeadSubmission[]       @relation("ListingLeads")
+
+  @@index([status])
+  @@index([county])
+  @@index([agentId])
+  @@index([isFeatured])
+  @@map("listings")
+}
+
+model Media {
+  id            String        @id @default(cuid())
+  listingId     String
+  url           String
+  caption       String?
+  displayOrder  Int           @default(0)
+  isPrimary     Boolean       @default(false)
+  mediaCategory MediaCategory @default(PHOTO)
+  mimeType      String?
+  sizeBytes     Int?
+  createdAt     DateTime      @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+  @@map("media")
+}
+
+model ListingFeature {
+  id              String  @id @default(cuid())
+  listingId       String
+  featureCategory String
+  featureValue    String
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+  @@map("listing_features")
+}
+
+model ListingStatusHistory {
+  id          String         @id @default(cuid())
+  listingId   String
+  fromStatus  ListingStatus?
+  toStatus    ListingStatus
+  changedById String
+  note        String?
+  createdAt   DateTime       @default(now())
+
+  listing   Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+  changedBy User    @relation("ChangedBy", fields: [changedById], references: [id])
+
+  @@index([listingId])
+  @@map("listing_status_history")
+}
+
+model OpenHouse {
+  id          String        @id @default(cuid())
+  listingId   String
+  startTime   DateTime
+  endTime     DateTime
+  type        OpenHouseType @default(PUBLIC)
+  description String?
+  createdAt   DateTime      @default(now())
+
+  listing Listing @relation(fields: [listingId], references: [id], onDelete: Cascade)
+
+  @@index([listingId])
+  @@map("open_houses")
+}
+
+model LeadSubmission {
+  id           String   @id @default(cuid())
+  source       String
+  listingId    String?
+  agentId      String?
+  firstName    String
+  lastName     String
+  email        String
+  phone        String?
+  message      String?  @db.Text
+  ghlContactId String?
+  ghlStatus    String?
+  createdAt    DateTime @default(now())
+
+  listing Listing? @relation("ListingLeads", fields: [listingId], references: [id])
+  agent   User?    @relation("AssignedAgent", fields: [agentId], references: [id])
+
+  @@map("lead_submissions")
+}
+
+model OfflineSyncQueue {
+  id           String     @id @default(cuid())
+  agentId      String
+  payload      Json
+  status       SyncStatus @default(PENDING)
+  errorMessage String?
+  createdAt    DateTime   @default(now())
+  processedAt  DateTime?
+
+  agent User @relation(fields: [agentId], references: [id])
+
+  @@map("offline_sync_queue")
+}
+
+model LookupValue {
+  id           String @id @default(cuid())
+  lookupName   String
+  value        String
+  displayOrder Int    @default(0)
+
+  @@index([lookupName])
+  @@map("lookup_values")
+}
