@@ -70,6 +70,11 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             }}
           />
         )}
+        <link rel="manifest" href="/manifest.json" />
+        <meta name="theme-color" content="#10401c" />
+        <meta name="apple-mobile-web-app-capable" content="yes" />
+        <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+        <link rel="apple-touch-icon" href="/images/logo-small.jpg" />
       </head>
       <body className="min-h-screen flex flex-col bg-warm-alabaster dark:bg-gray-950 text-charcoal-ink dark:text-gray-100 transition-colors duration-300">
         {gtmId && (
