@@ -28,12 +28,50 @@ export default function Step8Review({ data, onBack }: Props) {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
 
+  const [error, setError] = useState<string | null>(null)
+
   const handleSubmit = async () => {
     setSubmitting(true)
-    // TODO: POST to /api/listings when API is wired
-    await new Promise(r => setTimeout(r, 2000))
-    setSubmitted(true)
-    setSubmitting(false)
+    setError(null)
+    try {
+      const res = await fetch('/api/listings', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          propertyType: data.propertyType,
+          propertySubType: data.propertySubType || undefined,
+          streetAddress: data.streetAddress,
+          city: data.city,
+          county: data.county,
+          postalCode: data.postalCode,
+          stateOrProvince: data.stateOrProvince,
+          bedrooms: Number(data.bedrooms) || 0,
+          bathrooms: Number(data.bathrooms) || 0,
+          livingArea: data.livingArea ? Number(data.livingArea) : undefined,
+          lotSizeAcres: data.lotSizeAcres ? Number(data.lotSizeAcres) : undefined,
+          yearBuilt: data.yearBuilt ? Number(data.yearBuilt) : undefined,
+          features: data.features,
+          publicRemarks: data.publicRemarks || undefined,
+          listPrice: Number(data.listPrice),
+          listingContractDate: data.listingContractDate || undefined,
+          expirationDate: data.expirationDate || undefined,
+          hasHOA: data.hasHOA,
+          hoaFeeMonthly: data.hoaFeeMonthly ? Number(data.hoaFeeMonthly) : undefined,
+          privateRemarks: data.privateRemarks || undefined,
+          showingInstructions: data.showingInstructions || undefined,
+          directions: data.directions || undefined,
+        }),
+      })
+      if (!res.ok) {
+        const err = await res.json()
+        throw new Error(err.error || 'Failed to create listing')
+      }
+      setSubmitted(true)
+    } catch (e) {
+      setError(e instanceof Error ? e.message : 'Something went wrong')
+    } finally {
+      setSubmitting(false)
+    }
   }
 
   if (submitted) {
@@ -126,6 +164,12 @@ export default function Step8Review({ data, onBack }: Props) {
         <span>🔒</span>
         <span>&quot;Submit & Sync to MLS&quot; available in Phase 3</span>
       </div>
+
+      {error && (
+        <div className="bg-red-50 dark:bg-red-900/20 border border-red-200 dark:border-red-800 rounded-lg px-4 py-3 text-sm text-red-700 dark:text-red-400">
+          {error}
+        </div>
+      )}
 
       <div className="flex justify-between pt-2">
         <button onClick={onBack} className="px-6 py-3 border border-gray-200 dark:border-gray-700 text-charcoal-ink dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors min-h-[48px]">← Back</button>
