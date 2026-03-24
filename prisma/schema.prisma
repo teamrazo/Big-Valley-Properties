@@ -155,6 +155,10 @@ model Listing {
   listingContractDate  DateTime?
   daysOnMarket         Int?
 
+  // Walkthrough data
+  propertyDetails      Json?         @db.JsonB    // Structured walkthrough data
+  walkthroughNotes     String?       @db.Text     // Raw voice/text notes from agent
+
   // Flags
   isFeatured           Boolean       @default(false)
 

@@ -1,9 +1,7 @@
 'use client'
 
 import { useState } from 'react'
-import type { WizardData } from '../page'
-
-interface Props { data: WizardData; update: (d: Partial<WizardData>) => void; onNext: () => void; onBack: () => void }
+import type { StepProps } from '../wizardTypes'
 
 function Section({ title, children }: { title: string; children: React.ReactNode }) {
   return (
@@ -14,7 +12,7 @@ function Section({ title, children }: { title: string; children: React.ReactNode
   )
 }
 
-function Row({ label, value }: { label: string; value: string | number | undefined }) {
+function Row({ label, value }: { label: string; value: string | number | undefined | null }) {
   if (!value) return null
   return (
     <div className="flex justify-between py-1">
@@ -24,11 +22,23 @@ function Row({ label, value }: { label: string; value: string | number | undefin
   )
 }
 
-export default function Step8Review({ data, onBack }: Props) {
+function ChipList({ items }: { items: string[] }) {
+  if (!items.length) return <p className="text-sm text-gray-400">None</p>
+  return (
+    <div className="flex flex-wrap gap-1.5">
+      {items.map(f => (
+        <span key={f} className="text-xs bg-forest-green/10 text-forest-green px-2 py-1 rounded-full">{f}</span>
+      ))}
+    </div>
+  )
+}
+
+export default function Step10Review({ data, onBack }: StepProps) {
   const [submitting, setSubmitting] = useState(false)
   const [submitted, setSubmitted] = useState(false)
-
   const [error, setError] = useState<string | null>(null)
+
+  const pd = data.propertyDetails
 
   const handleSubmit = async () => {
     setSubmitting(true)
@@ -60,6 +70,8 @@ export default function Step8Review({ data, onBack }: Props) {
           privateRemarks: data.privateRemarks || undefined,
           showingInstructions: data.showingInstructions || undefined,
           directions: data.directions || undefined,
+          propertyDetails: Object.keys(pd).length > 0 ? pd : undefined,
+          walkthroughNotes: data.walkthroughNotes || undefined,
         }),
       })
       if (!res.ok) {
@@ -80,24 +92,35 @@ export default function Step8Review({ data, onBack }: Props) {
         <div className="text-5xl mb-4">🎉</div>
         <h2 className="font-heading text-h3 text-charcoal-ink dark:text-white mb-2">Listing Submitted!</h2>
         <p className="text-cabin-timber dark:text-gray-400 text-sm mb-6">
-          Your listing has been sent to the broker for review. You&apos;ll be notified when it&apos;s approved.
+          Your listing has been sent to the broker for review.
         </p>
         <div className="flex gap-3 justify-center">
-          <a href="/dashboard/listings" className="px-6 py-3 bg-forest-green text-white rounded-lg font-medium hover:bg-deep-pine transition-colors min-h-[48px]">
-            View Listings
-          </a>
-          <a href="/dashboard/listings/new" className="px-6 py-3 border border-gray-200 dark:border-gray-700 text-charcoal-ink dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors min-h-[48px]">
-            Create Another
-          </a>
+          <a href="/dashboard/listings" className="px-6 py-3 bg-forest-green text-white rounded-lg font-medium hover:bg-deep-pine transition-colors min-h-[48px]">View Listings</a>
+          <a href="/dashboard/listings/new" className="px-6 py-3 border border-gray-200 dark:border-gray-700 text-charcoal-ink dark:text-gray-300 rounded-lg font-medium min-h-[48px]">Create Another</a>
         </div>
       </div>
     )
   }
 
+  // Collect warnings for missing recommended fields
+  const warnings: string[] = []
+  if (!data.publicRemarks) warnings.push('No public description')
+  if (!data.photos.length) warnings.push('No photos uploaded')
+  if (!pd.structure?.foundation?.length) warnings.push('No foundation type')
+  if (!pd.utilities?.waterSource?.length) warnings.push('No water source')
+
   return (
     <div className="space-y-5">
       <h2 className="font-heading text-h3 text-charcoal-ink dark:text-white">Review & Submit</h2>
-      <p className="text-sm text-cabin-timber dark:text-gray-400">Review your listing before submitting for broker approval.</p>
+
+      {warnings.length > 0 && (
+        <div className="bg-yellow-50 dark:bg-yellow-900/20 border border-yellow-200 dark:border-yellow-800 rounded-lg px-4 py-3">
+          <p className="text-sm font-medium text-yellow-700 dark:text-yellow-400 mb-1">Recommended fields missing:</p>
+          <ul className="text-xs text-yellow-600 dark:text-yellow-500 space-y-0.5">
+            {warnings.map(w => <li key={w}>• {w}</li>)}
+          </ul>
+        </div>
+      )}
 
       <div className="space-y-4">
         <Section title="Property">
@@ -113,20 +136,25 @@ export default function Step8Review({ data, onBack }: Props) {
           <Row label="Year Built" value={data.yearBuilt} />
         </Section>
 
-        <Section title="Features">
-          {data.features.length > 0 ? (
-            <div className="flex flex-wrap gap-1.5">
-              {data.features.map(f => (
-                <span key={f} className="text-xs bg-forest-green/10 text-forest-green px-2 py-1 rounded-full">{f}</span>
-              ))}
-            </div>
-          ) : (
-            <p className="text-sm text-gray-400">No features selected</p>
-          )}
-        </Section>
+        {pd.structure && (
+          <Section title="Structure">
+            {pd.structure.foundation?.length ? <><span className="text-xs text-cabin-timber dark:text-gray-500">Foundation:</span> <ChipList items={pd.structure.foundation} /></> : null}
+            {pd.structure.roofType?.length ? <><span className="text-xs text-cabin-timber dark:text-gray-500">Roof:</span> <ChipList items={pd.structure.roofType} /></> : null}
+            {pd.structure.siding?.length ? <><span className="text-xs text-cabin-timber dark:text-gray-500">Siding:</span> <ChipList items={pd.structure.siding} /></> : null}
+            <Row label="Garage" value={pd.structure.garage?.type} />
+          </Section>
+        )}
+
+        {pd.utilities && (
+          <Section title="Utilities">
+            {pd.utilities.waterSource?.length ? <><span className="text-xs text-cabin-timber dark:text-gray-500">Water:</span> <ChipList items={pd.utilities.waterSource} /></> : null}
+            <Row label="Sewer" value={pd.utilities.sewer?.type} />
+            {pd.utilities.heating?.length ? <><span className="text-xs text-cabin-timber dark:text-gray-500">Heating:</span> <ChipList items={pd.utilities.heating} /></> : null}
+          </Section>
+        )}
 
         <Section title="Description">
-          <p className="text-sm text-charcoal-ink dark:text-gray-300 whitespace-pre-wrap">
+          <p className="text-sm text-charcoal-ink dark:text-gray-300 whitespace-pre-wrap line-clamp-6">
             {data.publicRemarks || <span className="text-gray-400">No description</span>}
           </p>
         </Section>
@@ -154,15 +182,7 @@ export default function Step8Review({ data, onBack }: Props) {
         <Section title="Pricing">
           <Row label="List Price" value={data.listPrice ? `$${Number(data.listPrice).toLocaleString()}` : undefined} />
           <Row label="HOA" value={data.hasHOA ? `$${data.hoaFeeMonthly || '0'}/mo` : 'None'} />
-          <Row label="Listing Date" value={data.listingContractDate} />
-          <Row label="Expiration" value={data.expirationDate} />
         </Section>
-      </div>
-
-      {/* Phase 3 sync button */}
-      <div className="flex items-center gap-2 text-gray-400 dark:text-gray-600 text-sm bg-gray-50 dark:bg-gray-800/50 rounded-lg px-4 py-3">
-        <span>🔒</span>
-        <span>&quot;Submit & Sync to MLS&quot; available in Phase 3</span>
       </div>
 
       {error && (
@@ -173,11 +193,8 @@ export default function Step8Review({ data, onBack }: Props) {
 
       <div className="flex justify-between pt-2">
         <button onClick={onBack} className="px-6 py-3 border border-gray-200 dark:border-gray-700 text-charcoal-ink dark:text-gray-300 rounded-lg font-medium hover:bg-gray-50 dark:hover:bg-gray-800 transition-colors min-h-[48px]">← Back</button>
-        <button
-          onClick={handleSubmit}
-          disabled={submitting}
-          className="px-8 py-3 bg-forest-green text-white rounded-lg font-medium hover:bg-deep-pine transition-colors disabled:opacity-50 min-h-[48px]"
-        >
+        <button onClick={handleSubmit} disabled={submitting}
+          className="px-8 py-3 bg-forest-green text-white rounded-lg font-medium hover:bg-deep-pine transition-colors disabled:opacity-50 min-h-[48px]">
           {submitting ? 'Submitting...' : 'Submit for Review'}
         </button>
       </div>

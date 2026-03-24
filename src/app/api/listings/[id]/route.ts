@@ -56,6 +56,8 @@ const UpdateListingSchema = z.object({
   privateRemarks: z.string().optional(),
   showingInstructions: z.string().optional(),
   directions: z.string().optional(),
+  propertyDetails: z.any().optional(),
+  walkthroughNotes: z.string().optional(),
   status: z.enum(['DRAFT', 'PENDING_REVIEW', 'ACTIVE', 'UNDER_CONTRACT', 'SOLD', 'WITHDRAWN', 'EXPIRED']).optional(),
 })
 
