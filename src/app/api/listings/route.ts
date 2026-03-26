@@ -26,6 +26,8 @@ const CreateListingSchema = z.object({
   privateRemarks: z.string().optional(),
   showingInstructions: z.string().optional(),
   directions: z.string().optional(),
+  propertyDetails: z.any().optional(),
+  walkthroughNotes: z.string().optional(),
 })
 
 async function getAuthUser() {
@@ -79,6 +81,8 @@ export async function POST(request: NextRequest) {
         privateRemarks: d.privateRemarks,
         showingInstructions: d.showingInstructions,
         directions: d.directions,
+        propertyDetails: d.propertyDetails ?? undefined,
+        walkthroughNotes: d.walkthroughNotes,
         status: 'DRAFT',
         // Create features as related records
         features: d.features?.length ? {
